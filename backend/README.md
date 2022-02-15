@@ -1,8 +1,8 @@
-# Backend Frameword: Django
+# Backend Framework: Django
 ### 1. Setup Process - Please follow the steps to active the server:
 
 
-1. We use Python3 and pip3 for this project, check whether you've installed Python3 and pip3 by:
+1. We use Python3 and pip3 for this project, check whether you've installed Python3 and pip3:
       ```
       python3 --version
       ```
@@ -16,7 +16,7 @@
       ```
       pip3 install virtualenv
       ```
-      Then we install a virtual environment:
+      Then we create a virtual environment:
       ```
       virtualenv myenv
       ```
@@ -24,9 +24,9 @@
       ```
       source myenv/bin/activate
       ```
-      If we enter the virtual environment, it shows (env) in the terminal
+      If we enter the virtual environment successfully, it shows (env) in the terminal
 
-      (Just tye "deactivate" to leave virtual environment when you wanna end the development)
+      (Just type "deactivate" to leave virtual environment when you wanna end the development)
 
 3. Now we need to install the package. All packages are listed in "requirements.txt" file in the backend folder.
       ```
