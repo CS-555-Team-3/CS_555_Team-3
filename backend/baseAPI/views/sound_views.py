@@ -9,15 +9,19 @@ from django.http import FileResponse
 import pathlib
 # view acts as a controller in Django, we process program logic here
 
+# global order list to record the order of notes
+order = []
+
 
 @api_view(["GET"])
 def getSounds(request, notes, durations):
     # this endpoint receives two query params: notes and durations
-    # TODO: color corresponds to sound notes needs to be decided, then use a global list
-    # to record the order
 
     # the sound_list is used to store the sound notes mp3 files
     sound_list = []
+
+    # declare global order variable
+    global order
 
     # check params
     if notes <= 0 or notes > 24 or durations <= 0 or durations >= 6.0:
@@ -28,6 +32,9 @@ def getSounds(request, notes, durations):
         # randrange(n) generates a number in the range [0, n - 1), randomly choose a file number
         # since the file name start from 01, we need to + 1 at the end, then convert to string type
         file_num = str(randrange(24) + 1)
+
+        # record the num in order
+        order.append(file_num)
 
         # get the backend folder path
         path = str(pathlib.Path(__file__).parent.parent.parent.resolve())
@@ -59,6 +66,11 @@ def getSounds(request, notes, durations):
 
 @api_view(["GET"])
 def getOrders(request):
-    # TODO: color corresponds to sound notes needs to be decided, then use a global list
-    # to record the order
-    pass
+    # declare global order variable
+    global order
+
+    # if order is empty, it means we havn't processed music, return Bad Request
+    if not order:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    return Response(order)
