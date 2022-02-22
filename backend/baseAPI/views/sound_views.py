@@ -69,7 +69,7 @@ def getOrders(request):
     # declare global order variable
     global order
 
-    # if order is empty, means we havn't processed music, return Bad Request
+    # if order is empty, it means we havn't processed music, return Bad Request
     if not order:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
