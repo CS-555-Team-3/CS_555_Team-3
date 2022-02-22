@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls.conf import include
 
+# base urls, we include sub-endpoints and route to them here
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # routing to the sound server
+    path("api/sounds/", include("baseAPI.urls.sound_urls"))
 ]
