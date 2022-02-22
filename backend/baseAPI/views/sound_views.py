@@ -19,6 +19,10 @@ def getSounds(request, notes, durations):
     # the sound_list is used to store the sound notes mp3 files
     sound_list = []
 
+    # check params
+    if notes <= 0 or notes > 24 or durations <= 0 or durations >= 6.0:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
     # baes on the number of notes to randomlly open the sound files stored in the sound_notes folder
     for i in range(notes):
         # randrange(n) generates a number in the range [0, n - 1), randomly choose a file number
