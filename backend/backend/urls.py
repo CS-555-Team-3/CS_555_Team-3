@@ -22,5 +22,24 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # routing to the sound server
-    path("api/sounds/", include("baseAPI.urls.sound_urls"))
+    path("api/sounds/", include("baseAPI.urls.sound_urls")),
+    
+    #path("api/random_list/", include("baseAPI.urls.sound_urls")),
+    #path("api/list_to_mp3/", include("baseAPI.urls.sound_urls")),
+    path("api/get_one_sound/", include("baseAPI.urls.sound_urls")),
+    #path("api/get_one_color/", include("baseAPI.urls.sound_urls")),
+    #path("api/get_list_color/", include("baseAPI.urls.sound_urls")),
+    #path("api/variables/", include("baseAPI.urls.sound_urls")),
+         
+    #path("orders/", views.getOrders, name="orders"),
 ]
+
+'''
+
+        path("<int:num_notes>", views.generate_rand_tune_list, name="random_tune_list"),
+    path("<list:notes>/<list:durations>", views.get_list_mp3, name="list_to_mp3"),
+    path("<string:color>", views.get_color_scheme, name="get_lists_color"),
+    path("<string:notes>", views.get_one_sound, name="get_one_sound"),
+    path("<string:notes>", views.get_one_color, name="get_one_color"),
+
+'''
