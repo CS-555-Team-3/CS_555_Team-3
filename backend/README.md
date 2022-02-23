@@ -51,8 +51,4 @@
 <br />
 
 ### 3. We use "Django Rest Framework" to develop the APIs, which has been installed in the app and listed in requirements file.
-
-<br />
-
-### 4. We need to process mp3 files, please install "ffmpeg". Download it from: https://ffmpeg.org/download.html
  
