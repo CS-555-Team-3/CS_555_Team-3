@@ -23,6 +23,9 @@ def getSounds(request, notes, durations):
     # declare global order variable
     global order
 
+    # clear the order from the previous sounds
+    order = []
+
     # check params
     if notes <= 0 or notes > 24 or durations <= 0 or durations >= 6.0:
         return Response(status=status.HTTP_400_BAD_REQUEST)
