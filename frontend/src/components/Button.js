@@ -3,35 +3,19 @@ import React from 'react';
 import axios from 'axios';
 
 class AButton extends React.Component {
-  constructor(props) {
-    super(props)
-    this.sounds = null
-  }
 
-
-  componentDidMount() {
-    axios.get('http://localhost:8000/api/sounds/5/0.5')
-      .then(res => {
-        console.log("Seeing it in console means it works!")
-        this.sounds = new Audio(res.data);
-        this.sounds.crossOrigin = 'anonymous';
-      })
-
-  }
-
-  getSound(){
-    var playPromise = this.sounds.play();
-    // In browsers that don’t yet support this functionality,
-    // playPromise won’t be defined.
-    if (playPromise !== undefined) {
-        playPromise.then(function() {
-            // Automatic playback started!
-        }).catch(function(error) {
-            console.log(error);
-            console.log("try to reload");
-            this.sounds.load();
-            this.sounds.play();
-        });
+  getSound = async() => {
+    try {
+      const response = await axios.get('http://localhost:8000/api/sounds/3/1.0', {responseType:'blob'})
+      const mp3 = new Blob([response.data], { type: 'audio/mp3' })
+      const url = window.URL.createObjectURL(mp3)
+      const audio = new Audio(url)
+      audio.load()
+      await audio.play()
+      const order = (await axios.get('http://localhost:8000/api/sounds/orders/')).data
+      console.log(order)
+    } catch (e) {
+      console.log('play audio error: ', e)
     }
   }
   
