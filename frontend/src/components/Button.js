@@ -7,8 +7,8 @@ class AButton extends React.Component {
   getSound = async() => {
     try {
       const response = await axios.get('http://localhost:8000/api/sounds/3/1.0', {responseType:'blob'})
-      const mp3 = new Blob([response.data], { type: 'audio/mp3' })
-      const url = window.URL.createObjectURL(mp3)
+      const wav = new Blob([response.data], { type: 'audio/wav' })
+      const url = window.URL.createObjectURL(wav)
       const audio = new Audio(url)
       audio.load()
       await audio.play()

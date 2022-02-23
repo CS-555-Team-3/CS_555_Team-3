@@ -43,7 +43,9 @@ def getSounds(request, notes, durations):
         path = str(pathlib.Path(__file__).parent.parent.parent.resolve())
 
         # open the sound file
-        sound = AudioSegment.from_mp3(path + f"/sound_notes/key{file_num}.mp3")
+        # sound = AudioSegment.from_mp3(path + f"/sound_notes/key{file_num}.mp3")
+        sound = AudioSegment.from_file(
+            path + f"/sound_notes/key{file_num}.wav", format="wav")
 
         # store the sound in the list
         sound_list.append(sound)
@@ -61,10 +63,10 @@ def getSounds(request, notes, durations):
     # play(merged_sound)
 
     # convert the Audiosegment file to mp3
-    mp3_file = merged_sound.export(format="mp3")
+    mp3_file = merged_sound.export(format="wav")
 
     # return mp3 file to the client
-    return FileResponse(mp3_file, content_type="audio/mp3")
+    return FileResponse(mp3_file, content_type="audio/wav")
 
 
 @api_view(["GET"])
