@@ -21,9 +21,9 @@ p_keys = [ 'A',
             'A_flat',
             'B_flat',
             'D_flat',
+            'E_flat',
             'G_flat'
         ]
-
 
 @api_view(["GET"])
 def getSounds(request, notes, durations):
@@ -31,7 +31,7 @@ def getSounds(request, notes, durations):
     
     # (0) allow for initial duration to be one single input or a list of inputs if your trying to get fancy
     if(type(durations) is not list):
-        durations = [durations for i in len(notes)]   
+        durations = [durations for i in range(notes)]   
 
     # the sound_list is used to store the sound notes mp3 files
     sound_list = []
@@ -44,18 +44,18 @@ def getSounds(request, notes, durations):
     order = []
 
     # check params
-    if notes <= 0 or notes > 24 or durations <= 0 or durations >= 6.0:
+    if notes <= 0 or notes > 12 or len(durations) <= 0 or len(durations) >= 6.0:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
     # baes on the number of notes to randomlly open the sound files stored in the sound_notes folder
     for i in range(notes):
         # randrange(n) generates a number in the range [0, n - 1), randomly choose a file number
         # since the file name start from 01, we need to + 1 at the end, then convert to string type
-        rand_num = str(randrange(24) + 1)
+        rand_num = randrange(0,12) 
 
         # record the num in order
         ### -> change made to send back list of notes played --> works on my end
-        order.append((notes[rand_num]))
+        order.append(p_keys[rand_num])
 
         # get the backend folder path
         path = str(pathlib.Path(__file__).parent.parent.parent.resolve())
@@ -72,9 +72,9 @@ def getSounds(request, notes, durations):
     merged_sound = AudioSegment.empty()
 
     # iterate the sound_list and merge all sound notes with durations
-    for sound in sound_list:
+    for i in range(len(sound_list)):
         # durations * 1000 = duration secs
-        merged_sound += sound[:durations * 1000]
+        merged_sound += sound_list[i][:durations[i] * 1000]
 
     # now we have a tone with "notes" of notes and each with "durations" secs!
     # we can un-comment below line to test it or debug
