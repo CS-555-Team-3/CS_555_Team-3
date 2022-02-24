@@ -46,6 +46,10 @@ def getSounds(request, notes, durations):
     # check params
     if notes <= 0 or notes > 12 or len(durations) <= 0 or len(durations) >= 6.0:
         return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+     # check that the duration of a note isnt shorter than 1 beccause this creates choppy sound
+    if min(durations) < 1:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
     # baes on the number of notes to randomlly open the sound files stored in the sound_notes folder
     for i in range(notes):
