@@ -11,33 +11,55 @@ import pathlib
 
 # global order list to record the order of notes
 order = []
-
+p_keys = [ 'A',
+            'B',
+            'C',
+            'D',
+            'E',
+            'F',
+            'G',
+            'A_flat',
+            'B_flat',
+            'D_flat',
+            'E_flat',
+            'G_flat'
+        ]
 
 @api_view(["GET"])
 def getSounds(request, notes, durations):
     # this endpoint receives two query params: notes and durations
+    
+    # (0) allow for initial duration to be one single input or a list of inputs if your trying to get fancy
+    if(type(durations) is not list):
+        durations = [durations for i in range(notes)]   
 
     # the sound_list is used to store the sound notes mp3 files
     sound_list = []
 
-    # declare global order variable
+    # declare global order variable, and p_keys
     global order
+    global p_keys 
 
     # clear the order from the previous sounds
     order = []
 
     # check params
-    if notes <= 0 or notes > 24 or durations <= 0 or durations >= 6.0:
+    if notes <= 0 or notes > 12 or len(durations) <= 0 or len(durations) >= 6.0:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+     # check that the duration of a note isnt shorter than 1 beccause this creates choppy sound
+    if min(durations) < 1:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
     # baes on the number of notes to randomlly open the sound files stored in the sound_notes folder
     for i in range(notes):
         # randrange(n) generates a number in the range [0, n - 1), randomly choose a file number
         # since the file name start from 01, we need to + 1 at the end, then convert to string type
-        file_num = str(randrange(24) + 1)
+        rand_num = randrange(0,12) 
 
         # record the num in order
-        order.append(file_num)
+        ### -> change made to send back list of notes played --> works on my end
+        order.append(p_keys[rand_num])
 
         # get the backend folder path
         path = str(pathlib.Path(__file__).parent.parent.parent.resolve())
@@ -45,7 +67,7 @@ def getSounds(request, notes, durations):
         # open the sound file
         # sound = AudioSegment.from_mp3(path + f"/sound_notes/key{file_num}.mp3")
         sound = AudioSegment.from_file(
-            path + f"/sound_notes/key{file_num}.wav", format="wav")
+            path + f"/sound_notes/{p_keys[rand_num]}.wav", format="wav")
 
         # store the sound in the list
         sound_list.append(sound)
@@ -54,9 +76,9 @@ def getSounds(request, notes, durations):
     merged_sound = AudioSegment.empty()
 
     # iterate the sound_list and merge all sound notes with durations
-    for sound in sound_list:
+    for i in range(len(sound_list)):
         # durations * 1000 = duration secs
-        merged_sound += sound[:durations * 1000]
+        merged_sound += sound_list[i][:durations[i] * 1000]
 
     # now we have a tone with "notes" of notes and each with "durations" secs!
     # we can un-comment below line to test it or debug
