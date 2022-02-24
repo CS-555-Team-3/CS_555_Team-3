@@ -43,6 +43,9 @@ INSTALLED_APPS = [
 
     # we use Django Rest Framework in this project
     'rest_framework',
+
+    # cors
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -53,7 +56,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # cors
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+# cors
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'backend.urls'
 

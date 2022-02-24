@@ -35,14 +35,9 @@
       ```
       pip3 install -r requirements.txt
       ```
+
       
-4.  Now we need to install the package ffmpeg. This can only really be done via homebrew .
-       ```
-      brew install ffmpeg 
-      ```
-      > I believe that homebrew only works for mac, for windows your going to need another method
-      
-5. Now we can start the server
+4. Now we can start the server
       ```
       python3 manage.py runserver
       ```
@@ -56,8 +51,4 @@
 <br />
 
 ### 3. We use "Django Rest Framework" to develop the APIs, which has been installed in the app and listed in requirements file.
-
-<br />
-
-### 4. We need to process mp3 files, please install "ffmpeg". Download it from: https://ffmpeg.org/download.html
  
