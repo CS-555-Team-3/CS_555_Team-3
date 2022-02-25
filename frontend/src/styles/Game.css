@@ -1,0 +1,45 @@
+#gameContainer
+{
+    display: flex;
+    flex-direction: column;
+}
+
+#answerContainer
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#noteContainer
+{
+    display: flex;
+    justify-content: center;
+}
+
+.playNote
+{
+    width: 10px;
+    height: 15px;
+    position:absolute;
+    top: 0;
+    right: 0;
+}
+
+.notes, .noteButton
+{
+    width: 50px;
+    height: 50px;
+}
+
+.noteButton
+{
+    position: relative;
+    background-color: tan;
+}
+
+.placement .notes
+{
+    background-color: grey;
+    margin: 10px;
+}
