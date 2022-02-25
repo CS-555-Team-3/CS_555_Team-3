@@ -13,6 +13,13 @@
 # production
 /build
 
+#pycache
+/backend/backend/__pycache__
+/backend/baseAPI/__pycache__
+/backend/baseAPI/migrations/__pycache__
+/backend/baseAPI/urls/__pycache__
+/backend/baseAPI/views/__pycache__
+
 # misc
 .DS_Store
 .env.local
