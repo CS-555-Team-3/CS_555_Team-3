@@ -18,11 +18,13 @@
       ```
       Then we create a virtual environment:
       ```
-      virtualenv myenv
+      virtualenv myenv (for mac)
+      python -m virtualenv myenv (for windows)
       ```
-      Now we can go into the virtual environment(for Mac):
+      Now we can go into the virtual environment:
       ```
-      source myenv/bin/activate
+      source myenv/bin/activate (for Mac)
+      .\myenv\Scripts\activate  (for Windows)
       ```
       If we enter the virtual environment successfully, it shows (env) in the terminal
 
