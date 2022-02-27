@@ -2,6 +2,7 @@ import {Link} from 'react-router-dom';
 import PlayNote from './PlayNote';
 import '../../styles/Game.css';
 import NoteButton from './NoteButton';
+import Score from './Score';
 
 export default function Game(props)
 {
@@ -41,6 +42,7 @@ export default function Game(props)
                 <NoteButton note="G">G</NoteButton>
             </div>
             <Link to="/end">End Game</Link>
+            <Score />
         </div>
     );
 }
