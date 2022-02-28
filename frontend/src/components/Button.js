@@ -24,6 +24,8 @@ class AButton extends React.Component {
       <Button variant="primary" onClick={() => this.getSound()}>Primary</Button>
     )
   }
+
+  
 }
 
 export default AButton;

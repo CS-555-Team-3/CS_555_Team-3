@@ -5,6 +5,10 @@ export default function NoteButton(props)
     let note = props.note;
     let noteName = props.children;
 
+    
+
+
+
     return(
         <div className="noteButton">
             {noteName}
