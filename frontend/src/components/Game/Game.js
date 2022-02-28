@@ -2,6 +2,9 @@ import {Link} from 'react-router-dom';
 import PlayNote from './PlayNote';
 import '../../styles/Game.css';
 import NoteButton from './NoteButton';
+import RoundStartButton from './RoundStartButton';
+import { useLocation } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
 
 export default function Game(props)
 {
@@ -14,8 +17,34 @@ export default function Game(props)
      *      -
      * */
 
+
+    // helper function to create the tune
+    const createTune = (blob_file) => {
+        const wav = new Blob([blob_file], { type: 'audio/wav' })
+        const url = window.URL.createObjectURL(wav)
+        return new Audio(url)
+     }
+
+    // extract data from Home component 
+    const data = useLocation();
+
+    // tune for all component use
+    const tune = createTune(data.state.tune)
+
+    // order for all component use
+    const order = data.state.note_order
+
+    // duration for all component use
+    const duration = data.state.duration
+    console.log(duration)
+    
+    
+
     return (
         <div id="gameContainer">
+            <div id="roundStartContainer">
+                <RoundStartButton value={tune}></RoundStartButton>
+            </div>
             <div id="answerContainer">
                 <div className='resultRows'></div>
                 <div className='placement'>

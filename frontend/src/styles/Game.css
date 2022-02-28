@@ -1,45 +1,52 @@
-#gameContainer
-{
-    display: flex;
-    flex-direction: column;
+#gameContainer {
+  display: flex;
+  flex-direction: column;
 }
 
-#answerContainer
-{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+#answerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
-#noteContainer
-{
-    display: flex;
-    justify-content: center;
+#roundStartContainer {
+  height: 100px;
+  display: flex;
+  justify-content: center;
 }
 
-.playNote
-{
-    width: 10px;
-    height: 15px;
-    position:absolute;
-    top: 0;
-    right: 0;
+#noteContainer {
+  display: flex;
+  justify-content: center;
 }
 
-.notes, .noteButton
-{
-    width: 50px;
-    height: 50px;
+.playNote {
+  width: 10px;
+  height: 15px;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
-.noteButton
-{
-    position: relative;
-    background-color: tan;
+.roundStart {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  top: 10px;
 }
 
-.placement .notes
-{
-    background-color: grey;
-    margin: 10px;
+.notes,
+.noteButton {
+  width: 50px;
+  height: 50px;
+}
+
+.noteButton {
+  position: relative;
+  background-color: tan;
+}
+
+.placement .notes {
+  background-color: grey;
+  margin: 10px;
 }
