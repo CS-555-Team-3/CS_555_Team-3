@@ -1,4 +1,3 @@
-import {Link} from 'react-router-dom';
 import PlayNote from './PlayNote';
 import '../../styles/Game.css';
 import NoteButton from './NoteButton';
@@ -41,7 +40,7 @@ export default function Game(props)
                 <NoteButton note="G_flat">Gb</NoteButton>
                 <NoteButton note="G">G</NoteButton>
             </div>
-            <Link to="/end">End Game</Link>
+            <button onClick={() => { if(window.confirm('End game?')) { window.location = '/end' };}}> End game</button>
             <Score />
         </div>
     );
