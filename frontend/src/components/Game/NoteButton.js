@@ -11,7 +11,6 @@ export default function NoteButton(props)
             {noteName}
             
             <PlayNote note={note}>
-                //realize its a bit jank, but it works according to my user story!
                 <SetNote note={note}></SetNote>
             </PlayNote>
             
