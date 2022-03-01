@@ -13,6 +13,6 @@ export default function PlayNote(props)
     }
 
     return (
-        <button className="playNote" onClick={handleClick}>{buttonText}</button>
+        <button className={noteName} onClick={handleClick}  >{buttonText}</button>
     );
 }

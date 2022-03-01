@@ -20,6 +20,7 @@
   justify-content: center;
 }
 
+<<<<<<< HEAD
 .playNote {
   width: 10px;
   height: 15px;
@@ -50,3 +51,76 @@
   background-color: grey;
   margin: 10px;
 }
+=======
+button
+{
+    width: 10px;
+    height: 15px;
+}
+.notes, .noteButton
+{
+    width: 50px;
+    height: 50px;
+}
+
+.noteButton
+{
+    position: relative;
+    background-color: #e1ebf5;
+}
+
+.placement .notes
+{
+    background-color: grey;
+    margin: 10px;
+}
+
+div.noteButton .A_flat
+{
+    background-color: #f387dc
+}
+div.noteButton .A
+{
+    background-color:#3DABB8
+}
+div.noteButton .B_flat
+{
+    background-color: #DA7313
+}
+div.noteButton .B
+{
+    background-color: #C72020
+}
+div.noteButton .C
+{
+    background-color: #DEE602
+}
+div.noteButton .D_flat
+{
+    background-color: #A3C4F3
+}
+div.noteButton .D
+{
+    background-color: #29F569
+}
+div.noteButton .E_flat
+{
+    background-color: #6E57D2
+}
+div.noteButton .E
+{
+    background-color: #F66D67
+}
+div.noteButton .F
+{
+    background-color: #B594B6
+}
+div.noteButton .G_flat
+{
+    background-color: #4b93fe
+}
+div.noteButton .G
+{
+    background-color: #FFCFD2
+}
+>>>>>>> f57e599dd8426174a120e18ef852afef40f4f9bd
