@@ -15,7 +15,7 @@ export default function Game(props)
      *      -
      * */
 
-    let score = 0;
+    var score = 0;
 
     let final_line = `The current score is ${score}`;
 

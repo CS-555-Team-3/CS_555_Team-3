@@ -23,16 +23,18 @@ function LightBox() {
             answer[i] = true;
         }
     }
+    // global.score = 0;
     let button = [];     //It will get the number of button
     for (let i = 0; i < answer.length; i++) {
         if (answer[i] == true) {
+            // global.score++;
             button[i] = 'green';   //don't know how to change the button's color
         }
         if (answer[i] == false) {
             button[i] = 'red';
         }
     }
-    // console.log(button)
+    // console.log(global.score)
     // let temp = "red";
     return (
         <div>
