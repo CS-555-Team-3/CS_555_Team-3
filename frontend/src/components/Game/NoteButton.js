@@ -1,4 +1,5 @@
 import PlayNote from "./PlayNote";
+import SetNote from "./SetNote";
 
 export default function NoteButton(props)
 {
@@ -8,7 +9,12 @@ export default function NoteButton(props)
     return(
         <div className="noteButton">
             {noteName}
-            <PlayNote note={note}></PlayNote>
+            
+            <PlayNote note={note}>
+                //realize its a bit jank, but it works according to my user story!
+                <SetNote note={note}></SetNote>
+            </PlayNote>
+            
         </div>
     );
 }
