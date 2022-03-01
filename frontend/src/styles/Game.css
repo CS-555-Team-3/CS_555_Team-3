@@ -17,20 +17,12 @@
     justify-content: center;
 }
 
-.playNote
-{
-    width: 10px;
-    height: 15px;
-    position:absolute;
-    top: 0;
-    right: 0;
-}
-
 button
 {
     width: 10px;
     height: 15px;
 }
+
 .notes, .noteButton
 {
     width: 50px;
