@@ -16,9 +16,6 @@ export default function Game(props)
      *      -
      * */
 
-     function replaceNote(note) {
-        document.getElementById('first').append(note);
-     }
 
     return (
         <div id="gameContainer">
