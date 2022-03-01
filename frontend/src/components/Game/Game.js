@@ -35,18 +35,42 @@ export default function Game(props)
                 </div>
             </div>
             <div id="noteContainer">
-                <NoteButton note="A_flat">Ab</NoteButton>
-                <NoteButton note="A">A</NoteButton>
-                <NoteButton note="B_flat">Bb</NoteButton>
-                <NoteButton note="B">B</NoteButton>
-                <NoteButton note="C">C</NoteButton>
-                <NoteButton note="D_flat">Db</NoteButton>
-                <NoteButton note="D">D</NoteButton>
-                <NoteButton note="E_flat">Eb</NoteButton>
-                <NoteButton note="E">E</NoteButton>
-                <NoteButton note="F">F</NoteButton>
-                <NoteButton note="G_flat">Gb</NoteButton>
-                <NoteButton note="G">G</NoteButton>
+                <div classname="A_flat" >
+                    <NoteButton note="A_flat">Ab</NoteButton>
+                </div>
+                <div classname="A">
+                    <NoteButton note="A">A</NoteButton>
+                </div>
+                <div classname="B_flat">
+                    <NoteButton note="B_flat">Bb</NoteButton>
+                </div>
+                <div classname="B">
+                    <NoteButton note="B">B</NoteButton>
+                </div>
+                <div classname="Cr">
+                    <NoteButton note="C">C</NoteButton>
+                </div>
+                <div classname="D_flat">
+                    <NoteButton note="D_flat">Db</NoteButton>
+                </div>
+                <div classname="D">
+                    <NoteButton note="D">D</NoteButton>
+                </div>
+                <div classname="E_flat">
+                    <NoteButton note="E_flat">Eb</NoteButton>
+                </div>
+                <div classname="E">
+                    <NoteButton note="E">E</NoteButton>
+                </div>
+                <div classname="F">
+                    <NoteButton note="F">F</NoteButton>
+                </div>
+                <div classname="G_flat">
+                    <NoteButton note="G_flat">Gb</NoteButton>
+                </div>
+                <div classname="G">
+                    <NoteButton note="G">G</NoteButton>
+                </div>
             </div>
             <Link to="/end">End Game</Link>
 
