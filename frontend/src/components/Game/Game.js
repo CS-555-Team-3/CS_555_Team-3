@@ -43,7 +43,6 @@ export default function Game(props)
                 <NoteButton note="G">G</NoteButton>
             </div>
             <button onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</button>
-            <Score />
         </div>
     );
 }
