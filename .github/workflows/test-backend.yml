@@ -24,4 +24,5 @@ jobs:
         pip3 install -r requirements.txt
     - name: Run Tests
       run: |
-        python manage.py test
+        cd backend 
+        python3 manage.py test
