@@ -19,8 +19,7 @@ export default function Game(props)
 
 
     // helper function to create the tune
-    const createTune = (blob_file) => {
-        const wav = new Blob([blob_file], { type: 'audio/wav' })
+    const createTune = (wav) => {
         const url = window.URL.createObjectURL(wav)
         return new Audio(url)
      }
@@ -36,7 +35,6 @@ export default function Game(props)
 
     // duration for all component use
     const duration = data.state.duration
-    console.log(duration)
     
     
 

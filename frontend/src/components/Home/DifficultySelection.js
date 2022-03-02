@@ -1,6 +1,7 @@
 import Select from 'react-select'
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import difficulty_map from './../../config/DifficultyMap.json';
 
 export default function DifficultySelection({SetAudio, SetOrder, SetDuration})
 {  
@@ -41,23 +42,16 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration})
         { value: 'advanced', label: 'Advanced' },
         { value: 'expert', label: 'Expert' }
     ]
-
-    // difiiculty map to [number of notes, durations]
-    const difficulty_map = {
-        "beginner": [4, 2.0],
-        "advanced": [5, 1.5],
-        "expert": [6, 1.0]
-    }
-
     
     // helper function to send request to receive audio
     const getSounds = async(num_notes, durations) => {
         try {
             const response = await axios.get(`http://localhost:8000/api/sounds/${num_notes}/${durations}`, {responseType:'blob'})
-            // since Link pass seems not able to pass audui file, extracting response.data here
+            // since Link pass seems not able to pass audui file, create a Blob object and pass it
             // the actual audio file will be created in Game component
-            setAudio(response.data)
-            SetAudio(response.data) // set the parent audio state
+            const wav = new Blob([response.data], { type: 'audio/wav' })
+            setAudio(wav)
+            SetAudio(wav) // set the parent audio state
         }
         catch (e) {
             console.log('play audio error: ', e)
