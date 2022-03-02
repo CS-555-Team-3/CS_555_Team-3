@@ -9,9 +9,9 @@ export default function NoteButton(props)
     return(
         
         <div className="noteButton">
-            <SetNote note={note}></SetNote>
+            <SetNote note={note}>
             {noteName}
-            
+            </SetNote>
             <PlayNote note={note}>
             </PlayNote>
         </div>
