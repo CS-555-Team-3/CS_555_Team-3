@@ -6,7 +6,7 @@ export default function NoteButton(props)
     let noteName = props.children;
 
     return(
-        <div className="noteButton">
+        <div className={`noteButton ${note}`}>
             {noteName}
             <PlayNote note={note}></PlayNote>
         </div>
