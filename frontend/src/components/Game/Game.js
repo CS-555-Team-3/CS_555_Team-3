@@ -49,8 +49,6 @@ export default function Game(props)
                 <UndoSelection>Undo Selection</UndoSelection>
             </div>
             
-            <Link to="/end">End Game</Link>
-            <button onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</button>
         </div>
     );
 }
