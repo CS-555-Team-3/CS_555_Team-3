@@ -1,10 +1,9 @@
-name: Django CI
+name: Backend CI test
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
+    types:
+      - opened
 
 jobs:
   build:
