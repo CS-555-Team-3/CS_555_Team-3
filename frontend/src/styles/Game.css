@@ -4,7 +4,7 @@
     flex-direction: column;
 }
 
-#answerContainer
+div#answerContainer
 {
     display: flex;
     flex-direction: row;
@@ -17,7 +17,7 @@
     justify-content: center;
 }
 
-.playNote
+button.playNote
 {
     width: 10px;
     height: 15px;
@@ -25,6 +25,12 @@
     top: 0;
     right: 0;
 }
+
+/* button
+{
+    width: 10px;
+    height: 15px;
+} */
 
 .notes, .noteButton
 {
@@ -37,11 +43,60 @@
 .noteButton
 {
     position: relative;
-    background-color: tan;
+    background-color: #e1ebf5;
 }
 
 .placement .notes
 {
     background-color: grey;
     margin: 10px;
+}
+
+div.noteButton.A_flat
+{
+    background-color: #f387dc
+}
+div.noteButton.A
+{
+    background-color:#3DABB8
+}
+div.noteButton.B_flat
+{
+    background-color: #DA7313
+}
+div.noteButton.B
+{
+    background-color: #C72020
+}
+div.noteButton.C
+{
+    background-color: #DEE602
+}
+div.noteButton.D_flat
+{
+    background-color: #A3C4F3
+}
+div.noteButton.D
+{
+    background-color: #29F569
+}
+div.noteButton.E_flat
+{
+    background-color: #6E57D2
+}
+div.noteButton.E
+{
+    background-color: #F66D67
+}
+div.noteButton.F
+{
+    background-color: #B594B6
+}
+div.noteButton.G_flat
+{
+    background-color: #4b93fe
+}
+div.noteButton.G
+{
+    background-color: #FFCFD2
 }

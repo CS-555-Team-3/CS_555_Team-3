@@ -1,9 +1,9 @@
-import {Link} from 'react-router-dom';
 import PlayNote from './PlayNote';
+import {useNavigate} from "react-router-dom"
 import '../../styles/Game.css';
 import NoteButton from './NoteButton';
 import UndoSelection from './UndoSelection';
-
+import Score from './Score';
 
 export default function Game(props)
 {
@@ -15,6 +15,7 @@ export default function Game(props)
      *      -adding wordle-style results in prior row
      *      -
      * */
+     const navigate = useNavigate()
 
 
     return (
@@ -30,10 +31,10 @@ export default function Game(props)
                     </div>
                 
             </div>
-            <div id="noteContainer">
+            <div id="noteContainer">    
                 <NoteButton note="A_flat">Ab</NoteButton>
                 <NoteButton note="A">A</NoteButton>
-                <NoteButton note="B_flat">Bb</NoteButton>
+                <NoteButton note="B_flat">Bb</NoteButton>      
                 <NoteButton note="B">B</NoteButton>
                 <NoteButton note="C">C</NoteButton>
                 <NoteButton note="D_flat">Db</NoteButton>
@@ -49,6 +50,7 @@ export default function Game(props)
             </div>
             
             <Link to="/end">End Game</Link>
+            <button onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</button>
         </div>
     );
 }
