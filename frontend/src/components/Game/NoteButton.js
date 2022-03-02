@@ -7,13 +7,15 @@ export default function NoteButton(props)
     let noteName = props.children;
 
     return(
+        
         <div className="noteButton">
+            <SetNote note={note}></SetNote>
             {noteName}
             
             <PlayNote note={note}>
-                <SetNote note={note}></SetNote>
             </PlayNote>
-            
         </div>
+        
+        
     );
 }

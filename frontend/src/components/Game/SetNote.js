@@ -20,7 +20,7 @@ export default function SetNote(props)
     }
 
     return (
-        <button className="playNote" onClick={handleClick}>{buttonText}</button>
+        <button className="setNote" onClick={handleClick}>{buttonText}</button>
     );
 
 

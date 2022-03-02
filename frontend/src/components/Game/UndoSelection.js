@@ -1,6 +1,5 @@
 export default function UndoSelection(props) 
 {
-    const noteName = props.note;
     const buttonText = props.children;
     const boxes = ["first","second","third","fourth","fifth"];
     //input check for noteName being one of our accepted names
@@ -10,7 +9,7 @@ export default function UndoSelection(props)
     {
         for(let i=boxes.length-1; i>=0; i--)  
         {
-            if(document.getElementById(boxes[i]).innerHTML != "") {
+            if(document.getElementById(boxes[i]).innerHTML !== "") {
                 document.getElementById(boxes[i]).innerHTML = "";
                 break;
             }
