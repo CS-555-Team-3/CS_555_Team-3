@@ -2,8 +2,8 @@ name: Backend CI test
 
 on:
   pull_request:
-    types:
-      - opened
+    types: [opened, reopened, edited]
+    branches: [main]
 
 jobs:
   build:
