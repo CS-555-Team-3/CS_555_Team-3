@@ -1,9 +1,11 @@
-import {Link} from 'react-router-dom';
 import PlayNote from './PlayNote';
+import {useNavigate} from "react-router-dom"
 import '../../styles/Game.css';
 import NoteButton from './NoteButton';
+
 import ResultRow from './ResultRow';
 import ResultButton from './ResultButton'
+
 export default function Game(props)
 {
     /**TODO
@@ -14,6 +16,8 @@ export default function Game(props)
      *      -adding wordle-style results in prior row
      *      -
      * */
+     const navigate = useNavigate()
+
 
     var score = 0;
 
@@ -25,6 +29,7 @@ export default function Game(props)
         <div id="gameContainer">
             <div id="answerContainer">
                 <div className='resultRows'></div>
+
                 <div className='placement'>
                     {/* <button className='notes' disabled></button>
                     <button className='notes' disabled></button>
@@ -33,48 +38,31 @@ export default function Game(props)
                     <button className='notes' disabled></button>    */}
                     <ResultButton ></ResultButton> 
                 </div>
+                
             </div>
-            <div id="noteContainer">
-                <div classname="A_flat" >
-                    <NoteButton note="A_flat">Ab</NoteButton>
-                </div>
-                <div classname="A">
-                    <NoteButton note="A">A</NoteButton>
-                </div>
-                <div classname="B_flat">
-                    <NoteButton note="B_flat">Bb</NoteButton>
-                </div>
-                <div classname="B">
-                    <NoteButton note="B">B</NoteButton>
-                </div>
-                <div classname="Cr">
-                    <NoteButton note="C">C</NoteButton>
-                </div>
-                <div classname="D_flat">
-                    <NoteButton note="D_flat">Db</NoteButton>
-                </div>
-                <div classname="D">
-                    <NoteButton note="D">D</NoteButton>
-                </div>
-                <div classname="E_flat">
-                    <NoteButton note="E_flat">Eb</NoteButton>
-                </div>
-                <div classname="E">
-                    <NoteButton note="E">E</NoteButton>
-                </div>
-                <div classname="F">
-                    <NoteButton note="F">F</NoteButton>
-                </div>
-                <div classname="G_flat">
-                    <NoteButton note="G_flat">Gb</NoteButton>
-                </div>
-                <div classname="G">
-                    <NoteButton note="G">G</NoteButton>
-                </div>
+            <div id="noteContainer">    
+                <NoteButton note="A_flat">Ab</NoteButton>
+                <NoteButton note="A">A</NoteButton>
+                <NoteButton note="B_flat">Bb</NoteButton>      
+                <NoteButton note="B">B</NoteButton>
+                <NoteButton note="C">C</NoteButton>
+                <NoteButton note="D_flat">Db</NoteButton>
+                <NoteButton note="D">D</NoteButton>
+                <NoteButton note="E_flat">Eb</NoteButton>
+                <NoteButton note="E">E</NoteButton>
+                <NoteButton note="F">F</NoteButton>
+                <NoteButton note="G_flat">Gb</NoteButton>
+                <NoteButton note="G">G</NoteButton>
+
             </div>
+            <div id="undo">
+                <UndoSelection>Undo Selection</UndoSelection>
+            </div>
+            
             <Link to="/end">End Game</Link>
 
             <ResultRow>{final_line}</ResultRow>
+            <button onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</button>
         </div>
     );
 }
