@@ -3,7 +3,7 @@
   flex-direction: column;
 }
 
-#answerContainer {
+div#answerContainer {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -15,12 +15,7 @@
   justify-content: center;
 }
 
-#noteContainer {
-  display: flex;
-  justify-content: center;
-}
-
-.playNote {
+button.playNote {
   width: 10px;
   height: 15px;
   position: absolute;
@@ -35,6 +30,12 @@
   top: 10px;
 }
 
+/* button
+{
+    width: 10px;
+    height: 15px;
+} */
+
 .notes,
 .noteButton {
   width: 50px;
@@ -43,10 +44,47 @@
 
 .noteButton {
   position: relative;
-  background-color: tan;
+  background-color: #e1ebf5;
 }
 
 .placement .notes {
   background-color: grey;
   margin: 10px;
+}
+
+div.noteButton.A_flat {
+  background-color: #f387dc;
+}
+div.noteButton.A {
+  background-color: #3dabb8;
+}
+div.noteButton.B_flat {
+  background-color: #da7313;
+}
+div.noteButton.B {
+  background-color: #c72020;
+}
+div.noteButton.C {
+  background-color: #dee602;
+}
+div.noteButton.D_flat {
+  background-color: #a3c4f3;
+}
+div.noteButton.D {
+  background-color: #29f569;
+}
+div.noteButton.E_flat {
+  background-color: #6e57d2;
+}
+div.noteButton.E {
+  background-color: #f66d67;
+}
+div.noteButton.F {
+  background-color: #b594b6;
+}
+div.noteButton.G_flat {
+  background-color: #4b93fe;
+}
+div.noteButton.G {
+  background-color: #ffcfd2;
 }
