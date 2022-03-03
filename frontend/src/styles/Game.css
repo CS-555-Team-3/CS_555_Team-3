@@ -23,6 +23,13 @@ button.playNote {
   right: 0;
 }
 
+.roundStart {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  top: 10px;
+}
+
 /* button
 {
     width: 10px;
