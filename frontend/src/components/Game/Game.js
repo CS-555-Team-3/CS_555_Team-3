@@ -5,6 +5,7 @@ import NoteButton from './NoteButton';
 import RoundStartButton from './RoundStartButton';
 import { useLocation } from 'react-router-dom'
 import UndoSelection from './UndoSelection';
+import {Link} from 'react-router-dom';
 import Score from './Score';
 
 export default function Game(props)
@@ -25,11 +26,11 @@ export default function Game(props)
     const createTune = (wav) => {
         try {
             const url = window.URL.createObjectURL(wav)
+            return new Audio(url)
         }
         catch (e) {
             console.log('create audio error: ', e)
         }
-        return new Audio(url)
      }
 
     // extract data from Home component 
