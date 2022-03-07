@@ -23,7 +23,12 @@ export default function Game(props)
 
     // helper function to create the tune
     const createTune = (wav) => {
-        const url = window.URL.createObjectURL(wav)
+        try {
+            const url = window.URL.createObjectURL(wav)
+        }
+        catch (e) {
+            console.log('create audio error: ', e)
+        }
         return new Audio(url)
      }
 

@@ -1,9 +1,9 @@
 import {render, cleanup} from "@testing-library/react";
-import PlayNote from "../PlayNote";
+import RoundStartButton from "../RoundStartButton";
 
 afterEach(cleanup);
 
 test('renders', () => {
     const div = document.createElement("div")
-    render(<PlayNote />, div);
+    render(<RoundStartButton />, div);
 });
