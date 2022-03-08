@@ -9,6 +9,11 @@ div#answerContainer {
   justify-content: center;
 }
 
+#noteContainer {
+  display: flex;
+  justify-content: center;
+}
+
 #roundStartContainer {
   height: 100px;
   display: flex;
