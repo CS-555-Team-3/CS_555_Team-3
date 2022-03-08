@@ -3,7 +3,9 @@ import PlayNote from './PlayNote';
 import '../../styles/Game.css';
 import NoteButton from './NoteButton';
 import ResultRow from './ResultRow';
-import ResultButton from './ResultButton'
+import ResultButton from './ResultButton';
+
+
 export default function Game(props)
 {
     /**TODO
@@ -26,11 +28,6 @@ export default function Game(props)
             <div id="answerContainer">
                 <div className='resultRows'></div>
                 <div className='placement'>
-                    {/* <button className='notes' disabled></button>
-                    <button className='notes' disabled></button>
-                    <button className='notes' disabled></button>
-                    <button className='notes' disabled></button>
-                    <button className='notes' disabled></button>    */}
                     <ResultButton ></ResultButton> 
                 </div>
             </div>
