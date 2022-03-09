@@ -4,6 +4,7 @@ import '../../styles/Game.css';
 import NoteButton from './NoteButton';
 import UndoSelection from './UndoSelection';
 import Score from './Score';
+import ResultButton from './ResultButton';
 
 export default function Game(props)
 {
@@ -16,6 +17,10 @@ export default function Game(props)
      *      -
      * */
      const navigate = useNavigate()
+
+
+    
+
 
 
     return (
@@ -31,6 +36,7 @@ export default function Game(props)
                     </div>
                 
             </div>
+            <div><ResultButton></ResultButton></div>
             <div id="noteContainer">    
                 <NoteButton note="A_flat">Ab</NoteButton>
                 <NoteButton note="A">A</NoteButton>
