@@ -12,16 +12,13 @@ import ResultButton from './ResultButton';
 export default function Game(props)
 {
     /**TODO
-     * -add props for difficulty
      * -colorblind settings
      * -answer container
      *      -appending a new row after input is submitted
      *      -adding wordle-style results in prior row
-     *      -
      * */
+
      const navigate = useNavigate()
-
-
 
     // helper function to create the tune
     const createTune = (wav) => {
@@ -45,8 +42,6 @@ export default function Game(props)
 
     // duration for all component use
     const duration = data.state.duration
-    
-    
 
     return (
         <div id="gameContainer">
@@ -82,11 +77,9 @@ export default function Game(props)
             <div id="undo">
                 <UndoSelection>Undo Selection</UndoSelection>
             </div>
-            {   // currently does not work
-                // <Link to="/end">End Game</Link>
-                // <button onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</button>
-            }
-            
+            <div id ="end">
+                <button className="endButton" onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</button>
+            </div>
         </div>
     );
 }
