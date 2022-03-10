@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom'
 import UndoSelection from './UndoSelection';
 import {Link} from 'react-router-dom';
 import Score from './Score';
+import ResultButton from './ResultButton';
 
 export default function Game(props)
 {
@@ -63,6 +64,7 @@ export default function Game(props)
                     </div>
                 
             </div>
+            <div><ResultButton></ResultButton></div>
             <div id="noteContainer">    
                 <NoteButton note="A_flat">Ab</NoteButton>
                 <NoteButton note="A">A</NoteButton>

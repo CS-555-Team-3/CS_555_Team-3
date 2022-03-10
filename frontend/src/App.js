@@ -1,4 +1,4 @@
-import Home from "./components/Home/Home"
+import Home from "./components/Home/Home";
 import Game from "./components/Game/Game";
 import GameOver from "./components/GameOver/GameOver";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
