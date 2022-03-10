@@ -5,26 +5,30 @@ import NoteButton from './NoteButton';
 import RoundStartButton from './RoundStartButton';
 import { useLocation } from 'react-router-dom'
 import UndoSelection from './UndoSelection';
+import {Link} from 'react-router-dom';
 import Score from './Score';
+import ResultButton from './ResultButton';
 
 export default function Game(props)
 {
     /**TODO
-     * -add props for difficulty
      * -colorblind settings
      * -answer container
      *      -appending a new row after input is submitted
      *      -adding wordle-style results in prior row
-     *      -
      * */
+
      const navigate = useNavigate()
-
-
 
     // helper function to create the tune
     const createTune = (wav) => {
-        const url = window.URL.createObjectURL(wav)
-        return new Audio(url)
+        try {
+            const url = window.URL.createObjectURL(wav)
+            return new Audio(url)
+        }
+        catch (e) {
+            console.log('create audio error: ', e)
+        }
      }
 
     // extract data from Home component 
@@ -38,8 +42,6 @@ export default function Game(props)
 
     // duration for all component use
     const duration = data.state.duration
-    
-    
 
     return (
         <div id="gameContainer">
@@ -57,6 +59,7 @@ export default function Game(props)
                     </div>
                 
             </div>
+            <div><ResultButton></ResultButton></div>
             <div id="noteContainer">    
                 <NoteButton note="A_flat">Ab</NoteButton>
                 <NoteButton note="A">A</NoteButton>
@@ -74,9 +77,9 @@ export default function Game(props)
             <div id="undo">
                 <UndoSelection>Undo Selection</UndoSelection>
             </div>
-            
-            <Link to="/end">End Game</Link>
-            <button onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</button>
+            <div id ="end">
+                <button className="endButton" onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</button>
+            </div>
         </div>
     );
 }

@@ -6,7 +6,12 @@ export default function RoundStartButton(props)
     // once the user click the button, play the tune
     const onClick = () =>
     {
-      tune.play();
+      try {
+        tune.play();
+      }
+      catch (e) {
+        console.log('play audio error: ', e)
+      }
     }
 
     return (
