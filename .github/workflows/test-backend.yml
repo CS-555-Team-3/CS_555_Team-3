@@ -1,0 +1,26 @@
+name: Backend CI test
+
+on:
+  pull_request:
+    types: [opened, reopened, edited, synchronize]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install Dependencies
+      run: |
+        cd backend 
+        python -m pip install --upgrade pip
+        pip3 install -r requirements.txt
+    - name: Run Tests
+      run: |
+        cd backend 
+        python3 manage.py test

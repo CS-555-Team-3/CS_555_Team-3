@@ -3,7 +3,6 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from random import randrange
 from pydub import AudioSegment
-from pydub.playback import play
 from django.http import FileResponse
 
 import pathlib
@@ -80,10 +79,6 @@ def getSounds(request, notes, durations):
     for i in range(len(sound_list)):
         # durations * 1000 = duration secs
         merged_sound += sound_list[i][:durations[i] * 1000]
-
-    # now we have a tone with "notes" of notes and each with "durations" secs!
-    # we can un-comment below line to test it or debug
-    # play(merged_sound)
 
     # convert the Audiosegment file to mp3
     mp3_file = merged_sound.export(format="wav")
