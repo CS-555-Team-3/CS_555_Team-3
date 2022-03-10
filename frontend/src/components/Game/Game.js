@@ -2,24 +2,52 @@ import PlayNote from './PlayNote';
 import {useNavigate} from "react-router-dom"
 import '../../styles/Game.css';
 import NoteButton from './NoteButton';
+import RoundStartButton from './RoundStartButton';
+import { useLocation } from 'react-router-dom'
 import UndoSelection from './UndoSelection';
+import {Link} from 'react-router-dom';
 import Score from './Score';
 import ResultButton from './ResultButton';
 
 export default function Game(props)
 {
     /**TODO
-     * -add props for difficulty
      * -colorblind settings
      * -answer container
      *      -appending a new row after input is submitted
      *      -adding wordle-style results in prior row
-     *      -
      * */
-    const navigate = useNavigate()
+
+     const navigate = useNavigate()
+
+    // helper function to create the tune
+    const createTune = (wav) => {
+        try {
+            const url = window.URL.createObjectURL(wav)
+            return new Audio(url)
+        }
+        catch (e) {
+            console.log('create audio error: ', e)
+        }
+     }
+
+    // extract data from Home component 
+    const data = useLocation();
+
+    // tune for all component use
+    const tune = createTune(data.state.tune)
+
+    // order for all component use
+    const order = data.state.note_order
+
+    // duration for all component use
+    const duration = data.state.duration
 
     return (
         <div id="gameContainer">
+            <div id="roundStartContainer">
+                <RoundStartButton value={tune}></RoundStartButton>
+            </div>
             <div id="answerContainer">
                 <div className='resultRows'></div>
                     <div className='placement'>

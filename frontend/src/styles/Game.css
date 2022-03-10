@@ -1,29 +1,38 @@
-#gameContainer
-{
-    display: flex;
-    flex-direction: column;
+#gameContainer {
+  display: flex;
+  flex-direction: column;
 }
 
-div#answerContainer
-{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+div#answerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
-#noteContainer
-{
-    display: flex;
-    justify-content: center;
+#noteContainer {
+  display: flex;
+  justify-content: center;
 }
 
-button.playNote
-{
-    width: 10px;
-    height: 15px;
-    position:absolute;
-    top: 0;
-    right: 0;
+#roundStartContainer {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+button.playNote {
+  width: 10px;
+  height: 15px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.roundStart {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  top: 10px;
 }
 
 /* button
@@ -32,71 +41,55 @@ button.playNote
     height: 15px;
 } */
 
-.notes, .noteButton
-{
-    width: 50px;
-    height: 50px;
+.notes,
+.noteButton {
+  width: 50px;
+  height: 50px;
 }
 
-
-
-.noteButton
-{
-    position: relative;
-    background-color: #e1ebf5;
+.noteButton {
+  position: relative;
+  background-color: #e1ebf5;
 }
 
-.placement .notes
-{
-    background-color: grey;
-    margin: 10px;
+.placement .notes {
+  background-color: grey;
+  margin: 10px;
 }
 
-div.noteButton.A_flat
-{
-    background-color: #f387dc
+div.noteButton.A_flat {
+  background-color: #f387dc;
 }
-div.noteButton.A
-{
-    background-color:#3DABB8
+div.noteButton.A {
+  background-color: #3dabb8;
 }
-div.noteButton.B_flat
-{
-    background-color: #DA7313
+div.noteButton.B_flat {
+  background-color: #da7313;
 }
-div.noteButton.B
-{
-    background-color: #C72020
+div.noteButton.B {
+  background-color: #c72020;
 }
-div.noteButton.C
-{
-    background-color: #DEE602
+div.noteButton.C {
+  background-color: #dee602;
 }
-div.noteButton.D_flat
-{
-    background-color: #A3C4F3
+div.noteButton.D_flat {
+  background-color: #a3c4f3;
 }
-div.noteButton.D
-{
-    background-color: #29F569
+div.noteButton.D {
+  background-color: #29f569;
 }
-div.noteButton.E_flat
-{
-    background-color: #6E57D2
+div.noteButton.E_flat {
+  background-color: #6e57d2;
 }
-div.noteButton.E
-{
-    background-color: #F66D67
+div.noteButton.E {
+  background-color: #f66d67;
 }
-div.noteButton.F
-{
-    background-color: #B594B6
+div.noteButton.F {
+  background-color: #b594b6;
 }
-div.noteButton.G_flat
-{
-    background-color: #4b93fe
+div.noteButton.G_flat {
+  background-color: #4b93fe;
 }
-div.noteButton.G
-{
-    background-color: #FFCFD2
+div.noteButton.G {
+  background-color: #ffcfd2;
 }
