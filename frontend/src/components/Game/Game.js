@@ -8,6 +8,7 @@ import UndoSelection from './UndoSelection';
 import {Link} from 'react-router-dom';
 import Score from './Score';
 import ResultButton from './ResultButton';
+import Hint from './Hint';
 
 export default function Game(props)
 {
@@ -59,6 +60,9 @@ export default function Game(props)
                     </div>
                 
             </div>
+
+            <div id="hint"> <Hint hint={tune} /></div>
+
             <div><ResultButton></ResultButton></div>
             <div id="noteContainer">    
                 <NoteButton note="A_flat">Ab</NoteButton>
