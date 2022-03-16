@@ -12,6 +12,7 @@ export default function GameOver(props) {
     render() {
         return (
             <div>
+                <Link to="/game">Play Again!</Link>
                 <input value= {state.value}
                   onChange={({target: {value}}) => setState({value, copied: false})} />
                 
