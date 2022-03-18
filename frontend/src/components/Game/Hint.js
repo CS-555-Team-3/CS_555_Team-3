@@ -5,7 +5,7 @@ const Hint = ({hint}) => {
 
     const playHint = () => {
       try { hint.play(); }
-      catch (e) {console.log('Hint: error in playing the tune passed in ', e)}
+      catch (e) { console.log('Hint: error in playing the tune passed in ', e) }
     }
 
     return (
