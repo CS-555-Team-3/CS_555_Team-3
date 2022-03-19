@@ -11,15 +11,7 @@ export default function PrintScores(val) {
         }, 
         []
     );
-
-    //Save scores to local storage when changed
-    useEffect(() => { 
-        const json = JSON.stringify(scores);
-        localStorage.setItem("scores", json);
-        }, 
-        [scores]
-    );
-
+    
     //Gets top 5 scores from local storage
     const printScores = scores.slice(0,5).sort((a,b) => Number(b.text) - Number(a.text)).map((score) => (
         <div key={score.id}> 
