@@ -15,7 +15,7 @@ export default function GameOver(props)
    
     return(
         <div>
-            <Link to="/game">Play Again!</Link>
+            <Link to="/">Play Again!</Link>
             <div>
                 <textarea
                     value="Your score is: 0 | Number of Tries: (# of tries)"
