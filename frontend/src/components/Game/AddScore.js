@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"; 
 
-export default function addScore(val) {
+export default function AddScore(val) {
     const [scores, setScores] = useState([]);
 
     //Load scores from local storage on pageload
