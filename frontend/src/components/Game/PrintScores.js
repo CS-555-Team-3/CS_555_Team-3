@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"; 
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 export default function PrintScores(val) {
     const [scores, setScores] = useState([]);
@@ -23,7 +24,12 @@ export default function PrintScores(val) {
     //Gets top 5 scores from local storage
     const printScores = scores.slice(0,5).sort((a,b) => Number(b.text) - Number(a.text)).map((score) => (
         <div key={score.id}> 
-            <div>{score.text}</div>              
+            <div>
+                {score.text}
+                <CopyToClipboard text={score.text}>
+                    <button>Copy score</button>
+                </CopyToClipboard>       
+            </div>      
         </div>
     ))
 

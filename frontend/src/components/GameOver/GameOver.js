@@ -1,30 +1,12 @@
-import {Link} from 'react-router-dom';
-//import { CopyToClipboard } from "react-copy-to-clipboard";
+import PrintScores from "../Game/PrintScores"
+import { Link } from 'react-router-dom';
 
-export default function GameOver(props)
-{
-
-
-   const copyCodeToClipboard = () => {
-        const el = document.getElementsByTagName('textarea');
-        el[0].select();
-        document.execCommand("copy");
-      }
-
-   
-    return(
+export default function GameOver(props) {
+    return (
         <div>
             <Link to="/">Play Again!</Link>
-            <div>
-                <textarea
-                    value="Your score is: 0 | Number of Tries: (# of tries)"
-                />
-            </div>
-            <div>
-                <button onClick={copyCodeToClipboard}>
-                    Copy to Clipboard
-                </button>
-            </div>
-         </div>
+            <h6>Your top 5 scores are:</h6>
+            <PrintScores />
+        </div>
     );
 }
