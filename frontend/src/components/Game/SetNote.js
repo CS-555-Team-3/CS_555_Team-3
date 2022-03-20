@@ -2,7 +2,7 @@ export default function SetNote(props)
 {
     const noteName = props.note;
     const buttonText = props.children;
-    const boxes = ["first","second","third","fourth","fifth"];
+    const boxes = ["first","second","third","fourth","fifth", "sixth"];
     //input check for noteName being one of our accepted names
     //test - name that doesn't work fails
 

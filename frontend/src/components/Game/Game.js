@@ -6,6 +6,7 @@ import UndoSelection from './UndoSelection';
 import ResultButton from './ResultButton';
 import Hint from './Hint';
 import TutorialEntry from './TutorialEntry';
+import BoxRow from './BoxRow';
 
 export default function Game(props)
 {
@@ -50,11 +51,7 @@ export default function Game(props)
             <div id="answerContainer">
                 <div className='resultRows'></div>
                     <div className='placement'>
-                        <button id='first' className='notes'  disabled></button>
-                        <button id='second' className='notes' disabled></button>
-                        <button id='third' className='notes' disabled></button>
-                        <button id='fourth' className='notes' disabled></button>
-                        <button id='fifth' className='notes' disabled></button>
+                        <BoxRow order = {order}></BoxRow>
                     </div>
             </div>
 

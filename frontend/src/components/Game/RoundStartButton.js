@@ -1,5 +1,8 @@
+import React, { useState, useEffect } from 'react';
+
 export default function RoundStartButton(props)
 {
+    const [clicked, setClicked] = useState(false);
     // tune from parent component
     const tune = props.value;
 
@@ -7,6 +10,7 @@ export default function RoundStartButton(props)
     const onClick = () =>
     {
       try {
+        setClicked(true);
         tune.play();
       }
       catch (e) {
@@ -15,6 +19,6 @@ export default function RoundStartButton(props)
     }
 
     return (
-        <button className="roundStart" onClick={onClick}>Round Start</button>
+        <button className="roundStart" onClick={onClick} disabled = {clicked}>Round Start</button>
     );
 }
