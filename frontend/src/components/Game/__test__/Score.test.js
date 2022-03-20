@@ -1,9 +1,9 @@
 import {render, cleanup} from "@testing-library/react";
-import Score from "../Score";
+import PrintScores from "../PrintScores";
 
 afterEach(cleanup);
 
 test('renders', () => {
     const div = document.createElement("div")
-    render(<Score />, div);
+    render(<PrintScores />, div);
 });
