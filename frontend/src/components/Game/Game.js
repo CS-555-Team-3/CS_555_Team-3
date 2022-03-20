@@ -8,6 +8,7 @@ import UndoSelection from './UndoSelection';
 import {Link} from 'react-router-dom';
 import Score from './Score';
 import ResultButton from './ResultButton';
+import TutorialEntry from './TutorialEntry';
 
 export default function Game(props)
 {
@@ -42,9 +43,10 @@ export default function Game(props)
 
     // duration for all component use
     const duration = data.state.duration
-
+    
     return (
         <div id="gameContainer">
+            <TutorialEntry></TutorialEntry>
             <div id="roundStartContainer">
                 <RoundStartButton value={tune}></RoundStartButton>
             </div>
@@ -57,7 +59,6 @@ export default function Game(props)
                         <button id='fourth' className='notes' disabled></button>
                         <button id='fifth' className='notes' disabled></button>
                     </div>
-                
             </div>
             <div><ResultButton></ResultButton></div>
             <div id="noteContainer">    
