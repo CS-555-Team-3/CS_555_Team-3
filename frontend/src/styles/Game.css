@@ -79,6 +79,10 @@ button.playNote {
   background-color: #e1ebf5;
 }
 
+.notes {
+  float: left
+}
+
 .placement .notes {
   background-color: grey;
   margin: 10px;
