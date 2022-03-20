@@ -22,7 +22,7 @@ export default function PrintScores(val) {
     );
     
     //Gets top 5 scores from local storage
-    const printScores = scores.slice(0,5).sort((a,b) => Number(b.text) - Number(a.text)).map((score) => (
+    const printScores = scores.sort((a,b) => Number(b.text) - Number(a.text)).slice(0,5).map((score) => (
         <div key={score.id}> 
             <div>
                 {score.text}
