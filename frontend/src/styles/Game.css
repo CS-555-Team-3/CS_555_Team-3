@@ -9,6 +9,11 @@ div#answerContainer {
   justify-content: center;
 }
 
+#hint {
+    margin: 15px 10px ;
+    justify-content: right;
+}
+
 #noteContainer {
   display: flex;
   justify-content: center;
