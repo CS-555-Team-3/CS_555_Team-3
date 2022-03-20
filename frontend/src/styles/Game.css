@@ -25,6 +25,33 @@ div#answerContainer {
   justify-content: center;
 }
 
+#tutorialOverlayBG {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5); 
+  z-index: 2;
+}
+
+#tutorialOverlayBox {
+  position: fixed;
+  top: 10%;
+  left: 30%;
+  right: 30%;
+  bottom: 10%;
+  margin:auto;
+  text-align: center;
+  vertical-align: middle;
+  background-color: darkgray;
+  padding-left: 2%;
+  padding-right: 2%
+}
+
+.tutorialText {
+  text-align: left;
+}
+
 button.playNote {
   width: 10px;
   height: 15px;
