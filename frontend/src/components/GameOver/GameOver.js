@@ -1,5 +1,4 @@
 import {Link} from 'react-router-dom';
-import React, { Component } from "react"
 //import { CopyToClipboard } from "react-copy-to-clipboard";
 
 export default function GameOver(props)

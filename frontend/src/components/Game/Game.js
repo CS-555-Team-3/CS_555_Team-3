@@ -1,12 +1,8 @@
-import PlayNote from './PlayNote';
-import {useNavigate} from "react-router-dom"
+import {useNavigate, useLocation} from "react-router-dom"
 import '../../styles/Game.css';
 import NoteButton from './NoteButton';
 import RoundStartButton from './RoundStartButton';
-import { useLocation } from 'react-router-dom'
 import UndoSelection from './UndoSelection';
-import {Link} from 'react-router-dom';
-import Score from './Score';
 import ResultButton from './ResultButton';
 
 export default function Game(props)
@@ -18,7 +14,7 @@ export default function Game(props)
      *      -adding wordle-style results in prior row
      * */
 
-     const navigate = useNavigate()
+    const navigate = useNavigate()
 
     // helper function to create the tune
     const createTune = (wav) => {
