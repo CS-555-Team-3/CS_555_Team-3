@@ -6,7 +6,7 @@ export default function BoxRow(props)
 
     // base on the len of the oder to slice boxes
     boxes = boxes.slice(0, order.length);
-    console.log(order.length);
+
     let buttons = [];
     boxes.forEach((id, index) => {
       buttons.push(<button id={id} key={index} className='notes' disabled></button>)
