@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"; 
+import { Button } from "@mui/material";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import '../../styles/GameOver.css';
 
 export default function PrintScores(val) {
     const [scores, setScores] = useState([]);
@@ -24,10 +26,10 @@ export default function PrintScores(val) {
     //Gets top 5 scores from local storage
     const printScores = scores.sort((a,b) => Number(b.text) - Number(a.text)).slice(0,5).map((score) => (
         <div key={score.id}> 
-            <div>
+            <div className="scoreGroup">
                 {score.text}
                 <CopyToClipboard text={score.text}>
-                    <button>Copy score</button>
+                    <Button className="copyButton" variant="contained">Copy score</Button>
                 </CopyToClipboard>       
             </div>      
         </div>

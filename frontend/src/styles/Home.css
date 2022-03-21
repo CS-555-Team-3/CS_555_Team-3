@@ -1,6 +1,23 @@
 #homeContainer
 {
-    background-color: lightblue;
-    width: 100%;
+    width: 50%;
     height: 100%;
+}
+
+.setting-menu, .settings-page
+{
+    margin-block: 5px;
+    display:flex;
+    flex-direction: column;
+}
+
+h1, h3
+{
+    display: flex;
+    justify-content: center;
+}
+
+h1, text, #homeContainer, .MuiButton-root.set-head
+{
+    margin: auto !important;
 }

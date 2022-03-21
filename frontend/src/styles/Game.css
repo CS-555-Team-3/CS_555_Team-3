@@ -1,6 +1,5 @@
 #gameContainer {
   display: flex;
-  background-color: lightblue;
   flex-direction: column;
 }
 
@@ -12,6 +11,7 @@ div#answerContainer {
 
 #hint {
     margin: 15px 10px ;
+    width: 5%;
     justify-content: right;
 }
 
@@ -45,8 +45,20 @@ div#answerContainer {
   text-align: center;
   vertical-align: middle;
   background-color: darkgray;
-  padding-left: 2%;
-  padding-right: 2%
+  padding: 2%;
+}
+
+#tutorialExit.MuiButton-text
+{
+  color: black !important;
+  position:absolute;
+  top:0;
+  right: 0;
+}
+
+#tutorialExit.MuiButton-text :hover
+{
+  background-color: lightgray;
 }
 
 .tutorialText {
@@ -60,19 +72,6 @@ button.playNote {
   top: 0;
   right: 0;
 }
-
-.roundStart {
-  width: 70px;
-  height: 70px;
-  position: absolute;
-  top: 10px;
-}
-
-/* button
-{
-    width: 10px;
-    height: 15px;
-} */
 
 .notes,
 .noteButton {

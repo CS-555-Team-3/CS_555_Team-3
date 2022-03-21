@@ -26,15 +26,14 @@ export default function Home()
     // Link passes three props: tune(blob type), the order, duration
     return(
         <div id='homeContainer'>
+            <h1>Welcome to Soundle</h1>
             <h3>Please select a difficulty to play the game!</h3>
             <DifficultySelection 
                 SetAudio={setAudio} 
                 SetOrder={setOrder}
                 SetDuration={setDuration}
             ></DifficultySelection>
-            <div>
            
-    
             <Settings
                 set_Difficulty={setDifficulty}
                 set_Timer={setTimer}
@@ -43,7 +42,6 @@ export default function Home()
                 set_Leaderboard={setLeaderboard}
                 showSettings
             ></Settings>
-            </div>
 
             <Link to={order ? "/game" : "#"} /* onClick={useGetSettings(setSettings)} */ state={{ 
                 tune: audio, 

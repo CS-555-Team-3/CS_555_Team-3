@@ -1,3 +1,5 @@
+import { Button } from "@mui/material";
+
 export default function UndoSelection(props) 
 {
     const buttonText = props.children;
@@ -19,7 +21,7 @@ export default function UndoSelection(props)
     }
 
     return (
-        <button onClick={handleClick}>{buttonText}</button>
+        <Button onClick={handleClick}>{buttonText}</Button>
     );
 
 

@@ -1,7 +1,8 @@
 
 import { useState, useEffect } from 'react';
 import Select from 'react-select';
-import {Grid} from '@mui/material';
+import {Grid, Button} from '@mui/material';
+import '../../styles/Home.css';
 
 const Settings = ( {set_Difficulty,
     set_Colorblind_mode,
@@ -40,12 +41,13 @@ const Settings = ( {set_Difficulty,
   return (
      <div className='settings-page'>
          {!showMenu &&
-            <button className='set-head'  onClick={open}>Settings Page</button>
+            <Button className='set-head'  onClick={open}>Settings</Button>
+            //todo - use only one Button calling a single onClick function
             }
          {showMenu && 
             <div className='setting-menu'>
-                <button className='set-head'  onClick={close}>Settings Page</button>
-                <Grid container>
+                <Button className='set-head'  onClick={close}>Settings</Button>
+                <Grid container spacing={2}>
                     {/* deciding whether or not this belongs in the settings panel or not
                     <Grid item className="settingsControl" xs={3}>
                         <h4>Select Difficulty</h4>
@@ -92,7 +94,6 @@ const Settings = ( {set_Difficulty,
                         />
                     </Grid>
                 </Grid>
-                
             </div>
         }
     </div> 

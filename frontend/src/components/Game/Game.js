@@ -7,13 +7,11 @@ import UndoSelection from './UndoSelection';
 import ResultButton from './ResultButton';
 import Hint from './Hint';
 import TutorialEntry from './TutorialEntry';
-
-
+import {Button} from '@mui/material';
 
 export default function Game(props)
 {
     /**TODO
-     * -colorblind settings
      * -answer container
      *      -appending a new row after input is submitted
      *      -adding wordle-style results in prior row
@@ -47,12 +45,6 @@ export default function Game(props)
     const [gFlatPlay, setGFlatPlay] = useState(false);
     const [gPlay, setGPlay] = useState(false);
 
-
-    // useEffect(()=>
-    // {
-    //     console.log(notesState);
-    // }, notesState);
-
     const navigate = useNavigate()
 
     // helper function to create the tune
@@ -71,7 +63,6 @@ export default function Game(props)
 
     // tune for all component use
     const tune = createTune(data.state.tune)
-    console.log("TUNE: " + tune);
 
     // order for all component use
     const order = data.state.note_order
@@ -79,11 +70,11 @@ export default function Game(props)
 
     // duration for all component use
     const duration = data.state.duration
-    console.log("DURATION " + duration);
 
     const noteSwitch = (note, bool) =>
     {
-        switch(note){
+        switch(note)
+        {
             case "A_flat": setAFlatPlay(bool); break;
             case "A": setAPlay(bool); break;
             case "B_flat": setBFlatPlay(bool); break;
@@ -111,19 +102,19 @@ export default function Game(props)
 
     const highlightNotes = async (e) =>
     {
-        console.log("HIT")
         for (let i = 0; i < order.length; i++)
         {
             await noteTimeout(order[i]);
-            
         }
     }
     
     function allowDrop(ev) {
+        console.log(ev);
         ev.preventDefault();
     }
     
     function drop(ev) {
+        console.log(ev);
         ev.preventDefault();
         var data = ev.dataTransfer.getData("text");
         ev.target.innerHTML = data;
@@ -147,7 +138,7 @@ export default function Game(props)
                     </div>
             </div>
 
-            <div id="hint"> <Hint hint={tune} /></div>
+            <Hint hint={tune} />
 
             <ResultButton order={order}></ResultButton>
             <div id="noteContainer">    
@@ -168,7 +159,7 @@ export default function Game(props)
                 <UndoSelection>Undo Selection</UndoSelection>
             </div>
             <div id ="end">
-                <button className="endButton" onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</button>
+                <Button className="endButton" onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</Button>
             </div>
         </div>
     );

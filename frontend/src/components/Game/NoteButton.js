@@ -29,7 +29,6 @@ export default function NoteButton(props)
     }
 
     let variable = selected || parentSelected;
-    console.log(variable);
 
     return( 
         <div draggable="true" onDragStart={(event) => drag(event)} className={`noteButton ${note} ${variable ? 'selected' : ''}`}>
