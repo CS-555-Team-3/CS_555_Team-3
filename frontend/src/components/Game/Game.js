@@ -7,6 +7,8 @@ import ResultButton from './ResultButton';
 import Hint from './Hint';
 import TutorialEntry from './TutorialEntry';
 
+
+
 export default function Game(props)
 {
     /**TODO
@@ -41,20 +43,31 @@ export default function Game(props)
     // duration for all component use
     const duration = data.state.duration
     
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+    
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.innerHTML = data;
+    }
+
     return (
         <div id="gameContainer">
             <TutorialEntry></TutorialEntry>
             <div id="roundStartContainer">
                 <RoundStartButton value={tune}></RoundStartButton>
             </div>
+
             <div id="answerContainer">
                 <div className='resultRows'></div>
                     <div className='placement'>
-                        <button id='first' className='notes'  disabled></button>
-                        <button id='second' className='notes' disabled></button>
-                        <button id='third' className='notes' disabled></button>
-                        <button id='fourth' className='notes' disabled></button>
-                        <button id='fifth' className='notes' disabled></button>
+                        <div id='first' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)}  disabled></div>
+                        <div id='second' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
+                        <div id='third' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
+                        <div id='fourth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
+                        <div id='fifth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
                     </div>
             </div>
 
@@ -62,7 +75,7 @@ export default function Game(props)
 
             <div><ResultButton></ResultButton></div>
             <div id="noteContainer">    
-                <NoteButton note="A_flat">Ab</NoteButton>
+                <NoteButton  note="A_flat">Ab</NoteButton>
                 <NoteButton note="A">A</NoteButton>
                 <NoteButton note="B_flat">Bb</NoteButton>      
                 <NoteButton note="B">B</NoteButton>
