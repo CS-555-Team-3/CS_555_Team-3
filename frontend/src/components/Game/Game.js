@@ -60,7 +60,7 @@ export default function Game(props)
 
             <div id="hint"> <Hint hint={tune} /></div>
 
-            <div><ResultButton></ResultButton></div>
+            <ResultButton order={order}></ResultButton>
             <div id="noteContainer">    
                 <NoteButton note="A_flat">Ab</NoteButton>
                 <NoteButton note="A">A</NoteButton>
