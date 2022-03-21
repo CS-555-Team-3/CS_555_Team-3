@@ -36,12 +36,15 @@ export default function Game(props)
 
     // tune for all component use
     const tune = createTune(data.state.tune)
+    console.log("TUNE: " + tune);
 
     // order for all component use
     const order = data.state.note_order
+    console.log("ORDER: " + order);
 
     // duration for all component use
     const duration = data.state.duration
+    console.log("DURATION " + duration);
     
     function allowDrop(ev) {
         ev.preventDefault();

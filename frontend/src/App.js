@@ -2,7 +2,6 @@ import Home from "./components/Home/Home";
 import Game from "./components/Game/Game";
 import GameOver from "./components/GameOver/GameOver";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import './styles/App.css'
 import Settings from "./components/Settings/Settings";
 import { useState } from 'react';
 

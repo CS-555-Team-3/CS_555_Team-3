@@ -2,7 +2,9 @@ import {Link} from 'react-router-dom';
 import DifficultySelection from './DifficultySelection'
 import React, { useState, useEffect } from 'react';
 import Settings from '../Settings/Settings';
-import {useNavigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom";
+import { Button } from '@mui/material';
+import '../../styles/Home.css';
 
 export default function Home()
 {  
@@ -23,7 +25,7 @@ export default function Home()
     // Link only avaialable once the order is received, this forces the user to choose the difficulty
     // Link passes three props: tune(blob type), the order, duration
     return(
-        <>
+        <div id='homeContainer'>
             <h3>Please select a difficulty to play the game!</h3>
             <DifficultySelection 
                 SetAudio={setAudio} 
@@ -53,6 +55,6 @@ export default function Home()
                 leaderboard:leaderboard,
                 colorblind_mode:colorblind_mode,
             }}>Play Game</Link>
-        </>
+        </div>
     );
 }

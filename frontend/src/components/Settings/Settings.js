@@ -1,12 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import Select from 'react-select';
-
-
-
-//TODO: Add tests
-//TODO: Add tests
-
+import {Grid} from '@mui/material';
 
 const Settings = ( {set_Difficulty,
     set_Colorblind_mode,
@@ -43,47 +38,61 @@ const Settings = ( {set_Difficulty,
 
 
   return (
-     <div className='settings-pasge'>
+     <div className='settings-page'>
          {!showMenu &&
             <button className='set-head'  onClick={open}>Settings Page</button>
             }
          {showMenu && 
             <div className='setting-menu'>
                 <button className='set-head'  onClick={close}>Settings Page</button>
-                
-                <h3>Select Difficulty</h3>
-                <Select 
-                    name='difficulty' 
-                    defaultValue={diff_options[0]}
-                    options={diff_options}  onChange={(value) =>set_Difficulty(value.value)} 
-                />
-                
-                <h3>Color-blind Mode</h3>
-                <Select 
-                    name='color-blind' 
-                    defaultValue={on_off_options[1]}
-                    options={on_off_options}  onChange={(value) =>set_Colorblind_mode(value.value)} 
-                />
+                <Grid container>
+                    {/* deciding whether or not this belongs in the settings panel or not
+                    <Grid item className="settingsControl" xs={3}>
+                        <h4>Select Difficulty</h4>
+                        <Select 
+                            name='difficulty' 
+                            defaultValue={diff_options[0]}
+                            options={diff_options}  onChange={(value) =>set_Difficulty(value.value)} 
+                        />
+                    </Grid> */}
+                    
+                    <Grid item className="settingsControl" xs={3}>
+                        <h4>Color-blind Mode</h4>
+                        <Select 
+                            name='color-blind' 
+                            defaultValue={on_off_options[1]}
+                            options={on_off_options}  onChange={(value) =>set_Colorblind_mode(value.value)} 
+                        />
+                    </Grid>
 
-                <h3>Timer</h3>
-                <Select  
-                    name='timer' 
-                    defaultValue={on_off_options[1]}
-                    options={on_off_options}  onChange={(value) =>set_Timer(value.value)} 
-                />
+                    <Grid item className="settingsControl" xs={3}>
+                        <h4>Timer</h4>
+                        <Select  
+                            name='timer' 
+                            defaultValue={on_off_options[1]}
+                            options={on_off_options}  onChange={(value) =>set_Timer(value.value)} 
+                        />
+                    </Grid>
+                    
+                    <Grid item className="settingsControl" xs={3}>
+                        <h4>Tutorial</h4>
+                        <Select 
+                            name='tutorial' 
+                            defaultValue={on_off_options[1]}
+                            options={on_off_options}  onChange={(value) =>set_Tutorial(value.value)} 
+                        />
+                    </Grid>
+
+                    <Grid item className="settingsControl" xs={3}>
+                        <h4>Leaderboard</h4>
+                        <Select  
+                            name='leaderboard' 
+                            defaultValue={on_off_options[1]}
+                            options={on_off_options}  onChange={(value) => set_Leaderboard(value.value)}
+                        />
+                    </Grid>
+                </Grid>
                 
-                <h3>Tutorial</h3>
-                <Select 
-                    name='tutorial' 
-                    defaultValue={on_off_options[1]}
-                    options={on_off_options}  onChange={(value) =>set_Tutorial(value.value)} 
-                />
-                <h3>Leaderboard</h3>
-                <Select  
-                    name='leaderboard' 
-                    defaultValue={on_off_options[1]}
-                    options={on_off_options}  onChange={(value) => set_Leaderboard(value.value)}
-                />
             </div>
         }
     </div> 

@@ -1,5 +1,6 @@
 #gameContainer {
   display: flex;
+  background-color: lightblue;
   flex-direction: column;
 }
 
@@ -128,4 +129,9 @@ div.noteButton.G_flat {
 }
 div.noteButton.G {
   background-color: #ffcfd2;
+}
+
+div.playNote.selected
+{
+  background-color: black;
 }
