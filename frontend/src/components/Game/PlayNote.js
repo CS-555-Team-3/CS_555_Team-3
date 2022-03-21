@@ -3,7 +3,6 @@ import { useState } from "react";
 export default function PlayNote(props)
 {
     const noteName = props.note;
-    const buttonText = props.children;
     const [selected, setSelected] = useState(false);
     //input check for noteName being one of our accepted names
     //test - name that doesn't work fails
@@ -23,6 +22,6 @@ export default function PlayNote(props)
     }
 
     return (
-        <button className={`playnote ${noteName} ${selected ? 'selected' : ''}`}  onClick={handleClick}  >{buttonText}</button>
+        <button className={`playnote ${noteName} ${selected ? 'selected' : ''}`}  onClick={handleClick}  ></button>
     );
 }

@@ -131,7 +131,8 @@ div.noteButton.G {
   background-color: #ffcfd2;
 }
 
-div.playNote.selected
+div.noteButton.selected
 {
-  background-color: black;
+  opacity: 70% !important;
+  border: 3px solid black;
 }

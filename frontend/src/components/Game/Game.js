@@ -1,4 +1,5 @@
 import {useNavigate, useLocation} from "react-router-dom"
+import { useState, useEffect } from "react";
 import '../../styles/Game.css';
 import NoteButton from './NoteButton';
 import RoundStartButton from './RoundStartButton';
@@ -17,6 +18,21 @@ export default function Game(props)
      *      -appending a new row after input is submitted
      *      -adding wordle-style results in prior row
      * */
+
+    const [notesState, setNotesState] = useState({
+        "A_flat": false,
+        "A": false,
+        "B_flat": false,     
+        "B": false,
+        "C": false,
+        "D_flat": false,
+        "D": false,
+        "E_flat": false,
+        "E": false,
+        "F": false,
+        "G_flat": false,
+        "G": false
+    });
 
     const navigate = useNavigate()
 
@@ -45,6 +61,23 @@ export default function Game(props)
     // duration for all component use
     const duration = data.state.duration
     console.log("DURATION " + duration);
+
+    const noteTimeout = (note, duration) =>
+    {
+        setNotesState(prevState => {return {...prevState, note: true}});
+        setTimeout(()=>{
+            setNotesState(prevState => {return {...prevState, note: false}});
+        }, duration);
+    }
+
+    const highlightNotes = async (e) =>
+    {
+        for (const note of order)
+        {
+            console.log(note);
+            await noteTimeout(note, duration);
+        }
+    }
     
     function allowDrop(ev) {
         ev.preventDefault();
@@ -60,7 +93,7 @@ export default function Game(props)
         <div id="gameContainer">
             <TutorialEntry></TutorialEntry>
             <div id="roundStartContainer">
-                <RoundStartButton value={tune}></RoundStartButton>
+                <RoundStartButton value={tune} onClick={highlightNotes}></RoundStartButton>
             </div>
 
             <div id="answerContainer">
@@ -78,18 +111,18 @@ export default function Game(props)
 
             <ResultButton order={order}></ResultButton>
             <div id="noteContainer">    
-                <NoteButton  note="A_flat">Ab</NoteButton>
-                <NoteButton note="A">A</NoteButton>
-                <NoteButton note="B_flat">Bb</NoteButton>      
-                <NoteButton note="B">B</NoteButton>
-                <NoteButton note="C">C</NoteButton>
-                <NoteButton note="D_flat">Db</NoteButton>
-                <NoteButton note="D">D</NoteButton>
-                <NoteButton note="E_flat">Eb</NoteButton>
-                <NoteButton note="E">E</NoteButton>
-                <NoteButton note="F">F</NoteButton>
-                <NoteButton note="G_flat">Gb</NoteButton>
-                <NoteButton note="G">G</NoteButton>
+                <NoteButton note="A_flat" selected={notesState["A_flat"]}>Ab</NoteButton>
+                <NoteButton note="A" selected={notesState["A"]}>A</NoteButton>
+                <NoteButton note="B_flat" selected={notesState["B_flat"]}>Bb</NoteButton>      
+                <NoteButton note="B" selected={notesState["B"]}>B</NoteButton>
+                <NoteButton note="C" selected={notesState["C"]}>C</NoteButton>
+                <NoteButton note="D_flat" selected={notesState["D_flat"]}>Db</NoteButton>
+                <NoteButton note="D" selected={notesState["D"]}>D</NoteButton>
+                <NoteButton note="E_flat" selected={notesState["E_flat"]}>Eb</NoteButton>
+                <NoteButton note="E" selected={notesState["E"]}>E</NoteButton>
+                <NoteButton note="F" selected={notesState["F"]}>F</NoteButton>
+                <NoteButton note="G_flat" selected={notesState["G_flat"]}>Gb</NoteButton>
+                <NoteButton note="G" selected={notesState["G"]}>G</NoteButton>
             </div>
             <div id="undo">
                 <UndoSelection>Undo Selection</UndoSelection>
