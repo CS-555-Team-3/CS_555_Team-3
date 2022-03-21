@@ -1,82 +1,110 @@
-import { useState, useEffect } from "react"; 
+import React, { useState } from "react";
 
+export default function ResultButton(props) {
+  const [score, setScore] = useState(0);
+  const [ifSubmit, setIfSubmit] = useState(false);
 
-export default function ResultButton() {
-    const [scores, setScores] = useState([]);
-    const [score, setScore] = useState(0);
+  console.log(props.order);
+  var boxes = null;
+  if (props.order) {
+    let boxLength = props.order.length;
+    switch (boxLength) {
+      case 4:
+        boxes = ["first", "second", "third", "fourth"];
+        break;
+      case 5:
+        boxes = ["first", "second", "third", "fourth", "fifth"];
+        break;
+      case 6:
+        boxes = ["first", "second", "third", "fourth", "fifth", "sixth"];
+        break;
+      default:
+        boxes = ["first", "second", "third", "fourth"];
+    }
+  }
 
-    //Load scores from local storage on pageload
-    useEffect(() => {
-            const json = localStorage.getItem("scores");
-            const savedScores = JSON.parse(json);
-            if (savedScores) { setScores(savedScores); }
-        }, 
-        []
-    );
+  const compare = () => {
+    //let order = ["A", "B", "C", "D", "E"];   //The array is the input music array from backend
+    let userChoice = []; //After clicking the boxes by user, it also generate an array
+    //const boxes = ['first', 'second', 'third', 'fourth', 'fifth'];
+    if (!props.order) throw "Backend hasn't input the music";
 
-    //Save scores to local storage when changed
-    useEffect(() => { 
-        const json = JSON.stringify(scores);
-        localStorage.setItem("scores", json);
-        }, 
-        [scores]
-    );
+    for (let i = 0; i < props.order.length; i++) {
+      let value = document.getElementById(boxes[i]).innerHTML;
+      userChoice.push(value);
+    }
+    if (boxes&&userChoice.length <  boxes.length) {
+      alert("Not enough answers, please finish them!");
+      return;
+    }
 
-    const compare = () => {
-
-        let order = ["A", "B", "C", "D", "E"];   //The array is the input music array from backend
-        let userChoice = [];  //After clicking the boxes by user, it also generate an array
-        const boxes = ["first","second","third","fourth","fifth"];
-        for(let i=0; i<order.length; i++)  
-        {
-            let value = document.getElementById(boxes[i]).innerHTML
-            userChoice.push(value);
-
-        }
-        
-        let answer = [];
-        if (order.length !== userChoice.length) throw "error";
-        if (!order) throw "Backend hasn't input the music";
-
-        for (let i = 0; i < order.length; i++) {
-            if (order[i] !== userChoice[i]) {
-                answer[i] = false;
-            }
-            else {
-                answer[i] = true;
-            }
-        }
-
-        let Score = 0;
-        for (let i = 0; i < answer.length; i++) {
-            if (answer[i] == true) {
-                document.getElementById(boxes[i]).style.backgroundColor = "green";
-                Score++;
-            }
-            if (answer[i] == false) {
-                document.getElementById(boxes[i]).style.backgroundColor = "red";
-            }
-        }
-        
-        const newScore = {
-            //Potentially can add more info here; eg date, difficulty
-            id: Math.random().toString(36),
-            text: Score,
-        };
-        setScores([...scores, newScore]);
-        setScore(Score);
-
+    let answer = [];
+    let Score = 0;
+    if (props.order.length !== userChoice.length) throw "error";
+    if (!props.order) throw "Backend hasn't input the music";
+    for (let i = 0; i < props.order.length; i++) {
+      if (props.order[i] !== userChoice[i]) {
+        // answer[i] = false;
+        if (props.order.indexOf(userChoice[i]) < 0) {
+            document.getElementById(boxes[i]).style.backgroundColor = "red";
+          } else {
+            document.getElementById(boxes[i]).style.backgroundColor = "yellow";
+          }
+      } else {
+        // answer[i] = true;
+        document.getElementById(boxes[i]).style.backgroundColor = "green";
+        Score++;
+      }
     }
 
     
-    return (
+    // for (let i = 0; i < answer.length; i++) {
+    //   if (answer[i] == true) {
+    //     document.getElementById(boxes[i]).style.backgroundColor = "green";
+    //     Score++;
+    //   }
+    //   if (answer[i] == false) {
+    //     document.getElementById(boxes[i]).style.backgroundColor = "red";
+    //   }
+    // }
+    setScore(Score);
+    setIfSubmit(true);
+    
+  };
+
+  //restart
+  const restart = () => {
+    for (let i = 0; i < boxes.length; i++) {
+      document.getElementById(boxes[i]).style.backgroundColor = "grey";
+      document.getElementById(boxes[i]).innerHTML = "";
+    }
+    setScore(0);
+    setIfSubmit(false);
+  };
+
+  let restartButton = null;
+  if (ifSubmit) {
+    restartButton = (
+      <button id="restart" className="button" onClick={restart}>
+        Restart
+      </button>
+    );
+  } else {
+    restartButton = "";
+  }
+
+  return (
+    <div>
+      <div>
+        <button className="button" onClick={compare}>
+          Submit Answer
+        </button>
+        {restartButton}
         <div>
-            <div>
-                <button className="button" onClick={compare}>Submit Answer</button>
-                <div>My score:
-                    {score}
-                </div>
-            </div>
+          My score:
+          {score}
         </div>
-    )
+      </div>
+    </div>
+  );
 }
