@@ -10,6 +10,7 @@ export default function RoundStartButton(props) {
 
     // once the user click the button, play the tune
     const onClick = () => {
+        props.onClick();
         try {
             tune.play();
         } catch (e) {

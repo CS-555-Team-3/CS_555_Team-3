@@ -19,20 +19,39 @@ export default function Game(props)
      *      -adding wordle-style results in prior row
      * */
 
-    const [notesState, setNotesState] = useState({
-        "A_flat": false,
-        "A": false,
-        "B_flat": false,     
-        "B": false,
-        "C": false,
-        "D_flat": false,
-        "D": false,
-        "E_flat": false,
-        "E": false,
-        "F": false,
-        "G_flat": false,
-        "G": false
-    });
+    // there is a way to do this with an object but it wasn't working!
+    // const [notesState, setNotesState] = useState({
+    //     "A_flat": false,
+    //     "A": false,
+    //     "B_flat": false,     
+    //     "B": false,
+    //     "C": false,
+    //     "D_flat": false,
+    //     "D": false,
+    //     "E_flat": false,
+    //     "E": false,
+    //     "F": false,
+    //     "G_flat": false,
+    //     "G": false
+    // });
+    const [aPlay, setAPlay] = useState(false);
+    const [aFlatPlay, setAFlatPlay] = useState(false);
+    const [bFlatPlay, setBFlatPlay] = useState(false);
+    const [bPlay, setBPlay] = useState(false);
+    const [cPlay, setCPlay] = useState(false);
+    const [dFlatPlay, setDFlatPlay] = useState(false);
+    const [dPlay, setDPlay] = useState(false);
+    const [eFlatPlay, setEFlatPlay] = useState(false);
+    const [ePlay, setEPlay] = useState(false);
+    const [fPlay, setFPlay] = useState(false);
+    const [gFlatPlay, setGFlatPlay] = useState(false);
+    const [gPlay, setGPlay] = useState(false);
+
+
+    // useEffect(()=>
+    // {
+    //     console.log(notesState);
+    // }, notesState);
 
     const navigate = useNavigate()
 
@@ -62,20 +81,41 @@ export default function Game(props)
     const duration = data.state.duration
     console.log("DURATION " + duration);
 
-    const noteTimeout = (note, duration) =>
+    const noteSwitch = (note, bool) =>
     {
-        setNotesState(prevState => {return {...prevState, note: true}});
-        setTimeout(()=>{
-            setNotesState(prevState => {return {...prevState, note: false}});
-        }, duration);
+        switch(note){
+            case "A_flat": setAFlatPlay(bool); break;
+            case "A": setAPlay(bool); break;
+            case "B_flat": setBFlatPlay(bool); break;
+            case "B": setBPlay(bool); break;
+            case "C": setCPlay(bool); break;
+            case "D_flat": setDFlatPlay(bool); break;
+            case "D": setDPlay(bool); break;
+            case "E_flat": setEFlatPlay(bool); break;
+            case "E": setEPlay(bool); break;
+            case "F": setFPlay(bool); break;
+            case "G_flat": setGFlatPlay(bool); break;
+            case "G": setGPlay(bool); break;
+            default: console.log('ERROR not a note')
+        }
+    }
+
+    const noteTimeout = async (notex) =>
+    {
+        noteSwitch(notex, true);
+        return new Promise(resolve => setTimeout(function(){
+            noteSwitch(notex, false);
+            resolve();
+        }, duration*1000));
     }
 
     const highlightNotes = async (e) =>
     {
-        for (const note of order)
+        console.log("HIT")
+        for (let i = 0; i < order.length; i++)
         {
-            console.log(note);
-            await noteTimeout(note, duration);
+            await noteTimeout(order[i]);
+            
         }
     }
     
@@ -111,18 +151,18 @@ export default function Game(props)
 
             <ResultButton order={order}></ResultButton>
             <div id="noteContainer">    
-                <NoteButton note="A_flat" selected={notesState["A_flat"]}>Ab</NoteButton>
-                <NoteButton note="A" selected={notesState["A"]}>A</NoteButton>
-                <NoteButton note="B_flat" selected={notesState["B_flat"]}>Bb</NoteButton>      
-                <NoteButton note="B" selected={notesState["B"]}>B</NoteButton>
-                <NoteButton note="C" selected={notesState["C"]}>C</NoteButton>
-                <NoteButton note="D_flat" selected={notesState["D_flat"]}>Db</NoteButton>
-                <NoteButton note="D" selected={notesState["D"]}>D</NoteButton>
-                <NoteButton note="E_flat" selected={notesState["E_flat"]}>Eb</NoteButton>
-                <NoteButton note="E" selected={notesState["E"]}>E</NoteButton>
-                <NoteButton note="F" selected={notesState["F"]}>F</NoteButton>
-                <NoteButton note="G_flat" selected={notesState["G_flat"]}>Gb</NoteButton>
-                <NoteButton note="G" selected={notesState["G"]}>G</NoteButton>
+                <NoteButton note="A_flat" selected={aFlatPlay}>Ab</NoteButton>
+                <NoteButton note="A" selected={aPlay}>A</NoteButton>
+                <NoteButton note="B_flat" selected={bFlatPlay}>Bb</NoteButton>      
+                <NoteButton note="B" selected={bPlay}>B</NoteButton>
+                <NoteButton note="C" selected={cPlay}>C</NoteButton>
+                <NoteButton note="D_flat" selected={dFlatPlay}>Db</NoteButton>
+                <NoteButton note="D" selected={dPlay}>D</NoteButton>
+                <NoteButton note="E_flat" selected={eFlatPlay}>Eb</NoteButton>
+                <NoteButton note="E" selected={ePlay}>E</NoteButton>
+                <NoteButton note="F" selected={fPlay}>F</NoteButton>
+                <NoteButton note="G_flat" selected={gFlatPlay}>Gb</NoteButton>
+                <NoteButton note="G" selected={gPlay}>G</NoteButton>
             </div>
             <div id="undo">
                 <UndoSelection>Undo Selection</UndoSelection>
