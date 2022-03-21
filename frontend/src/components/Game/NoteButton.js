@@ -12,7 +12,7 @@ export default function NoteButton(props)
     }
     return(
         <div draggable="true" onDragStart={(event) => drag(event)} className={`noteButton ${note}`}>
-            <SetNote  note={note}>
+            <SetNote  note={note} order = {props.order}>
             {noteName}
             </SetNote>
             <PlayNote note={note}>
