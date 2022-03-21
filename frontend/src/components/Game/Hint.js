@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import '../../styles/Game.css';
 
 const Hint = ({hint}) => {
 

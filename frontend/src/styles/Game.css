@@ -9,15 +9,28 @@ div#answerContainer {
   justify-content: center;
 }
 
-#hint {
-    margin: 15px 10px ;
+.MuiButton-root#hint {
+    margin-inline: auto;
+    margin-bottom: 10px;
     width: 5%;
-    justify-content: right;
 }
 
-#noteContainer {
+#noteContainer, h5 {
   display: flex;
   justify-content: center;
+  padding: 10px;
+}
+
+.MuiButton-root
+{
+  max-width: fit-content;
+}
+
+#resultButton
+{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #roundStartContainer {
@@ -56,18 +69,16 @@ div#answerContainer {
   right: 0;
 }
 
-#tutorialExit.MuiButton-text :hover
+button#tutorialExit.MuiButton-text:hover
 {
-  background-color: lightgray;
+  background-color: lightgray !important;
 }
 
 .tutorialText {
   text-align: left;
 }
 
-button.playNote {
-  width: 10px;
-  height: 15px;
+button.playnote {
   position: absolute;
   top: 0;
   right: 0;
@@ -75,8 +86,8 @@ button.playNote {
 
 .notes,
 .noteButton {
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
 }
 
 .noteButton {
@@ -134,4 +145,8 @@ div.noteButton.selected
 {
   opacity: 70% !important;
   border: 3px solid black;
+}
+
+.button{
+  height: 30px;
 }

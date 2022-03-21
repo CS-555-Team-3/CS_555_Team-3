@@ -1,7 +1,7 @@
 import PlayNote from "./PlayNote";
 import SetNote from "./SetNote";
 import { useState } from "react";
-
+import {MusicNote} from '@mui/icons-material'
 
 export default function NoteButton(props)
 {
@@ -35,7 +35,7 @@ export default function NoteButton(props)
             <SetNote note={note}>
             {noteName}
             </SetNote>
-            <button className={`playnote ${noteName}`} onClick={handleClick}  ></button>
+            <button className={`playnote ${noteName}`} onClick={handleClick}><MusicNote></MusicNote></button>
         </div>
         
         

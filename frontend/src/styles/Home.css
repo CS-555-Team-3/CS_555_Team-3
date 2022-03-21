@@ -11,7 +11,7 @@
     flex-direction: column;
 }
 
-h1, h3
+h1, h3, a
 {
     display: flex;
     justify-content: center;
@@ -20,4 +20,9 @@ h1, h3
 h1, text, #homeContainer, .MuiButton-root.set-head
 {
     margin: auto !important;
+}
+
+.difficulty
+{
+    justify-content: center;
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../../styles/Game.css';
 
 export default function PlayNote(props)
 {

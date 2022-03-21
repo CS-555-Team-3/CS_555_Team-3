@@ -91,17 +91,14 @@ export default function ResultButton(props) {
   }
 
   return (
-    <div>
-      <div>
-        <Button className="button" onClick={compare}>
+    <div id="resultButton">
+        <Button className="button" variant="contained" color="success" onClick={compare}>
           Submit Answer
         </Button>
         {restartButton}
         <div>
-          My score:
-          {score}
+          <h5>My score: {score}</h5>
         </div>
-      </div>
     </div>
   );
 }
