@@ -76,9 +76,7 @@ export default function Game(props)
     const [showTimer, setShowTimer] = useState( (data.state.timer =='on'))
     const [colorblind_mode, setColorblind_mode] = useState( (data.state.colorblind_mode=='on'))
     const [Leaderboard, setLeaderboard] = useState( (data.state.leaderboard=='on'))
-
-    console.log(showTimer)
-    console.log(showTutorial)
+    
 
     const noteSwitch = (note, bool) =>
     {
