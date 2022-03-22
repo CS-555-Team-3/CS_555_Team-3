@@ -71,6 +71,13 @@ export default function Game(props)
     // duration for all component use
     const duration = data.state.duration
 
+    // States for the settings 
+    const [showTutorial, setShowTutorial] = useState( (data.state.tutorial =='yes'))
+    const [showTimer, setShowTimer] = useState( (data.state.timer =='yes'))
+    const [colorblind_mode, setColorblind_mode] = useState( (data.state.colorblind_mode=='yes'))
+    const [Leaderboard, setLeaderboard] = useState( (data.state.leaderboard=='yes'))
+
+    
     const noteSwitch = (note, bool) =>
     {
         switch(note)
@@ -122,9 +129,9 @@ export default function Game(props)
 
     return (
         <div id="gameContainer">
-            <TutorialEntry></TutorialEntry>
+            {showTutorial && <TutorialEntry></TutorialEntry> }
             <div id="roundStartContainer">
-                <RoundStartButton value={tune} onClick={highlightNotes}></RoundStartButton>
+                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes}></RoundStartButton>
             </div>
 
             <div id="answerContainer">
