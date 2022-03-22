@@ -6,6 +6,7 @@ import React from 'react';
 afterEach(cleanup);
 
 describe('Does it add to answers', () => {
+    const order = ["A", "B", "A", "A"]
     test('answers', () => {
         render(
             <div id="gameContainer">
@@ -20,18 +21,18 @@ describe('Does it add to answers', () => {
                     </div>
                 </div>
                 <div id="noteContainer">    
-                    <NoteButton note="A_flat">Ab</NoteButton>
-                    <NoteButton note="A">A</NoteButton>
-                    <NoteButton note="B_flat">Bb</NoteButton>      
-                    <NoteButton note="B">B</NoteButton>
-                    <NoteButton note="C">C</NoteButton>
-                    <NoteButton note="D_flat">Db</NoteButton>
-                    <NoteButton note="D">D</NoteButton>
-                    <NoteButton note="E_flat">Eb</NoteButton>
-                    <NoteButton note="E">E</NoteButton>
-                    <NoteButton note="F">F</NoteButton>
-                    <NoteButton note="G_flat">Gb</NoteButton>
-                    <NoteButton note="G">G</NoteButton>
+                    <NoteButton order={order} note="A_flat">Ab</NoteButton>
+                    <NoteButton order={order} note="A">A</NoteButton>
+                    <NoteButton order={order} note="B_flat">Bb</NoteButton>      
+                    <NoteButton order={order} note="B">B</NoteButton>
+                    <NoteButton order={order} note="C">C</NoteButton>
+                    <NoteButton order={order} note="D_flat">Db</NoteButton>
+                    <NoteButton order={order} note="D">D</NoteButton>
+                    <NoteButton order={order} note="E_flat">Eb</NoteButton>
+                    <NoteButton order={order} note="E">E</NoteButton>
+                    <NoteButton order={order} note="F">F</NoteButton>
+                    <NoteButton order={order} note="G_flat">Gb</NoteButton>
+                    <NoteButton order={order} note="G">G</NoteButton>
                 </div>
             </div>
         );
@@ -42,6 +43,7 @@ describe('Does it add to answers', () => {
 });
 
 describe('Does it handle multiple of the same note', () => {
+    const order = ["A", "B", "A", "A"]
     test('answers', () => {
         render(
             <div id="gameContainer">
@@ -56,18 +58,18 @@ describe('Does it handle multiple of the same note', () => {
                     </div>
                 </div>
                 <div id="noteContainer">    
-                    <NoteButton note="A_flat">Ab</NoteButton>
-                    <NoteButton note="A">A</NoteButton>
-                    <NoteButton note="B_flat">Bb</NoteButton>      
-                    <NoteButton note="B">B</NoteButton>
-                    <NoteButton note="C">C</NoteButton>
-                    <NoteButton note="D_flat">Db</NoteButton>
-                    <NoteButton note="D">D</NoteButton>
-                    <NoteButton note="E_flat">Eb</NoteButton>
-                    <NoteButton note="E">E</NoteButton>
-                    <NoteButton note="F">F</NoteButton>
-                    <NoteButton note="G_flat">Gb</NoteButton>
-                    <NoteButton note="G">G</NoteButton>
+                    <NoteButton order={order} note="A_flat">Ab</NoteButton>
+                    <NoteButton order={order} note="A">A</NoteButton>
+                    <NoteButton order={order} note="B_flat">Bb</NoteButton>      
+                    <NoteButton order={order} note="B">B</NoteButton>
+                    <NoteButton order={order} note="C">C</NoteButton>
+                    <NoteButton order={order} note="D_flat">Db</NoteButton>
+                    <NoteButton order={order} note="D">D</NoteButton>
+                    <NoteButton order={order} note="E_flat">Eb</NoteButton>
+                    <NoteButton order={order} note="E">E</NoteButton>
+                    <NoteButton order={order} note="F">F</NoteButton>
+                    <NoteButton order={order} note="G_flat">Gb</NoteButton>
+                    <NoteButton order={order} note="G">G</NoteButton>
                 </div>
             </div>
         );
@@ -79,6 +81,7 @@ describe('Does it handle multiple of the same note', () => {
 });
 
 describe('Does it handle multiple different notes', () => {
+    const order = ["A", "B", "A", "A"]
     test('answers', () => {
         render(
             <div id="gameContainer">
@@ -93,18 +96,18 @@ describe('Does it handle multiple different notes', () => {
                     </div>
                 </div>
                 <div id="noteContainer">    
-                    <NoteButton note="A_flat">Ab</NoteButton>
-                    <NoteButton note="A">A</NoteButton>
-                    <NoteButton note="B_flat">Bb</NoteButton>      
-                    <NoteButton note="B">B</NoteButton>
-                    <NoteButton note="C">C</NoteButton>
-                    <NoteButton note="D_flat">Db</NoteButton>
-                    <NoteButton note="D">D</NoteButton>
-                    <NoteButton note="E_flat">Eb</NoteButton>
-                    <NoteButton note="E">E</NoteButton>
-                    <NoteButton note="F">F</NoteButton>
-                    <NoteButton note="G_flat">Gb</NoteButton>
-                    <NoteButton note="G">G</NoteButton>
+                    <NoteButton order={order} note="A_flat">Ab</NoteButton>
+                    <NoteButton order={order} note="A">A</NoteButton>
+                    <NoteButton order={order} note="B_flat">Bb</NoteButton>      
+                    <NoteButton order={order} note="B">B</NoteButton>
+                    <NoteButton order={order} note="C">C</NoteButton>
+                    <NoteButton order={order} note="D_flat">Db</NoteButton>
+                    <NoteButton order={order} note="D">D</NoteButton>
+                    <NoteButton order={order} note="E_flat">Eb</NoteButton>
+                    <NoteButton order={order} note="E">E</NoteButton>
+                    <NoteButton order={order} note="F">F</NoteButton>
+                    <NoteButton order={order} note="G_flat">Gb</NoteButton>
+                    <NoteButton order={order} note="G">G</NoteButton>
                 </div>
             </div>
         );

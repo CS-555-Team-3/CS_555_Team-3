@@ -142,21 +142,21 @@ export default function Game(props)
 
             <ResultButton order={order}></ResultButton>
             <div id="noteContainer">    
-                <NoteButton note="A_flat" selected={aFlatPlay}>Ab</NoteButton>
-                <NoteButton note="A" selected={aPlay}>A</NoteButton>
-                <NoteButton note="B_flat" selected={bFlatPlay}>Bb</NoteButton>      
-                <NoteButton note="B" selected={bPlay}>B</NoteButton>
-                <NoteButton note="C" selected={cPlay}>C</NoteButton>
-                <NoteButton note="D_flat" selected={dFlatPlay}>Db</NoteButton>
-                <NoteButton note="D" selected={dPlay}>D</NoteButton>
-                <NoteButton note="E_flat" selected={eFlatPlay}>Eb</NoteButton>
-                <NoteButton note="E" selected={ePlay}>E</NoteButton>
-                <NoteButton note="F" selected={fPlay}>F</NoteButton>
-                <NoteButton note="G_flat" selected={gFlatPlay}>Gb</NoteButton>
-                <NoteButton note="G" selected={gPlay}>G</NoteButton>
+                <NoteButton order={order} note="A_flat" selected={aFlatPlay}>Ab</NoteButton>
+                <NoteButton order={order} note="A" selected={aPlay}>A</NoteButton>
+                <NoteButton order={order} note="B_flat" selected={bFlatPlay}>Bb</NoteButton>      
+                <NoteButton order={order} note="B" selected={bPlay}>B</NoteButton>
+                <NoteButton order={order} note="C" selected={cPlay}>C</NoteButton>
+                <NoteButton order={order} note="D_flat" selected={dFlatPlay}>Db</NoteButton>
+                <NoteButton order={order} note="D" selected={dPlay}>D</NoteButton>
+                <NoteButton order={order} note="E_flat" selected={eFlatPlay}>Eb</NoteButton>
+                <NoteButton order={order} note="E" selected={ePlay}>E</NoteButton>
+                <NoteButton order={order} note="F" selected={fPlay}>F</NoteButton>
+                <NoteButton order={order} note="G_flat" selected={gFlatPlay}>Gb</NoteButton>
+                <NoteButton order={order} note="G"  selected={gPlay}>G</NoteButton>
             </div>
             <div id="undo">
-                <UndoSelection>Undo Selection</UndoSelection>
+                <UndoSelection order={order}>Undo Selection</UndoSelection>
             </div>
             <div id ="end">
                 <Button className="endButton" onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</Button>

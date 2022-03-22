@@ -6,6 +6,8 @@ export default function RoundStartButton(props) {
     const [time, setTime] = useState(0);
     let timer = useRef();
 
+    const [clicked, setClicked] = useState(false);
+
     // tune from parent component
     const tune = props.value;
 
@@ -13,6 +15,7 @@ export default function RoundStartButton(props) {
     const onClick = () => {
         props.onClick();
         try {
+            setClicked(true);
             tune.play();
         } catch (e) {
             console.log('play audio error: ', e);
@@ -30,7 +33,7 @@ export default function RoundStartButton(props) {
     return (
         <div>
             <div>
-                <Button className="roundStart" onClick={onClick}>
+                <Button className="roundStart" onClick={onClick} disabled={clicked}>
                     Round Start
                 </Button>
                 <h5>{time} Second{time === 0 ? '' : 's'}</h5>

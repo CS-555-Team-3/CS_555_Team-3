@@ -14,7 +14,7 @@ export default function NoteButton(props)
     function drag(ev) {
         ev.dataTransfer.setData("text", ev.target.className.split(" ")[1]);
     }
-
+  
     async function handleClick(e)
     {
         let notePath = `/sound_notes/${note}.wav`;
@@ -32,7 +32,7 @@ export default function NoteButton(props)
 
     return( 
         <div draggable="true" onDragStart={(event) => drag(event)} className={`noteButton ${note} ${variable ? 'selected' : ''}`}>
-            <SetNote note={note}>
+            <SetNote note={note} order={props.order}>
             {noteName}
             </SetNote>
             <button className={`playnote ${noteName}`} onClick={(e)=>handleClick(e)}><MusicNote></MusicNote></button>
