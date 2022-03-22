@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { Button } from '@mui/material';
 
 export default function RoundStartButton(props) {
     // count time
@@ -12,6 +13,7 @@ export default function RoundStartButton(props) {
 
     // once the user click the button, play the tune
     const onClick = () => {
+        props.onClick();
         try {
             setClicked(true);
             tune.play();
@@ -19,9 +21,9 @@ export default function RoundStartButton(props) {
             console.log('play audio error: ', e);
         }
         // start count time
+        //TODO wait until sound is done playing for count time to begin
         setTime(0);
         timer.current = setInterval(() => {
-            //console.log(timer);
             setTime((n) => {
                 return n + 1;
             });
@@ -30,21 +32,12 @@ export default function RoundStartButton(props) {
 
     return (
         <div>
-            <div align="left">
-                <button className="roundStart" onClick={onClick} disabled={clicked}>
+            <div>
+                <Button className="roundStart" onClick={onClick} disabled={clicked}>
                     Round Start
-                </button>
-            </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <div align="right">
-                <p>{time} Seconds</p>
+                </Button>
+                <h4>{time} Second{time === 0 ? '' : 's'}</h4>
+                <br></br>
             </div>
         </div>
     );

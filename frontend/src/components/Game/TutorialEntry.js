@@ -1,8 +1,10 @@
+import { Button } from '@mui/material';
+
 export default function TutorialEntry() {
     return (
         <div id="tutorialOverlayBG"> 
             <div id="tutorialOverlayBox">
-                HOW TO PLAY SOUNDLE <button id="tutorialExit" onClick={() => {document.getElementById("tutorialOverlayBG").style.display = "none"; }}> X </button>
+                HOW TO PLAY SOUNDLE <Button id="tutorialExit" variant="text" onClick={() => {document.getElementById("tutorialOverlayBG").style.display = "none"; }}>Close</Button>
                 <div className="tutorialText">
                     <p>You have six attempts to guess the given chord.</p>
                     <p>Each guess must contain five notes, hit the "Submit Answer" button to submit a guess.</p>

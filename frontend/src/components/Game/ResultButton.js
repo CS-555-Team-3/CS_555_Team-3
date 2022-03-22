@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from "@mui/material";
 
 export default function ResultButton(props) {
   const [score, setScore] = useState(0);
@@ -63,16 +64,6 @@ export default function ResultButton(props) {
       }
     }
 
-    
-    // for (let i = 0; i < answer.length; i++) {
-    //   if (answer[i] == true) {
-    //     document.getElementById(boxes[i]).style.backgroundColor = "green";
-    //     Score++;
-    //   }
-    //   if (answer[i] == false) {
-    //     document.getElementById(boxes[i]).style.backgroundColor = "red";
-    //   }
-    // }
     setScore(Score);
     setIfSubmit(true);
     
@@ -91,26 +82,23 @@ export default function ResultButton(props) {
   let restartButton = null;
   if (ifSubmit) {
     restartButton = (
-      <button id="restart" className="button" onClick={restart}>
+      <Button id="restart" className="button" onClick={restart}>
         Restart
-      </button>
+      </Button>
     );
   } else {
     restartButton = "";
   }
 
   return (
-    <div>
-      <div>
-        <button className="button" onClick={compare}>
+    <div id="resultButton">
+        <Button className="button" variant="contained" color="success" onClick={compare}>
           Submit Answer
-        </button>
+        </Button>
         {restartButton}
         <div>
-          My score:
-          {score}
+          <h5>My score: {score}</h5>
         </div>
-      </div>
     </div>
   );
 }

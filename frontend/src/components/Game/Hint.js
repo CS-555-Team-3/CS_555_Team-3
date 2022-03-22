@@ -1,7 +1,7 @@
-
+import { Button } from "@mui/material";
+import '../../styles/Game.css';
 
 const Hint = ({hint}) => {
-    //TODO: Add tests
 
     const playHint = () => {
       try { hint.play(); }
@@ -9,8 +9,8 @@ const Hint = ({hint}) => {
     }
 
     return (
-        <button className='hint' onClick={playHint}> Hint </button>
+        <Button className='hint' onClick={playHint}> Hint </Button>
     );
 }
 
-export default Hint
+export default Hint;

@@ -1,0 +1,28 @@
+#homeContainer
+{
+    width: 50%;
+    height: 100%;
+}
+
+.setting-menu, .settings-page
+{
+    margin-block: 5px;
+    display:flex;
+    flex-direction: column;
+}
+
+h1, h3, a
+{
+    display: flex;
+    justify-content: center;
+}
+
+h1, text, #homeContainer, .MuiButton-root.set-head
+{
+    margin: auto !important;
+}
+
+.difficulty
+{
+    justify-content: center;
+}

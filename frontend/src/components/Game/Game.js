@@ -1,4 +1,5 @@
 import {useNavigate, useLocation} from "react-router-dom"
+import { useState, useEffect } from "react";
 import '../../styles/Game.css';
 import NoteButton from './NoteButton';
 import RoundStartButton from './RoundStartButton';
@@ -6,17 +7,43 @@ import UndoSelection from './UndoSelection';
 import ResultButton from './ResultButton';
 import Hint from './Hint';
 import TutorialEntry from './TutorialEntry';
-
-
+import {Button} from '@mui/material';
 
 export default function Game(props)
 {
     /**TODO
-     * -colorblind settings
      * -answer container
      *      -appending a new row after input is submitted
      *      -adding wordle-style results in prior row
      * */
+
+    // there is a way to do this with an object but it wasn't working!
+    // const [notesState, setNotesState] = useState({
+    //     "A_flat": false,
+    //     "A": false,
+    //     "B_flat": false,     
+    //     "B": false,
+    //     "C": false,
+    //     "D_flat": false,
+    //     "D": false,
+    //     "E_flat": false,
+    //     "E": false,
+    //     "F": false,
+    //     "G_flat": false,
+    //     "G": false
+    // });
+    const [aPlay, setAPlay] = useState(false);
+    const [aFlatPlay, setAFlatPlay] = useState(false);
+    const [bFlatPlay, setBFlatPlay] = useState(false);
+    const [bPlay, setBPlay] = useState(false);
+    const [cPlay, setCPlay] = useState(false);
+    const [dFlatPlay, setDFlatPlay] = useState(false);
+    const [dPlay, setDPlay] = useState(false);
+    const [eFlatPlay, setEFlatPlay] = useState(false);
+    const [ePlay, setEPlay] = useState(false);
+    const [fPlay, setFPlay] = useState(false);
+    const [gFlatPlay, setGFlatPlay] = useState(false);
+    const [gPlay, setGPlay] = useState(false);
 
     const navigate = useNavigate()
 
@@ -39,15 +66,55 @@ export default function Game(props)
 
     // order for all component use
     const order = data.state.note_order
+    console.log("ORDER: " + order);
 
     // duration for all component use
     const duration = data.state.duration
+
+    const noteSwitch = (note, bool) =>
+    {
+        switch(note)
+        {
+            case "A_flat": setAFlatPlay(bool); break;
+            case "A": setAPlay(bool); break;
+            case "B_flat": setBFlatPlay(bool); break;
+            case "B": setBPlay(bool); break;
+            case "C": setCPlay(bool); break;
+            case "D_flat": setDFlatPlay(bool); break;
+            case "D": setDPlay(bool); break;
+            case "E_flat": setEFlatPlay(bool); break;
+            case "E": setEPlay(bool); break;
+            case "F": setFPlay(bool); break;
+            case "G_flat": setGFlatPlay(bool); break;
+            case "G": setGPlay(bool); break;
+            default: console.log('ERROR not a note')
+        }
+    }
+
+    const noteTimeout = async (notex) =>
+    {
+        noteSwitch(notex, true);
+        return new Promise(resolve => setTimeout(function(){
+            noteSwitch(notex, false);
+            resolve();
+        }, duration*1000));
+    }
+
+    const highlightNotes = async (e) =>
+    {
+        for (let i = 0; i < order.length; i++)
+        {
+            await noteTimeout(order[i]);
+        }
+    }
     
     function allowDrop(ev) {
+        console.log(ev);
         ev.preventDefault();
     }
     
     function drop(ev) {
+        console.log(ev);
         ev.preventDefault();
         var data = ev.dataTransfer.getData("text");
         ev.target.innerHTML = data;
@@ -57,7 +124,7 @@ export default function Game(props)
         <div id="gameContainer">
             <TutorialEntry></TutorialEntry>
             <div id="roundStartContainer">
-                <RoundStartButton value={tune}></RoundStartButton>
+                <RoundStartButton value={tune} onClick={highlightNotes}></RoundStartButton>
             </div>
 
             <div id="answerContainer">
@@ -71,28 +138,28 @@ export default function Game(props)
                     </div>
             </div>
 
-            <div id="hint"> <Hint hint={tune} /></div>
+            <Hint hint={tune} />
 
             <ResultButton order={order}></ResultButton>
             <div id="noteContainer">    
-                <NoteButton order={order} note="A_flat">Ab</NoteButton>
-                <NoteButton order={order} note="A">A</NoteButton>
-                <NoteButton order={order} note="B_flat">Bb</NoteButton>      
-                <NoteButton order={order} note="B">B</NoteButton>
-                <NoteButton order={order} note="C">C</NoteButton>
-                <NoteButton order={order} note="D_flat">Db</NoteButton>
-                <NoteButton order={order} note="D">D</NoteButton>
-                <NoteButton order={order} note="E_flat">Eb</NoteButton>
-                <NoteButton order={order} note="E">E</NoteButton>
-                <NoteButton order={order} note="F">F</NoteButton>
-                <NoteButton order={order} note="G_flat">Gb</NoteButton>
-                <NoteButton order={order} note="G">G</NoteButton>
+                <NoteButton order={order} note="A_flat" selected={aFlatPlay}>Ab</NoteButton>
+                <NoteButton order={order} note="A" selected={aPlay}>A</NoteButton>
+                <NoteButton order={order} note="B_flat" selected={bFlatPlay}>Bb</NoteButton>      
+                <NoteButton order={order} note="B" selected={bPlay}>B</NoteButton>
+                <NoteButton order={order} note="C" selected={cPlay}>C</NoteButton>
+                <NoteButton order={order} note="D_flat" selected={dFlatPlay}>Db</NoteButton>
+                <NoteButton order={order} note="D" selected={dPlay}>D</NoteButton>
+                <NoteButton order={order} note="E_flat" selected={eFlatPlay}>Eb</NoteButton>
+                <NoteButton order={order} note="E" selected={ePlay}>E</NoteButton>
+                <NoteButton order={order} note="F" selected={fPlay}>F</NoteButton>
+                <NoteButton order={order} note="G_flat" selected={gFlatPlay}>Gb</NoteButton>
+                <NoteButton order={order} note="G"  selected={gPlay}>G</NoteButton>
             </div>
             <div id="undo">
                 <UndoSelection order={order}>Undo Selection</UndoSelection>
             </div>
             <div id ="end">
-                <button className="endButton" onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</button>
+                <Button className="endButton" onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</Button>
             </div>
         </div>
     );

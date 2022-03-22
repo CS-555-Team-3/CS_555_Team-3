@@ -1,7 +1,9 @@
 import Select from 'react-select'
 import axios from 'axios';
+import { Grid } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import difficulty_map from './../../config/DifficultyMap.json';
+import '../../styles/Home.css';
 
 export default function DifficultySelection({SetAudio, SetOrder, SetDuration})
 {  
@@ -80,8 +82,10 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration})
     // Link only avaialable once the order is received, this forces the user to choose the difficulty
     // Link passes three props: tune(blob type), the order, duration
     return(
-        <>
-            <Select options={options} onChange={onChange}/>
-        </>
+        <Grid container className="difficulty">
+            <Grid item xs={4}>
+                <Select options={options} onChange={onChange}/>
+            </Grid>
+        </Grid>
     );
 }

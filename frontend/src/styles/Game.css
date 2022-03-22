@@ -1,6 +1,7 @@
 #gameContainer {
   display: flex;
   flex-direction: column;
+  margin-top: 5%;
 }
 
 div#answerContainer {
@@ -9,14 +10,28 @@ div#answerContainer {
   justify-content: center;
 }
 
-#hint {
-    margin: 15px 10px ;
-    justify-content: right;
+.MuiButton-root#hint {
+    margin-inline: auto;
+    margin-bottom: 10px;
+    width: 5%;
 }
 
-#noteContainer {
+#noteContainer, h5 {
   display: flex;
   justify-content: center;
+  padding: 10px;
+}
+
+.MuiButton-root
+{
+  max-width: fit-content;
+}
+
+#resultButton
+{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #roundStartContainer {
@@ -44,39 +59,36 @@ div#answerContainer {
   text-align: center;
   vertical-align: middle;
   background-color: darkgray;
-  padding-left: 2%;
-  padding-right: 2%
+  padding: 2%;
+}
+
+#tutorialExit.MuiButton-text
+{
+  color: black !important;
+  position:absolute;
+  top:0;
+  right: 0;
+}
+
+button#tutorialExit.MuiButton-text:hover
+{
+  background-color: lightgray !important;
 }
 
 .tutorialText {
   text-align: left;
 }
 
-button.playNote {
-  width: 10px;
-  height: 15px;
+button.playnote {
   position: absolute;
   top: 0;
   right: 0;
 }
 
-.roundStart {
-  width: 70px;
-  height: 70px;
-  position: absolute;
-  top: 10px;
-}
-
-/* button
-{
-    width: 10px;
-    height: 15px;
-} */
-
 .notes,
 .noteButton {
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
 }
 
 .noteButton {
@@ -128,4 +140,14 @@ div.noteButton.G_flat {
 }
 div.noteButton.G {
   background-color: #ffcfd2;
+}
+
+div.noteButton.selected
+{
+  opacity: 70% !important;
+  border: 3px solid black;
+}
+
+.button{
+  height: 30px;
 }
