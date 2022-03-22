@@ -15,7 +15,7 @@ export default function NoteButton(props)
         ev.dataTransfer.setData("text", ev.target.className.split(" ")[1]);
     }
 
-    const handleClick = async (e) =>
+    async function handleClick(e)
     {
         let notePath = `/sound_notes/${note}.wav`;
         let noteAudio = new Audio(notePath);
@@ -35,7 +35,7 @@ export default function NoteButton(props)
             <SetNote note={note}>
             {noteName}
             </SetNote>
-            <button className={`playnote ${noteName}`} onClick={handleClick}><MusicNote></MusicNote></button>
+            <button className={`playnote ${noteName}`} onClick={(e)=>handleClick(e)}><MusicNote></MusicNote></button>
         </div>
         
         
