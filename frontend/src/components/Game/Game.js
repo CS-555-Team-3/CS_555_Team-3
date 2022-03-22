@@ -75,21 +75,21 @@ export default function Game(props)
 
             <ResultButton order={order}></ResultButton>
             <div id="noteContainer">    
-                <NoteButton  note="A_flat">Ab</NoteButton>
-                <NoteButton note="A">A</NoteButton>
-                <NoteButton note="B_flat">Bb</NoteButton>      
-                <NoteButton note="B">B</NoteButton>
-                <NoteButton note="C">C</NoteButton>
-                <NoteButton note="D_flat">Db</NoteButton>
-                <NoteButton note="D">D</NoteButton>
-                <NoteButton note="E_flat">Eb</NoteButton>
-                <NoteButton note="E">E</NoteButton>
-                <NoteButton note="F">F</NoteButton>
-                <NoteButton note="G_flat">Gb</NoteButton>
-                <NoteButton note="G">G</NoteButton>
+                <NoteButton order={order} note="A_flat">Ab</NoteButton>
+                <NoteButton order={order} note="A">A</NoteButton>
+                <NoteButton order={order} note="B_flat">Bb</NoteButton>      
+                <NoteButton order={order} note="B">B</NoteButton>
+                <NoteButton order={order} note="C">C</NoteButton>
+                <NoteButton order={order} note="D_flat">Db</NoteButton>
+                <NoteButton order={order} note="D">D</NoteButton>
+                <NoteButton order={order} note="E_flat">Eb</NoteButton>
+                <NoteButton order={order} note="E">E</NoteButton>
+                <NoteButton order={order} note="F">F</NoteButton>
+                <NoteButton order={order} note="G_flat">Gb</NoteButton>
+                <NoteButton order={order} note="G">G</NoteButton>
             </div>
             <div id="undo">
-                <UndoSelection>Undo Selection</UndoSelection>
+                <UndoSelection order={order}>Undo Selection</UndoSelection>
             </div>
             <div id ="end">
                 <button className="endButton" onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</button>

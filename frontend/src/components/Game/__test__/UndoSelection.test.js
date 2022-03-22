@@ -8,9 +8,10 @@ import React from 'react';
 afterEach(cleanup);
 
 describe('Does Undo Selection Exist', () => {
+    const order = ["A", "B", "A", "A"]
     render ( 
         <div id="undo">
-            <UndoSelection>Undo Selection</UndoSelection>
+            <UndoSelection order={order}>Undo Selection</UndoSelection>
         </div>
     );
     test('Exists', () => {
@@ -19,6 +20,7 @@ describe('Does Undo Selection Exist', () => {
 });
 
 describe('Does it Undo', () => {
+    const order = ["A", "B", "A", "A"]
     test('Undoes', () => {
         render(
             <div id="gameContainer">
@@ -33,21 +35,21 @@ describe('Does it Undo', () => {
                     </div>
                 </div>
                 <div id="noteContainer">    
-                    <NoteButton note="A_flat">Ab</NoteButton>
-                    <NoteButton note="A">A</NoteButton>
-                    <NoteButton note="B_flat">Bb</NoteButton>      
-                    <NoteButton note="B">B</NoteButton>
-                    <NoteButton note="C">C</NoteButton>
-                    <NoteButton note="D_flat">Db</NoteButton>
-                    <NoteButton note="D">D</NoteButton>
-                    <NoteButton note="E_flat">Eb</NoteButton>
-                    <NoteButton note="E">E</NoteButton>
-                    <NoteButton note="F">F</NoteButton>
-                    <NoteButton note="G_flat">Gb</NoteButton>
-                    <NoteButton note="G">G</NoteButton>
+                    <NoteButton order={order} note="A_flat">Ab</NoteButton>
+                    <NoteButton order={order} note="A">A</NoteButton>
+                    <NoteButton order={order} note="B_flat">Bb</NoteButton>      
+                    <NoteButton order={order} note="B">B</NoteButton>
+                    <NoteButton order={order} note="C">C</NoteButton>
+                    <NoteButton order={order} note="D_flat">Db</NoteButton>
+                    <NoteButton order={order} note="D">D</NoteButton>
+                    <NoteButton order={order} note="E_flat">Eb</NoteButton>
+                    <NoteButton order={order} note="E">E</NoteButton>
+                    <NoteButton order={order} note="F">F</NoteButton>
+                    <NoteButton order={order} note="G_flat">Gb</NoteButton>
+                    <NoteButton order={order} note="G">G</NoteButton>
                 </div>
                 <div id="undo">
-                    <UndoSelection>Undo Selection</UndoSelection>
+                    <UndoSelection order={order}>Undo Selection</UndoSelection>
                 </div>
             </div>
         );
@@ -59,6 +61,7 @@ describe('Does it Undo', () => {
 });
 
 describe('Does it Undo Multiple', () => {
+    const order = ["A", "B", "A", "A"]
     test('Undoes', () => {
         render(
             <div id="gameContainer">
@@ -73,21 +76,21 @@ describe('Does it Undo Multiple', () => {
                     </div>
                 </div>
                 <div id="noteContainer">    
-                    <NoteButton note="A_flat">Ab</NoteButton>
-                    <NoteButton note="A">A</NoteButton>
-                    <NoteButton note="B_flat">Bb</NoteButton>      
-                    <NoteButton note="B">B</NoteButton>
-                    <NoteButton note="C">C</NoteButton>
-                    <NoteButton note="D_flat">Db</NoteButton>
-                    <NoteButton note="D">D</NoteButton>
-                    <NoteButton note="E_flat">Eb</NoteButton>
-                    <NoteButton note="E">E</NoteButton>
-                    <NoteButton note="F">F</NoteButton>
-                    <NoteButton note="G_flat">Gb</NoteButton>
-                    <NoteButton note="G">G</NoteButton>
+                    <NoteButton order={order} note="A_flat">Ab</NoteButton>
+                    <NoteButton order={order} note="A">A</NoteButton>
+                    <NoteButton order={order} note="B_flat">Bb</NoteButton>      
+                    <NoteButton order={order} note="B">B</NoteButton>
+                    <NoteButton order={order} note="C">C</NoteButton>
+                    <NoteButton order={order} note="D_flat">Db</NoteButton>
+                    <NoteButton order={order} note="D">D</NoteButton>
+                    <NoteButton order={order} note="E_flat">Eb</NoteButton>
+                    <NoteButton order={order} note="E">E</NoteButton>
+                    <NoteButton order={order} note="F">F</NoteButton>
+                    <NoteButton order={order} note="G_flat">Gb</NoteButton>
+                    <NoteButton order={order} note="G">G</NoteButton>
                 </div>
                 <div id="undo">
-                    <UndoSelection>Undo Selection</UndoSelection>
+                    <UndoSelection order={order}>Undo Selection</UndoSelection>
                 </div>
             </div>
         );
@@ -106,6 +109,7 @@ describe('Does it Undo Multiple', () => {
 });
 
 describe('Does it Handle Multiple of the Same', () => {
+    const order = ["A", "B", "A", "A"]
     test('Undoes', () => {
         render(
             <div id="gameContainer">
@@ -120,21 +124,21 @@ describe('Does it Handle Multiple of the Same', () => {
                     </div>
                 </div>
                 <div id="noteContainer">    
-                    <NoteButton note="A_flat">Ab</NoteButton>
-                    <NoteButton note="A">A</NoteButton>
-                    <NoteButton note="B_flat">Bb</NoteButton>      
-                    <NoteButton note="B">B</NoteButton>
-                    <NoteButton note="C">C</NoteButton>
-                    <NoteButton note="D_flat">Db</NoteButton>
-                    <NoteButton note="D">D</NoteButton>
-                    <NoteButton note="E_flat">Eb</NoteButton>
-                    <NoteButton note="E">E</NoteButton>
-                    <NoteButton note="F">F</NoteButton>
-                    <NoteButton note="G_flat">Gb</NoteButton>
-                    <NoteButton note="G">G</NoteButton>
+                    <NoteButton order={order} note="A_flat">Ab</NoteButton>
+                    <NoteButton order={order} note="A">A</NoteButton>
+                    <NoteButton order={order} note="B_flat">Bb</NoteButton>      
+                    <NoteButton order={order} note="B">B</NoteButton>
+                    <NoteButton order={order} note="C">C</NoteButton>
+                    <NoteButton order={order} note="D_flat">Db</NoteButton>
+                    <NoteButton order={order} note="D">D</NoteButton>
+                    <NoteButton order={order} note="E_flat">Eb</NoteButton>
+                    <NoteButton order={order} note="E">E</NoteButton>
+                    <NoteButton order={order} note="F">F</NoteButton>
+                    <NoteButton order={order} note="G_flat">Gb</NoteButton>
+                    <NoteButton order={order} note="G">G</NoteButton>
                 </div>
                 <div id="undo">
-                    <UndoSelection>Undo Selection</UndoSelection>
+                    <UndoSelection order={order}>Undo Selection</UndoSelection>
                 </div>
             </div>
         );
