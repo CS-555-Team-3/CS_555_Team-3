@@ -8,6 +8,7 @@ export default function NoteButton(props)
     let note = props.note;
     let noteName = props.children;
     let parentSelected = props.selected;
+    let instrument = props.instrument
 
     const [selected, setSelected] = useState(false);
 

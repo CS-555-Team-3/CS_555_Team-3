@@ -2,6 +2,7 @@ import {useNavigate, useLocation} from "react-router-dom"
 import { useState, useEffect } from "react";
 import '../../styles/Game.css';
 import NoteButton from './NoteButton';
+import NoteButtonRow from './NoteButtonRow';
 import RoundStartButton from './RoundStartButton';
 import UndoSelection from './UndoSelection';
 import ResultButton from './ResultButton';
@@ -45,6 +46,8 @@ export default function Game(props)
     const [gFlatPlay, setGFlatPlay] = useState(false);
     const [gPlay, setGPlay] = useState(false);
 
+    const [clicked, setClicked] = useState(false);
+
     const navigate = useNavigate()
 
     // helper function to create the tune
@@ -70,6 +73,10 @@ export default function Game(props)
 
     // duration for all component use
     const duration = data.state.duration
+
+    // instrument for all component use
+    // const instrument = data.state.instrument
+    const instrument = "piano";
 
     const noteSwitch = (note, bool) =>
     {
@@ -102,10 +109,11 @@ export default function Game(props)
 
     const highlightNotes = async (e) =>
     {
-        for (let i = 0; i < order.length; i++)
-        {
-            await noteTimeout(order[i]);
-        }
+        setClicked(true);
+        // for (let i = 0; i < order.length; i++)
+        // {
+        //     await noteTimeout(order[i]);
+        // }
     }
     
     function allowDrop(ev) {
@@ -141,7 +149,8 @@ export default function Game(props)
             <Hint hint={tune} />
 
             <ResultButton order={order}></ResultButton>
-            <div id="noteContainer">    
+            <NoteButtonRow order={order} duration={duration} clicked={clicked} instrument={instrument}></NoteButtonRow>
+            {/* <div id="noteContainer">    
                 <NoteButton order={order} note="A_flat" selected={aFlatPlay}>Ab</NoteButton>
                 <NoteButton order={order} note="A" selected={aPlay}>A</NoteButton>
                 <NoteButton order={order} note="B_flat" selected={bFlatPlay}>Bb</NoteButton>      
@@ -154,7 +163,7 @@ export default function Game(props)
                 <NoteButton order={order} note="F" selected={fPlay}>F</NoteButton>
                 <NoteButton order={order} note="G_flat" selected={gFlatPlay}>Gb</NoteButton>
                 <NoteButton order={order} note="G"  selected={gPlay}>G</NoteButton>
-            </div>
+            </div> */}
             <div id="undo">
                 <UndoSelection order={order}>Undo Selection</UndoSelection>
             </div>
