@@ -40,6 +40,10 @@ export default function Game(props)
 
     // duration for all component use
     const duration = data.state.duration
+
+    const color_blind = data.state.colorblind_mode
+
+    console.log(color_blind)
     
     return (
         <div id="gameContainer">
@@ -62,18 +66,18 @@ export default function Game(props)
 
             <div><ResultButton></ResultButton></div>
             <div id="noteContainer">    
-                <NoteButton note="A_flat">Ab</NoteButton>
-                <NoteButton note="A">A</NoteButton>
-                <NoteButton note="B_flat">Bb</NoteButton>      
-                <NoteButton note="B">B</NoteButton>
-                <NoteButton note="C">C</NoteButton>
-                <NoteButton note="D_flat">Db</NoteButton>
-                <NoteButton note="D">D</NoteButton>
-                <NoteButton note="E_flat">Eb</NoteButton>
-                <NoteButton note="E">E</NoteButton>
-                <NoteButton note="F">F</NoteButton>
-                <NoteButton note="G_flat">Gb</NoteButton>
-                <NoteButton note="G">G</NoteButton>
+                <NoteButton note="A_flat" color_blind={color_blind}>Ab</NoteButton>
+                <NoteButton note="A" color_blind={color_blind}>A</NoteButton>
+                <NoteButton note="B_flat" color_blind={color_blind}>Bb</NoteButton>      
+                <NoteButton note="B" color_blind={color_blind}>B</NoteButton>
+                <NoteButton note="C" color_blind={color_blind}>C</NoteButton>
+                <NoteButton note="D_flat" color_blind={color_blind}>Db</NoteButton>
+                <NoteButton note="D" color_blind={color_blind}>D</NoteButton>
+                <NoteButton note="E_flat" color_blind={color_blind}>Eb</NoteButton>
+                <NoteButton note="E" color_blind={color_blind}>E</NoteButton>
+                <NoteButton note="F" color_blind={color_blind}>F</NoteButton>
+                <NoteButton note="G_flat" color_blind={color_blind}>Gb</NoteButton>
+                <NoteButton note="G" color_blind={color_blind}>G</NoteButton>
             </div>
             <div id="undo">
                 <UndoSelection>Undo Selection</UndoSelection>
