@@ -18,7 +18,7 @@ export default function NoteButton(props)
   
     async function handleClick(e)
     {
-        let notePath = `/sound_notes/${note}.wav`;
+        let notePath = `/sound_notes/${instrument}/${note}.wav`;
         let noteAudio = new Audio(notePath);
         await noteAudio.play();
         console.log(noteAudio);
