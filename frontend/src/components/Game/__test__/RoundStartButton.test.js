@@ -17,6 +17,10 @@ describe('Does click highlight note', () =>
     test('Highlight', async () =>
     {
         const audio = new Audio('/sound_notes/A.wav');
+
+        const playTune = jest
+            .spyOn(window.HTMLMediaElement.prototype, 'play')
+
         const onClick = jest.fn();
         render(
             <RoundStartButton value={audio} onClick={onClick}></RoundStartButton>
@@ -27,8 +31,10 @@ describe('Does click highlight note', () =>
         {
             userEvent.click(note);
         }));
+
         
-        // if click roundStart, highlight function is called
+        // if click roundStart, play tune and highlight function is called
+        expect(playTune).toHaveBeenCalled()
         expect(onClick).toHaveBeenCalled();
     })
 })

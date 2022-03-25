@@ -30,12 +30,10 @@ describe('Does selection send request', () =>
             SetAudio={setAudio} 
             SetOrder={setOrder}
             SetDuration={setDuration}/>);
-
         act(()=>
         {
             wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Beginner', value: 'beginner' });
         });
-        
         // If select beginner, it should send 4 notes, duration 2.0 secs
         expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/4/2.0", {"responseType": "blob"})
 
