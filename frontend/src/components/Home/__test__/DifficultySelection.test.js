@@ -20,7 +20,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe('Does selection send request', () =>
 {
-    test('Selection', async () =>
+    test('Selec Beginner', async () =>
     {   
         const setAudio = jest.fn();
         const setOrder = jest.fn();
@@ -39,7 +39,7 @@ describe('Does selection send request', () =>
 
     })
 
-    test('Selection', async () =>
+    test('Select Advanced', async () =>
     {   
         const setAudio = jest.fn();
         const setOrder = jest.fn();
@@ -60,7 +60,7 @@ describe('Does selection send request', () =>
 
     })
 
-    test('Selection', async () =>
+    test('Select Expert', async () =>
     {   
         const setAudio = jest.fn();
         const setOrder = jest.fn();

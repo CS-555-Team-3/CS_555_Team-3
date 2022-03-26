@@ -26,11 +26,9 @@ describe('Does click play tune and activate highlight', () =>
             <RoundStartButton value={audio} onClick={onClick}></RoundStartButton>
         );
         let button = document.getElementsByClassName('roundStart');
-        act(()=>
-        Array.from(button).forEach((b)=>
-        {
-            userEvent.click(b);
-        }));
+        act(()=>{
+            userEvent.click(button[0]);
+        });
 
         
         // if click roundStart, play tune and highlight function is called
