@@ -12,9 +12,9 @@ afterEach(()=>
 
 beforeEach(()=> jest.setTimeout(30000));
 
-describe('Does click highlight note', () =>
+describe('Does click play tune and activate highlight', () =>
 {
-    test('Highlight', async () =>
+    test('play tune and hightlight', async () =>
     {
         const audio = new Audio('/sound_notes/A.wav');
 
@@ -27,9 +27,9 @@ describe('Does click highlight note', () =>
         );
         let button = document.getElementsByClassName('roundStart');
         act(()=>
-        Array.from(button).forEach((note)=>
+        Array.from(button).forEach((b)=>
         {
-            userEvent.click(note);
+            userEvent.click(b);
         }));
 
         
