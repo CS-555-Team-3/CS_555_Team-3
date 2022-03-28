@@ -33,18 +33,6 @@ export default function Game(props)
     //     "G_flat": false,
     //     "G": false
     // });
-    const [aPlay, setAPlay] = useState(false);
-    const [aFlatPlay, setAFlatPlay] = useState(false);
-    const [bFlatPlay, setBFlatPlay] = useState(false);
-    const [bPlay, setBPlay] = useState(false);
-    const [cPlay, setCPlay] = useState(false);
-    const [dFlatPlay, setDFlatPlay] = useState(false);
-    const [dPlay, setDPlay] = useState(false);
-    const [eFlatPlay, setEFlatPlay] = useState(false);
-    const [ePlay, setEPlay] = useState(false);
-    const [fPlay, setFPlay] = useState(false);
-    const [gFlatPlay, setGFlatPlay] = useState(false);
-    const [gPlay, setGPlay] = useState(false);
 
     const [clicked, setClicked] = useState(false);
 
@@ -74,46 +62,13 @@ export default function Game(props)
     // duration for all component use
     const duration = data.state.duration
 
-    // instrument for all component use
+    // instrument for all component use, build it at sprint4
     // const instrument = data.state.instrument
     const instrument = "piano";
-
-    const noteSwitch = (note, bool) =>
-    {
-        switch(note)
-        {
-            case "A_flat": setAFlatPlay(bool); break;
-            case "A": setAPlay(bool); break;
-            case "B_flat": setBFlatPlay(bool); break;
-            case "B": setBPlay(bool); break;
-            case "C": setCPlay(bool); break;
-            case "D_flat": setDFlatPlay(bool); break;
-            case "D": setDPlay(bool); break;
-            case "E_flat": setEFlatPlay(bool); break;
-            case "E": setEPlay(bool); break;
-            case "F": setFPlay(bool); break;
-            case "G_flat": setGFlatPlay(bool); break;
-            case "G": setGPlay(bool); break;
-            default: console.log('ERROR not a note')
-        }
-    }
-
-    const noteTimeout = async (notex) =>
-    {
-        noteSwitch(notex, true);
-        return new Promise(resolve => setTimeout(function(){
-            noteSwitch(notex, false);
-            resolve();
-        }, duration*1000));
-    }
 
     const highlightNotes = async (e) =>
     {
         setClicked(true);
-        // for (let i = 0; i < order.length; i++)
-        // {
-        //     await noteTimeout(order[i]);
-        // }
     }
     
     function allowDrop(ev) {
@@ -149,21 +104,12 @@ export default function Game(props)
             <Hint hint={tune} />
 
             <ResultButton order={order}></ResultButton>
-            <NoteButtonRow order={order} duration={duration} clicked={clicked} instrument={instrument}></NoteButtonRow>
-            {/* <div id="noteContainer">    
-                <NoteButton order={order} note="A_flat" selected={aFlatPlay}>Ab</NoteButton>
-                <NoteButton order={order} note="A" selected={aPlay}>A</NoteButton>
-                <NoteButton order={order} note="B_flat" selected={bFlatPlay}>Bb</NoteButton>      
-                <NoteButton order={order} note="B" selected={bPlay}>B</NoteButton>
-                <NoteButton order={order} note="C" selected={cPlay}>C</NoteButton>
-                <NoteButton order={order} note="D_flat" selected={dFlatPlay}>Db</NoteButton>
-                <NoteButton order={order} note="D" selected={dPlay}>D</NoteButton>
-                <NoteButton order={order} note="E_flat" selected={eFlatPlay}>Eb</NoteButton>
-                <NoteButton order={order} note="E" selected={ePlay}>E</NoteButton>
-                <NoteButton order={order} note="F" selected={fPlay}>F</NoteButton>
-                <NoteButton order={order} note="G_flat" selected={gFlatPlay}>Gb</NoteButton>
-                <NoteButton order={order} note="G"  selected={gPlay}>G</NoteButton>
-            </div> */}
+            <NoteButtonRow 
+                order={order} 
+                duration={duration} 
+                clicked={clicked} 
+                instrument={instrument}>
+            </NoteButtonRow>
             <div id="undo">
                 <UndoSelection order={order}>Undo Selection</UndoSelection>
             </div>
