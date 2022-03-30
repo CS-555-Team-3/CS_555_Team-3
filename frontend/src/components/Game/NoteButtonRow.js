@@ -1,5 +1,6 @@
 import NoteButton from './NoteButton';
 import React, { useState, useEffect } from 'react';
+import pitchRange from './../../config/PitchRange.json';
 
 export default function NoteButtonRow(props) {
   const order = props.order;
@@ -24,12 +25,10 @@ export default function NoteButtonRow(props) {
   const state_array = [aFlatPlay, aPlay, bFlatPlay, bPlay, cPlay, dFlatPlay, dPlay,
     eFlatPlay, ePlay, fPlay, gFlatPlay, gPlay
   ]
-  const note_array = ["A_flat", "A", "B_flat", "B", "C", "D_flat", "D",
-   "E_flat", "E","F", "G_flat", "G"]
 
   let note_buttons = [];
 
-  note_array.forEach((item, index) => {
+  pitchRange.pitchRange.forEach((item, index) => {
     note_buttons.push(<NoteButton key={index} order={order} note={item} 
       selected={state_array[index]} instrument={instrument}></NoteButton>)
   })
