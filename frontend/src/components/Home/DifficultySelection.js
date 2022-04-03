@@ -84,7 +84,7 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration})
     return(
         <Grid container className="difficulty">
             <Grid item xs={4}>
-                <Select options={options} onChange={onChange}/>
+                <Select className="Difficulty" options={options} onChange={onChange}/>
             </Grid>
         </Grid>
     );

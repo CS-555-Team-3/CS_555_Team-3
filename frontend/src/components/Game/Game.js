@@ -2,6 +2,7 @@ import {useNavigate, useLocation} from "react-router-dom"
 import { useState, useEffect } from "react";
 import '../../styles/Game.css';
 import NoteButton from './NoteButton';
+import NoteButtonRow from './NoteButtonRow';
 import RoundStartButton from './RoundStartButton';
 import UndoSelection from './UndoSelection';
 import ResultButton from './ResultButton';
@@ -32,18 +33,8 @@ export default function Game(props)
     //     "G_flat": false,
     //     "G": false
     // });
-    const [aPlay, setAPlay] = useState(false);
-    const [aFlatPlay, setAFlatPlay] = useState(false);
-    const [bFlatPlay, setBFlatPlay] = useState(false);
-    const [bPlay, setBPlay] = useState(false);
-    const [cPlay, setCPlay] = useState(false);
-    const [dFlatPlay, setDFlatPlay] = useState(false);
-    const [dPlay, setDPlay] = useState(false);
-    const [eFlatPlay, setEFlatPlay] = useState(false);
-    const [ePlay, setEPlay] = useState(false);
-    const [fPlay, setFPlay] = useState(false);
-    const [gFlatPlay, setGFlatPlay] = useState(false);
-    const [gPlay, setGPlay] = useState(false);
+
+    const [clicked, setClicked] = useState(false);
 
     const navigate = useNavigate()
 
@@ -71,43 +62,20 @@ export default function Game(props)
     // duration for all component use
     const duration = data.state.duration
 
+    // instrument for all component use, build it at sprint4
+    // const instrument = data.state.instrument
+    const instrument = "piano";
+    // States for the settings 
+    const [showTutorial, setShowTutorial] = useState( (data.state.tutorial =='on'))
+    const [showTimer, setShowTimer] = useState( (data.state.timer =='on'))
+    //const [colorblind_mode, setColorblind_mode] = useState( (data.state.colorblind_mode=='on'))
+    const [Leaderboard, setLeaderboard] = useState( (data.state.leaderboard=='on'))
+    
     const color_blind = data.state.colorblind_mode
-
-    const noteSwitch = (note, bool) =>
-    {
-        switch(note)
-        {
-            case "A_flat": setAFlatPlay(bool); break;
-            case "A": setAPlay(bool); break;
-            case "B_flat": setBFlatPlay(bool); break;
-            case "B": setBPlay(bool); break;
-            case "C": setCPlay(bool); break;
-            case "D_flat": setDFlatPlay(bool); break;
-            case "D": setDPlay(bool); break;
-            case "E_flat": setEFlatPlay(bool); break;
-            case "E": setEPlay(bool); break;
-            case "F": setFPlay(bool); break;
-            case "G_flat": setGFlatPlay(bool); break;
-            case "G": setGPlay(bool); break;
-            default: console.log('ERROR not a note')
-        }
-    }
-
-    const noteTimeout = async (notex) =>
-    {
-        noteSwitch(notex, true);
-        return new Promise(resolve => setTimeout(function(){
-            noteSwitch(notex, false);
-            resolve();
-        }, duration*1000));
-    }
 
     const highlightNotes = async (e) =>
     {
-        for (let i = 0; i < order.length; i++)
-        {
-            await noteTimeout(order[i]);
-        }
+        setClicked(true);
     }
     
     function allowDrop(ev) {
@@ -124,9 +92,9 @@ export default function Game(props)
     //const delay = setTimeout(() => tune.play(), 5000);
     return (
         <div id="gameContainer">
-            <TutorialEntry></TutorialEntry>
+            {showTutorial && <TutorialEntry></TutorialEntry> }
             <div id="roundStartContainer">
-                <RoundStartButton value={tune} onClick={highlightNotes}></RoundStartButton>
+                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes}></RoundStartButton>
             </div>
 
             <div id="answerContainer">
@@ -142,21 +110,14 @@ export default function Game(props)
 
             <div id="hint"> <Hint hint={tune} /></div>
 
-            <div><ResultButton order={order}></ResultButton></div>
-            <div id="noteContainer">    
-                <NoteButton order={order} note="A_flat" color_blind={color_blind} selected={aFlatPlay}>Ab</NoteButton>
-                <NoteButton order={order} note="A" color_blind={color_blind} selected={aPlay}>A</NoteButton>
-                <NoteButton order={order} note="B_flat" color_blind={color_blind} selected={bFlatPlay}>Bb</NoteButton>      
-                <NoteButton order={order} note="B" color_blind={color_blind} selected={bPlay}>B</NoteButton>
-                <NoteButton order={order} note="C" color_blind={color_blind} selected={cPlay}>C</NoteButton>
-                <NoteButton order={order} note="D_flat" color_blind={color_blind} selected={dFlatPlay}>Db</NoteButton>
-                <NoteButton order={order} note="D" color_blind={color_blind} selected={dPlay}>D</NoteButton>
-                <NoteButton order={order} note="E_flat" color_blind={color_blind} selected={eFlatPlay}>Eb</NoteButton>
-                <NoteButton order={order} note="E" color_blind={color_blind} selected={ePlay}>E</NoteButton>
-                <NoteButton order={order} note="F" color_blind={color_blind} selected={fPlay}>F</NoteButton>
-                <NoteButton order={order} note="G_flat" color_blind={color_blind} selected={gFlatPlay}>Gb</NoteButton>
-                <NoteButton order={order} note="G"  color_blind={color_blind} selected={gPlay}>G</NoteButton>
-            </div>
+            <ResultButton order={order}></ResultButton>
+            <NoteButtonRow 
+                order={order} 
+                duration={duration} 
+                clicked={clicked} 
+                instrument={instrument}
+                color_blind={color_blind}>
+            </NoteButtonRow>
             <div id="undo">
                 <UndoSelection order={order}>Undo Selection</UndoSelection>
             </div>

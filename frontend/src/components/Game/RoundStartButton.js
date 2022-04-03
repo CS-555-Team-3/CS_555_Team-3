@@ -11,6 +11,9 @@ export default function RoundStartButton(props) {
     // tune from parent component
     const tune = props.value;
 
+    // show-timer settings from parent component
+    const show_timer = props.timer;
+
     // once the user click the button, play the tune
     const onClick = () => {
         setTimeout(() => {
@@ -38,7 +41,10 @@ export default function RoundStartButton(props) {
                 <Button className="roundStart" onClick={onClick} disabled={clicked}>
                     Round Start
                 </Button>
-                <h4>{time} Second{time === 0 ? '' : 's'}</h4>
+
+                {show_timer &&
+                <h4> {time} Second{time === 0 ? '' : 's'}</h4>}
+                
                 <br></br>
             </div>
         </div>
