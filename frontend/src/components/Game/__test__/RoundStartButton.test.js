@@ -10,7 +10,7 @@ afterEach(()=>
     jest.clearAllMocks();
 })
 
-beforeEach(()=> jest.setTimeout(36000));
+beforeEach(()=> jest.setTimeout(30000));
 
 describe('Does click play tune and activate highlight', () =>
 {
