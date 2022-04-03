@@ -74,7 +74,7 @@ export default function Game(props)
     // States for the settings 
     const [showTutorial, setShowTutorial] = useState( (data.state.tutorial =='on'))
     const [showTimer, setShowTimer] = useState( (data.state.timer =='on'))
-    const [colorblind_mode, setColorblind_mode] = useState( (data.state.colorblind_mode=='on'))
+    //const [colorblind_mode, setColorblind_mode] = useState( (data.state.colorblind_mode=='on'))
     const [Leaderboard, setLeaderboard] = useState( (data.state.leaderboard=='on'))
     
     const color_blind = data.state.colorblind_mode
