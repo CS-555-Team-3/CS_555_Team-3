@@ -72,6 +72,8 @@ export default function Game(props)
     const [Leaderboard, setLeaderboard] = useState( (data.state.leaderboard=='on'))
     
     const color_blind = data.state.colorblind_mode
+    const timer = data.state.timer
+    const difficulty = data.state.difficulty
 
     const highlightNotes = async (e) =>
     {
@@ -110,7 +112,7 @@ export default function Game(props)
 
             <div id="hint"> <Hint hint={tune} /></div>
 
-            <ResultButton order={order}></ResultButton>
+            <ResultButton order={order} difficulty={difficulty} timer={timer}></ResultButton>
             <NoteButtonRow 
                 order={order} 
                 duration={duration} 
