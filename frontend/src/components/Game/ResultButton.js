@@ -6,7 +6,13 @@ export default function ResultButton(props) {
   const [score, setScore] = useState(0);
   const [scores, setScores] = useState([]);
   const [ifSubmit, setIfSubmit] = useState(false);
-
+  useEffect(() => {
+    const json = localStorage.getItem("scores");
+    const savedScores = JSON.parse(json);
+    if (savedScores) { setScores(savedScores); }
+    }, 
+    []
+  );
   useEffect(() => { 
       const json = JSON.stringify(scores);
       localStorage.setItem("scores", json);
