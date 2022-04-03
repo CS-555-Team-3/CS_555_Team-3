@@ -64,7 +64,14 @@ export default function ResultButton(props) {
       }
     }
 
-    setScore(Score);
+    const newScore = {
+      id: Math.random().toString(36),
+      text: Score,
+      time: props.timer,
+      difficulty: props.difficulty,
+    };
+    setScore(newScore);
+
     setIfSubmit(true);
     
   };
