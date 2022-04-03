@@ -29,7 +29,7 @@ export default function RoundStartButton(props) {
             setTime((n) => {
                 return n + 1;
             });
-        }, 1000);}, 6000)
+        }, 1000);}, 3000)
     };
 
     return (

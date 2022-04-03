@@ -35,6 +35,6 @@ describe('Does click play tune and activate highlight', () =>
         setTimeout(() => {
             expect(playTune).toHaveBeenCalled()
             expect(onClick).toHaveBeenCalled();
-        }, 6000)
+        }, 4000)
     })
 })
