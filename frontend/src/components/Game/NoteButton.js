@@ -8,6 +8,7 @@ export default function NoteButton(props)
     let note = props.note;
     let noteName = props.children;
     let parentSelected = props.selected;
+    let instrument = props.instrument
     let color_blind = props.color_blind; //how to add colorBlind as a prop?
     const [color_blind_mode, set_Colorblind_mode] = useState(color_blind == 'on')
 
@@ -17,29 +18,29 @@ export default function NoteButton(props)
         //console.log(note == "A", note == 'A');
         if (color_blind == 'on') {
             if (note == "A_flat") {
-                setIcon("A_flat 😊");
+                setIcon("😊");
             }else if (note == "A") {
-                setIcon("A 😂");
+                setIcon("😂");
             }else if (note == "B_flat") {
-                setIcon("B_flat ❤️");
+                setIcon("❤️");
             }else if (note == "B") {
-                setIcon("B 😁");
+                setIcon("😁");
             }else if (note == "C") {
-                setIcon("C 😍");
+                setIcon("😍");
             }else if (note == "D_flat") {
-                setIcon("D_flat 😎");
+                setIcon("😎");
             }else if (note == "D") {
-                setIcon("D 🎶");
+                setIcon("🎶");
             }else if (note == "E_flat") {
-                setIcon("E_flat 💕");
+                setIcon("💕");
             }else if (note == "E") {
-                setIcon("E 🤩");
+                setIcon("🤩");
             }else if (note == "F") {
-                setIcon("F 😴");
+                setIcon("😴");
             }else if (note == "G_flat") {
-                setIcon("G_flat 😉");
+                setIcon("😉");
             }else if (note == "G") {
-                setIcon("G 😋");
+                setIcon("😋");
             }else{
                 setIcon(note)
             }
@@ -56,7 +57,7 @@ export default function NoteButton(props)
   
     async function handleClick(e)
     {
-        let notePath = `/sound_notes/${note}.wav`;
+        let notePath = `/sound_notes/${instrument}/${note}.wav`;
         let noteAudio = new Audio(notePath);
         await noteAudio.play();
         console.log(noteAudio);
