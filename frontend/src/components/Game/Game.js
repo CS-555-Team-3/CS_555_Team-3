@@ -77,6 +77,7 @@ export default function Game(props)
     const [colorblind_mode, setColorblind_mode] = useState( (data.state.colorblind_mode=='on'))
     const [Leaderboard, setLeaderboard] = useState( (data.state.leaderboard=='on'))
     
+    const color_blind = data.state.colorblind_mode
 
     const noteSwitch = (note, bool) =>
     {
@@ -145,22 +146,22 @@ export default function Game(props)
                     </div>
             </div>
 
-            <Hint hint={tune} />
+            <div id="hint"> <Hint hint={tune} /></div>
 
-            <ResultButton order={order}></ResultButton>
+            <div><ResultButton order={order}></ResultButton></div>
             <div id="noteContainer">    
-                <NoteButton order={order} note="A_flat" selected={aFlatPlay}>Ab</NoteButton>
-                <NoteButton order={order} note="A" selected={aPlay}>A</NoteButton>
-                <NoteButton order={order} note="B_flat" selected={bFlatPlay}>Bb</NoteButton>      
-                <NoteButton order={order} note="B" selected={bPlay}>B</NoteButton>
-                <NoteButton order={order} note="C" selected={cPlay}>C</NoteButton>
-                <NoteButton order={order} note="D_flat" selected={dFlatPlay}>Db</NoteButton>
-                <NoteButton order={order} note="D" selected={dPlay}>D</NoteButton>
-                <NoteButton order={order} note="E_flat" selected={eFlatPlay}>Eb</NoteButton>
-                <NoteButton order={order} note="E" selected={ePlay}>E</NoteButton>
-                <NoteButton order={order} note="F" selected={fPlay}>F</NoteButton>
-                <NoteButton order={order} note="G_flat" selected={gFlatPlay}>Gb</NoteButton>
-                <NoteButton order={order} note="G"  selected={gPlay}>G</NoteButton>
+                <NoteButton order={order} note="A_flat" color_blind={color_blind} selected={aFlatPlay}>Ab</NoteButton>
+                <NoteButton order={order} note="A" color_blind={color_blind} selected={aPlay}>A</NoteButton>
+                <NoteButton order={order} note="B_flat" color_blind={color_blind} selected={bFlatPlay}>Bb</NoteButton>      
+                <NoteButton order={order} note="B" color_blind={color_blind} selected={bPlay}>B</NoteButton>
+                <NoteButton order={order} note="C" color_blind={color_blind} selected={cPlay}>C</NoteButton>
+                <NoteButton order={order} note="D_flat" color_blind={color_blind} selected={dFlatPlay}>Db</NoteButton>
+                <NoteButton order={order} note="D" color_blind={color_blind} selected={dPlay}>D</NoteButton>
+                <NoteButton order={order} note="E_flat" color_blind={color_blind} selected={eFlatPlay}>Eb</NoteButton>
+                <NoteButton order={order} note="E" color_blind={color_blind} selected={ePlay}>E</NoteButton>
+                <NoteButton order={order} note="F" color_blind={color_blind} selected={fPlay}>F</NoteButton>
+                <NoteButton order={order} note="G_flat" color_blind={color_blind} selected={gFlatPlay}>Gb</NoteButton>
+                <NoteButton order={order} note="G"  color_blind={color_blind} selected={gPlay}>G</NoteButton>
             </div>
             <div id="undo">
                 <UndoSelection order={order}>Undo Selection</UndoSelection>
