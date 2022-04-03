@@ -89,7 +89,7 @@ export default function Game(props)
         var data = ev.dataTransfer.getData("text");
         ev.target.innerHTML = data;
     }
-
+    //const delay = setTimeout(() => tune.play(), 5000);
     return (
         <div id="gameContainer">
             {showTutorial && <TutorialEntry></TutorialEntry> }

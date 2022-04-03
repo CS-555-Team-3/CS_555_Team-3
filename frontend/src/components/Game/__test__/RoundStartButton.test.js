@@ -32,7 +32,9 @@ describe('Does click play tune and activate highlight', () =>
 
         
         // if click roundStart, play tune and highlight function is called
-        expect(playTune).toHaveBeenCalled()
-        expect(onClick).toHaveBeenCalled();
+        setTimeout(() => {
+            expect(playTune).toHaveBeenCalled()
+            expect(onClick).toHaveBeenCalled();
+        }, 4000)
     })
 })
