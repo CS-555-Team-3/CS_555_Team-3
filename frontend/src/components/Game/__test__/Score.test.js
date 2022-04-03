@@ -23,7 +23,7 @@ test('time and difficulty present', () => {
     let scores = document.getElementsByClassName('scoreGroup')
     Array.from(scores).forEach((score)=> {
         userEvent.click(getElementById('resultButton'));
-        expect(score.time>=0 && score.time <= 0.1)
+        expect(score.time.length() == 1)
         expect(score.difficulty.length() == 1)
     })
 });
