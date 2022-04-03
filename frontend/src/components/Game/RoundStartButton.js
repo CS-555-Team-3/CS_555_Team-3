@@ -13,9 +13,11 @@ export default function RoundStartButton(props) {
 
     // once the user click the button, play the tune
     const onClick = () => {
-        props.onClick();
+        setTimeout(() => {
+            props.onClick();
         try {
             setClicked(true);
+            //const delay = setTimeout(tune.play(), 5000);
             tune.play();
         } catch (e) {
             console.log('play audio error: ', e);
@@ -27,7 +29,7 @@ export default function RoundStartButton(props) {
             setTime((n) => {
                 return n + 1;
             });
-        }, 1000);
+        }, 1000);}, 6000)
     };
 
     return (
