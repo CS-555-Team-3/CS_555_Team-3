@@ -65,6 +65,8 @@ export default function Game(props)
     // instrument for all component use, build it at sprint4
     // const instrument = data.state.instrument
     const instrument = "piano";
+    
+    const color_blind = data.state.colorblind_mode
 
     const highlightNotes = async (e) =>
     {
@@ -101,14 +103,15 @@ export default function Game(props)
                     </div>
             </div>
 
-            <Hint hint={tune} />
+            <div id="hint"> <Hint hint={tune} /></div>
 
             <ResultButton order={order}></ResultButton>
             <NoteButtonRow 
                 order={order} 
                 duration={duration} 
                 clicked={clicked} 
-                instrument={instrument}>
+                instrument={instrument}
+                color_blind={color_blind}>
             </NoteButtonRow>
             <div id="undo">
                 <UndoSelection order={order}>Undo Selection</UndoSelection>
