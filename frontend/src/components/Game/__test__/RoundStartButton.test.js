@@ -1,9 +1,40 @@
-import {render, cleanup} from "@testing-library/react";
 import RoundStartButton from "../RoundStartButton";
+import { render, cleanup } from '@testing-library/react';
+import userEvent from "@testing-library/user-event";
+import React from 'react';
+import { act } from 'react-dom/test-utils';
 
 afterEach(cleanup);
+afterEach(()=>
+{
+    jest.clearAllMocks();
+})
 
-test('renders', () => {
-    const div = document.createElement("div")
-    render(<RoundStartButton />, div);
-});
+beforeEach(()=> jest.setTimeout(36000));
+
+describe('Does click play tune and activate highlight', () =>
+{
+    test('play tune and hightlight', async () =>
+    {
+        const audio = new Audio('/sound_notes/A.wav');
+
+        const playTune = jest
+            .spyOn(window.HTMLMediaElement.prototype, 'play')
+
+        const onClick = jest.fn();
+        render(
+            <RoundStartButton value={audio} onClick={onClick}></RoundStartButton>
+        );
+        let button = document.getElementsByClassName('roundStart');
+        act(()=>{
+            userEvent.click(button[0]);
+        });
+
+        
+        // if click roundStart, play tune and highlight function is called
+        setTimeout(() => {
+            expect(playTune).toHaveBeenCalled()
+            expect(onClick).toHaveBeenCalled();
+        }, 6000)
+    })
+})
