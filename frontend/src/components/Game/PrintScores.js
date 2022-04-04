@@ -28,7 +28,7 @@ export default function PrintScores(val) {
         <div key={score.id}> 
             <div className="scoreGroup">
                 Score: {score.text} Difficulty: {score.difficulty} Time: {score.time}
-                <CopyToClipboard text={score.text}>
+                <CopyToClipboard text={score.copytext}>
                     <Button className="copyButton" variant="contained">Copy score</Button>
                 </CopyToClipboard>       
             </div>      
