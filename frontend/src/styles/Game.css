@@ -151,3 +151,13 @@ div.noteButton.selected
 .button{
   height: 30px;
 }
+
+#drag_tut{
+  position: absolute;
+  width: 330px;
+  height: 186px;
+  transform: rotate(270deg);
+  left:628px;
+  bottom: 572px;
+  opacity: .3;
+}

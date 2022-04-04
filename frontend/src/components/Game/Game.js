@@ -95,6 +95,7 @@ export default function Game(props)
             <div id="hint"> <Hint hint={tune} /></div>
 
             <ResultButton order={order}></ResultButton>
+            <img id='drag_tut' src={require('./img/drag_tutorial.gif')}></img> 
             <NoteButtonRow 
                 order={order} 
                 duration={duration} 
