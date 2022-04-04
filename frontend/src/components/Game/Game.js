@@ -1,5 +1,5 @@
 import {useNavigate, useLocation} from "react-router-dom"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import '../../styles/Game.css';
 import NoteButton from './NoteButton';
 import NoteButtonRow from './NoteButtonRow';
@@ -10,7 +10,6 @@ import Hint from './Hint';
 import TutorialEntry from './TutorialEntry';
 import {Button} from '@mui/material';
 import BoxRow from './BoxRow';
-
 
 export default function Game(props)
 {
@@ -80,7 +79,26 @@ export default function Game(props)
     {
         setClicked(true);
     }
-    
+
+    let show_tut = showTutorial;
+    function UnrenderDragTut(){
+       const [time, setTime] = useState(0);
+       let timer = useRef();
+       if(show_tut==false){
+           return true;
+       }
+       setTimeout(() => {
+           document.getElementById('drag_tut').id='drag_tut_hide'
+           show_tut = false;
+           return true;
+       setTime(0);
+           timer.current = setInterval(() => {
+               setTime((n) => {
+                   return n + 1;
+               });
+           }, 1000);}, 9000)
+       return true;
+   }
 
     //const delay = setTimeout(() => tune.play(), 5000);
     return (
@@ -90,12 +108,16 @@ export default function Game(props)
                 <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes}></RoundStartButton>
             </div>
 
-            <BoxRow difficulty = {data.state.difficulty}></BoxRow>
+            <BoxRow order = {order}></BoxRow>
 
             <div id="hint"> <Hint hint={tune} /></div>
 
             <ResultButton order={order}></ResultButton>
-            <img id='drag_tut' src={require('./img/drag_tutorial.gif')}></img> 
+
+            {(showTutorial && order.length == 4) && 
+            (<img id='drag_tut' src={require('./img/drag_tutorial.gif')}></img>)}
+            {show_tut && UnrenderDragTut()}
+             
             <NoteButtonRow 
                 order={order} 
                 duration={duration} 
@@ -111,4 +133,7 @@ export default function Game(props)
             </div>
         </div>
     );
+    
 }
+
+

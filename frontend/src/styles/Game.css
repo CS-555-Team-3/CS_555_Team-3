@@ -161,3 +161,9 @@ div.noteButton.selected
   bottom: 572px;
   opacity: .3;
 }
+
+#drag_tut_hide{
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
