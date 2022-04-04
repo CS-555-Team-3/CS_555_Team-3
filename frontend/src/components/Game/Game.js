@@ -35,7 +35,7 @@ export default function Game(props)
     // });
 
     const [clicked, setClicked] = useState(false);
-
+    const [ifStart, setIfStart] = useState(false);
     const navigate = useNavigate()
 
     // helper function to create the tune
@@ -76,6 +76,7 @@ export default function Game(props)
     const highlightNotes = async (e) =>
     {
         setClicked(true);
+        setIfStart(true)
     }
     
     function allowDrop(ev) {
@@ -89,10 +90,47 @@ export default function Game(props)
         var data = ev.dataTransfer.getData("text");
         ev.target.innerHTML = data;
     }
-    //const delay = setTimeout(() => tune.play(), 5000);
-    return (
-        <div id="gameContainer">
-            {showTutorial && <TutorialEntry></TutorialEntry> }
+    const endGame = () => {
+        let i = 'time';
+        let x = 'score'
+        var time = document.getElementById(i).innerHTML
+        var score = document.getElementById(x).innerHTML
+        if(window.confirm('End game?')) 
+        { 
+            navigate(`/end/${time}/${score}`) 
+        };
+    }
+
+
+    if(ifStart === false){
+        return (
+            <div id="gameContainer">
+            <TutorialEntry></TutorialEntry>
+            <div id="roundStartContainer">
+                <RoundStartButton value={tune} onClick={highlightNotes}></RoundStartButton>
+            </div>
+
+            <div id="answerContainer">
+                <div className='resultRows'></div>
+                    <div className='placement'>
+                        <div id='first' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)}  disabled></div>
+                        <div id='second' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
+                        <div id='third' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
+                        <div id='fourth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
+                        <div id='fifth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
+                    </div>
+            </div>
+            <div id ="end">
+                <Button className="endButton" onClick={endGame}> End game</Button>
+            </div>
+        </div>
+        )
+    }
+
+    if(ifStart === true){
+        return(
+            <div id="gameContainer">
+            <TutorialEntry></TutorialEntry>
             <div id="roundStartContainer">
                 <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes}></RoundStartButton>
             </div>
@@ -122,8 +160,9 @@ export default function Game(props)
                 <UndoSelection order={order}>Undo Selection</UndoSelection>
             </div>
             <div id ="end">
-                <Button className="endButton" onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</Button>
+                <Button className="endButton" onClick={endGame}> End game</Button>
             </div>
         </div>
     );
+}
 }
