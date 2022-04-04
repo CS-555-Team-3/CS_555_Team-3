@@ -19,6 +19,7 @@ export default function ResultRow(props)
     // Step 2: get the proper order of notes, and wait for the user to make choices
     let order = props.order;
     let correct_order =  [];
+    
 
     // A -- Update Users Choices
     useEffect(() => { 
@@ -27,6 +28,11 @@ export default function ResultRow(props)
         console.log('Before the shallow copy is taken, the value in the state is still:',userChoices) // initial value
         setUserChoices(newchoices)
         console.log('After the shallow copy is taken, the value in the state is still:',userChoices)
+        let new_grid = props.userRowChoices;
+        new_grid[props.rowNum] = newchoices;
+        props.setUserRowChoices(new_grid);
+        console.log("rowNum", props.rowNum);
+        console.log("new grid", new_grid);
         }, 
         [choice_1, choice_2, choice_3, choice_4, choice_5, choice_6]
     );
@@ -95,6 +101,23 @@ export default function ResultRow(props)
         console.log("currently i have boxes selectoin ",boxesSelection )
         console.log("currently i have boxes selectoin ",boxesSelection[0] )     
    }
+
+   const[color, setColor]= useState(props.Color)
+
+    // Drag and drop updating for the selections
+    function allowDrop(ev) {
+        console.log(ev);
+        ev.preventDefault();
+    }
+
+    function drop(ev) {
+        console.log(ev);
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        console.log(data);
+        ev.target.innerHTML = data;
+        props.setUserChoice(data)
+    }
     
 
     return (
@@ -103,18 +126,14 @@ export default function ResultRow(props)
                         backgroundColor={correct_order[0]} Color={boxesSelection[0]} 
                        // WORK On the undo undo={undo[i]} // WORK On the undo
                         />
-        <SingleBox choice={choice_2} setUserChoice={ (i) =>{setChoice2(i)} } 
-            backgroundColor={correct_order[1]} Color={boxesSelection[1]}  />
-        <SingleBox choice={choice_3} setUserChoice={ (i) =>{setChoice3(i)} } 
-                backgroundColor={correct_order[3]} Color={boxesSelection[2]} />
-        <SingleBox choice={choice_4} setUserChoice={ (i) =>{setChoice4(i)} } 
-                backgroundColor={correct_order[3]}  Color={boxesSelection[3]} />
+        <SingleBox choice={choice_2} setUserChoice={ (i) =>{setChoice2(i)} }  Color={boxesSelection[1]}  />
+        <SingleBox choice={choice_3} setUserChoice={ (i) =>{setChoice3(i)} }  Color={boxesSelection[2]} />
+        <SingleBox choice={choice_4} setUserChoice={ (i) =>{setChoice4(i)} }  Color={boxesSelection[3]} />
+        
         {fifthBox &&        
-        <SingleBox choice={choice_5} setUserChoice={ (i) =>{setChoice5(i)} } 
-                backgroundColor={correct_order[4]}  Color={boxesSelection[4]} /> }
+        <SingleBox choice={choice_5} setUserChoice={ (i) =>{setChoice5(i)} } Color={boxesSelection[4]} /> }
         {sixthBox &&        
-        <SingleBox choice={choice_6} setUserChoice={(i) =>{setChoice6(i)} } 
-                                backgroundColor={correct_order[5]} Color={boxesSelection[5]} />}
+        <SingleBox choice={choice_6} setUserChoice={(i) =>{setChoice6(i)} }  Color={boxesSelection[5]} />}
         </div>
         
     );

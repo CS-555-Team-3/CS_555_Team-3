@@ -83,14 +83,31 @@ export default function Game(props)
     
  
     // KEEP !!! --> This is the states that are passed around to many child components
-    const[RowNum, setRowNum] = useState(0);
-    const[Selected, setSelected ] = useState(false);
+    const[rowNum, setRowNum] = useState(1);
+    const[selected, setSelected ] = useState(false);
     const [clickResultButton, setClickResultButton] = useState(0); // used to update result
     const [clicked, setClicked] = useState(false);
-    console.log("Score is currently", score)
+    const [undoClicked, setUndoClicked] = useState(0);
+   
+    const[userRowChoices, setUserRowChoices] = useState({
+        1:{1:"first", 2:"", 3:"", 4:"", 5:"", 6:""}, 
+        2:{1:"", 2:"", 3:"", 4:"", 5:"", 6:""},
+        3:{1:"", 2:"", 3:"", 4:"", 5:"", 6:""},
+        4:{1:"", 2:"", 3:"", 4:"", 5:"", 6:""},
+        5:{1:"", 2:"", 3:"", 4:"", 5:"", 6:""}  } )
+   
+        useEffect(() => { 
+          console.log("GAme: Score is currently", score)
+            console.log("GAme: user Row choice are", userRowChoices)
+        }, 
+        [userRowChoices]
+        ); 
+
+ 
+
      // KEEP !!! --> This is the states that are passed around to many child components
 
-
+    
     return (
         <div id="gameContainer">
             {showTutorial && <TutorialEntry></TutorialEntry> }
@@ -103,16 +120,18 @@ export default function Game(props)
 
                 </div>
                 <div className='placement'>
-                    <ResultRow order={order} rownum={RowNum} selected={Selected} setSelected={(i) => {setSelected(i)}} 
-                                setScore={(i) => {setScore (i)}} clickResultButton={clickResultButton} />
+                    <ResultRow order={order} rownum={rowNum} selected={selected} setSelected={(i) => {setSelected(i)}} 
+                                setScore={(i) => {setScore (i)}} clickResultButton={clickResultButton} 
+                                rowNum={rowNum} userRowChoices={userRowChoices} setUserRowChoices={(i) => setUserRowChoices(i)}/>
                 </div>
             </div>
 
             <div id="hint"> <Hint hint={tune} /></div>
 
             <ResultButton order={order}   setRowNum={(i) => {setRowNum(i)}} 
-                        setSelected={(i) => {setSelected(i)}}  currentrow={RowNum}
+                        setSelected={(i) => {setSelected(i)}}  currentrow={rowNum}
                         score={score}   clickResultButton={clickResultButton}  setClickResultButton= {(i)  => setClickResultButton(i)}
+                        rowNum={rowNum} userRowChoices={userRowChoices} setUserChoices={(i) => setUserRowChoices(i)}
             />
 
             <NoteButtonRow 
@@ -123,7 +142,9 @@ export default function Game(props)
                 color_blind={color_blind}>
             </NoteButtonRow>
             <div id="undo">
-                <UndoSelection order={order}>Undo Selection</UndoSelection>
+                <UndoSelection order={order} rowNum={rowNum} 
+                    userRowChoices={userRowChoices} setUserRowChoices={(i) => setUserRowChoices(i)}>
+                        Undo Selection</UndoSelection>
             </div>
             <div id ="end">
                 <Button className="endButton" onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</Button>
