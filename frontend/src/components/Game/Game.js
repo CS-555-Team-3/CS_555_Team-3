@@ -70,7 +70,7 @@ export default function Game(props)
     const [showTimer, setShowTimer] = useState( (data.state.timer =='on'))
     //const [colorblind_mode, setColorblind_mode] = useState( (data.state.colorblind_mode=='on'))
     const [Leaderboard, setLeaderboard] = useState( (data.state.leaderboard=='on'))
-    
+    const [time, setTime] = useState(0);
     const color_blind = data.state.colorblind_mode
     const timer = data.state.timer
     const difficulty = data.state.difficulty
@@ -96,7 +96,7 @@ export default function Game(props)
         <div id="gameContainer">
             {showTutorial && <TutorialEntry></TutorialEntry> }
             <div id="roundStartContainer">
-                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes}></RoundStartButton>
+                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes} setTime={setTime} time = {time}></RoundStartButton>
             </div>
 
             <div id="answerContainer">
@@ -112,7 +112,7 @@ export default function Game(props)
 
             <div id="hint"> <Hint hint={tune} /></div>
 
-            <ResultButton order={order} difficulty={difficulty} timer={timer}></ResultButton>
+            <ResultButton order={order} difficulty={difficulty} time={time}></ResultButton>
             <NoteButtonRow 
                 order={order} 
                 duration={duration} 
