@@ -15,10 +15,8 @@ export default function SetNote(props)
             if(document.getElementById(boxes[i]).innerHTML === "") {
                 document.getElementById(boxes[i]).innerHTML = `${noteName}`;
                 break;
-            }
-             
+            } 
         }
-        
     }
 
     return (

@@ -100,7 +100,7 @@ button.playnote {
   float: left
 }
 
-.placement .notes {
+.placement  .notes {
   background-color: grey;
   margin: 10px;
 }
@@ -150,4 +150,14 @@ div.noteButton.selected
 
 .button{
   height: 30px;
+}
+
+.placement .notes#red  {
+  background-color: red !important;
+}
+.placement .notes#yellow {
+  background-color: yellow !important;
+}
+.placement .notes#green {
+  background-color: green !important;
 }

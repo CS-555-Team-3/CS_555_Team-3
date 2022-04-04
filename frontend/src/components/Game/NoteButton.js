@@ -19,27 +19,27 @@ export default function NoteButton(props)
         if (color_blind == 'on') {
             if (note == "A_flat") {
                 setIcon("😊");
-            }else if (note == "A") {
+            }else if (note === "A") {
                 setIcon("😂");
-            }else if (note == "B_flat") {
+            }else if (note === "B_flat") {
                 setIcon("❤️");
-            }else if (note == "B") {
+            }else if (note === "B") {
                 setIcon("😁");
-            }else if (note == "C") {
+            }else if (note === "C") {
                 setIcon("😍");
-            }else if (note == "D_flat") {
+            }else if (note === "D_flat") {
                 setIcon("😎");
-            }else if (note == "D") {
+            }else if (note === "D") {
                 setIcon("🎶");
-            }else if (note == "E_flat") {
+            }else if (note === "E_flat") {
                 setIcon("💕");
-            }else if (note == "E") {
+            }else if (note === "E") {
                 setIcon("🤩");
-            }else if (note == "F") {
+            }else if (note === "F") {
                 setIcon("😴");
-            }else if (note == "G_flat") {
+            }else if (note === "G_flat") {
                 setIcon("😉");
-            }else if (note == "G") {
+            }else if (note === "G") {
                 setIcon("😋");
             }else{
                 setIcon(note)

@@ -10,6 +10,10 @@ import Hint from './Hint';
 import TutorialEntry from './TutorialEntry';
 import {Button} from '@mui/material';
 
+import SingleBox from "./SingleBox";
+import ResultRow from "./ResultRow";
+import { SelectUnstyled } from "@mui/base";
+
 export default function Game(props)
 {
     /**TODO
@@ -34,7 +38,7 @@ export default function Game(props)
     //     "G": false
     // });
 
-    const [clicked, setClicked] = useState(false);
+    
 
     const navigate = useNavigate()
 
@@ -66,30 +70,27 @@ export default function Game(props)
     // const instrument = data.state.instrument
     const instrument = "piano";
     // States for the settings 
-    const [showTutorial, setShowTutorial] = useState( (data.state.tutorial =='on'))
-    const [showTimer, setShowTimer] = useState( (data.state.timer =='on'))
+    const [showTutorial, setShowTutorial] = useState( (data.state.tutorial ==='on'))
+    const [showTimer, setShowTimer] = useState( (data.state.timer ==='on'))
     //const [colorblind_mode, setColorblind_mode] = useState( (data.state.colorblind_mode=='on'))
-    const [Leaderboard, setLeaderboard] = useState( (data.state.leaderboard=='on'))
-    
+    const [Leaderboard, setLeaderboard] = useState( (data.state.leaderboard ==='on'))
+
+
+    const [score, setScore] = useState(0);
     const color_blind = data.state.colorblind_mode
 
-    const highlightNotes = async (e) =>
-    {
-        setClicked(true);
-    }
+    const highlightNotes = async (e) => {setClicked(true);}
     
-    function allowDrop(ev) {
-        console.log(ev);
-        ev.preventDefault();
-    }
-    
-    function drop(ev) {
-        console.log(ev);
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        ev.target.innerHTML = data;
-    }
-    //const delay = setTimeout(() => tune.play(), 5000);
+ 
+    // KEEP !!! --> This is the states that are passed around to many child components
+    const[RowNum, setRowNum] = useState(0);
+    const[Selected, setSelected ] = useState(false);
+    const [clickResultButton, setClickResultButton] = useState(0); // used to update result
+    const [clicked, setClicked] = useState(false);
+    console.log("Score is currently", score)
+     // KEEP !!! --> This is the states that are passed around to many child components
+
+
     return (
         <div id="gameContainer">
             {showTutorial && <TutorialEntry></TutorialEntry> }
@@ -98,19 +99,22 @@ export default function Game(props)
             </div>
 
             <div id="answerContainer">
-                <div className='resultRows'></div>
-                    <div className='placement'>
-                        <div id='first' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)}  disabled></div>
-                        <div id='second' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                        <div id='third' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                        <div id='fourth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                        <div id='fifth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                    </div>
+                <div className='resultRows'>
+
+                </div>
+                <div className='placement'>
+                    <ResultRow order={order} rownum={RowNum} selected={Selected} setSelected={(i) => {setSelected(i)}} 
+                                setScore={(i) => {setScore (i)}} clickResultButton={clickResultButton} />
+                </div>
             </div>
 
             <div id="hint"> <Hint hint={tune} /></div>
 
-            <ResultButton order={order}></ResultButton>
+            <ResultButton order={order}   setRowNum={(i) => {setRowNum(i)}} 
+                        setSelected={(i) => {setSelected(i)}}  currentrow={RowNum}
+                        score={score}   clickResultButton={clickResultButton}  setClickResultButton= {(i)  => setClickResultButton(i)}
+            />
+
             <NoteButtonRow 
                 order={order} 
                 duration={duration} 
