@@ -9,6 +9,8 @@ import ResultButton from './ResultButton';
 import Hint from './Hint';
 import TutorialEntry from './TutorialEntry';
 import {Button} from '@mui/material';
+import BoxRow from './BoxRow';
+
 
 export default function Game(props)
 {
@@ -49,6 +51,7 @@ export default function Game(props)
         }
      }
 
+
     // extract data from Home component 
     const data = useLocation();
 
@@ -78,17 +81,7 @@ export default function Game(props)
         setClicked(true);
     }
     
-    function allowDrop(ev) {
-        console.log(ev);
-        ev.preventDefault();
-    }
-    
-    function drop(ev) {
-        console.log(ev);
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        ev.target.innerHTML = data;
-    }
+
     //const delay = setTimeout(() => tune.play(), 5000);
     return (
         <div id="gameContainer">
@@ -97,16 +90,7 @@ export default function Game(props)
                 <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes}></RoundStartButton>
             </div>
 
-            <div id="answerContainer">
-                <div className='resultRows'></div>
-                    <div className='placement'>
-                        <div id='first' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)}  disabled></div>
-                        <div id='second' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                        <div id='third' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                        <div id='fourth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                        <div id='fifth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                    </div>
-            </div>
+            <BoxRow difficulty = {data.state.difficulty}></BoxRow>
 
             <div id="hint"> <Hint hint={tune} /></div>
 
