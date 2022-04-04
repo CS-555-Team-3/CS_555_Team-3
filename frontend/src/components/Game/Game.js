@@ -13,6 +13,7 @@ import {Button} from '@mui/material';
 import SingleBox from "./SingleBox";
 import ResultRow from "./ResultRow";
 import { SelectUnstyled } from "@mui/base";
+import SetNote from "./SetNote";
 
 export default function Game(props)
 {
@@ -97,14 +98,13 @@ export default function Game(props)
         5:{1:"", 2:"", 3:"", 4:"", 5:"", 6:""}  } )
    
         useEffect(() => { 
-          console.log("GAme: Score is currently", score)
+            console.log("GAme: Score is currently", score)
             console.log("GAme: user Row choice are", userRowChoices)
+            console.log("game: undo clocked:", undoClicked)
         }, 
-        [userRowChoices]
+        [userRowChoices, undoClicked]
         ); 
-
- 
-
+        
      // KEEP !!! --> This is the states that are passed around to many child components
 
     
@@ -120,6 +120,7 @@ export default function Game(props)
 
                 </div>
                 <div className='placement'>
+        
                     <ResultRow order={order} rownum={rowNum} selected={selected} setSelected={(i) => {setSelected(i)}} 
                                 setScore={(i) => {setScore (i)}} clickResultButton={clickResultButton} 
                                 rowNum={rowNum} userRowChoices={userRowChoices} setUserRowChoices={(i) => setUserRowChoices(i)}/>
@@ -132,6 +133,7 @@ export default function Game(props)
                         setSelected={(i) => {setSelected(i)}}  currentrow={rowNum}
                         score={score}   clickResultButton={clickResultButton}  setClickResultButton= {(i)  => setClickResultButton(i)}
                         rowNum={rowNum} userRowChoices={userRowChoices} setUserChoices={(i) => setUserRowChoices(i)}
+                            undoClicked={undoClicked}
             />
 
             <NoteButtonRow 
@@ -142,9 +144,10 @@ export default function Game(props)
                 color_blind={color_blind}>
             </NoteButtonRow>
             <div id="undo">
-                <UndoSelection order={order} rowNum={rowNum} 
-                    userRowChoices={userRowChoices} setUserRowChoices={(i) => setUserRowChoices(i)}>
-                        Undo Selection</UndoSelection>
+                <UndoSelection  rowNum={rowNum} 
+                    userRowChoices={userRowChoices} setUserRowChoices={(i) => setUserRowChoices(i)}
+                    setUndoClicked={(i)=>setUndoClicked(i)} undoClicked={undoClicked}
+                    >Undo Selection</UndoSelection>
             </div>
             <div id ="end">
                 <Button className="endButton" onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</Button>

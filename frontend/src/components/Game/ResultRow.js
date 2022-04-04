@@ -7,7 +7,8 @@ export default function ResultRow(props)
     const sixthBox = (props.order.length>5)
      
     // Step 1: set up the states for each boxes, selection 
-    const[userChoices, setUserChoices] = useState({1:"", 2:"", 3:"", 4:"", 5:"", 6:""})
+    const curr_row = props.userRowChoices[props.rowNum]
+    const[userChoices, setUserChoices] = useState(curr_row);
     const[ choice_1, setChoice1] = useState("");
     const[ choice_2, setChoice2] = useState("");
     const[ choice_3, setChoice3] = useState("");
@@ -23,23 +24,17 @@ export default function ResultRow(props)
 
     // A -- Update Users Choices
     useEffect(() => { 
-        const newchoices = Object.assign({}, userChoices, { 1:choice_1, 2:choice_2, 3:choice_3,
-                                            4:choice_4, 5:choice_5, 6:choice_6 })
-        console.log('Before the shallow copy is taken, the value in the state is still:',userChoices) // initial value
+        const newchoices = { 1:choice_1, 2:choice_2, 3:choice_3, 4:choice_4, 5:choice_5, 6:choice_6 }
         setUserChoices(newchoices)
-        console.log('After the shallow copy is taken, the value in the state is still:',userChoices)
         let new_grid = props.userRowChoices;
         new_grid[props.rowNum] = newchoices;
         props.setUserRowChoices(new_grid);
-        console.log("rowNum", props.rowNum);
-        console.log("new grid", new_grid);
         }, 
         [choice_1, choice_2, choice_3, choice_4, choice_5, choice_6]
     );
 
     // B -- Update Color, when and only when the ssubmit is selected
     useEffect(() => { 
-        console.log("nember of clicks updated", props.clickResultButton)
         // Part 2: updating the colors of boxes, when the submit answer box is selected.
         if(props.selected === true){
             let Score = 0;
@@ -85,22 +80,6 @@ export default function ResultRow(props)
 
 
     // Update teh proper choices if the user selected the submit answer button
-   if(props.selected === true){
-        console.log("0.helo me the data is ", choice_1)
-        console.log("0.helo me the data is ", choice_2)
-        console.log("0.helo me the data is ", choice_3)
-        console.log("0.helo me the data is ", choice_4)
-        console.log("0.helo me the data is ", choice_5)
-        console.log("0.helo me the data is ", choice_6)   
-
-        console.log("Now i have the corrrect order in result row", order)
-        console.log("currently i have rownum",props.rownum )
-        console.log("currently i have selected",props.selected )
-        console.log("currently i have userChoices",userChoices )
-
-        console.log("currently i have boxes selectoin ",boxesSelection )
-        console.log("currently i have boxes selectoin ",boxesSelection[0] )     
-   }
 
    const[color, setColor]= useState(props.Color)
 

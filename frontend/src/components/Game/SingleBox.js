@@ -15,7 +15,7 @@ export default function SingleBox(props)
     function drop(ev) {
         console.log(ev);
         ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
+        const data = ev.dataTransfer.getData("text");
         console.log(data);
         ev.target.innerHTML = data;
         props.setUserChoice(data)
