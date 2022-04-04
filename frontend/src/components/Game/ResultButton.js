@@ -60,7 +60,7 @@ export default function ResultButton(props) {
         // answer[i] = true;
         document.getElementById(boxes[i]).style.backgroundColor = "green";
         Score++;
-        console.log(Score)
+        //console.log(Score)
       }
     }
 
@@ -97,7 +97,7 @@ export default function ResultButton(props) {
         </Button>
         {restartButton}
         <div>
-          <h5>My score: {score}</h5>
+          <h5 id="score">My score: {score}</h5>
         </div>
     </div>
   );

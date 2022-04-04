@@ -45,6 +45,9 @@ export default function Game(props)
     const [gFlatPlay, setGFlatPlay] = useState(false);
     const [gPlay, setGPlay] = useState(false);
 
+    const [ifStart, setIfStart] = useState(false);
+    const [gameTime, setGameTime] = useState('')
+
     const navigate = useNavigate()
 
     // helper function to create the tune
@@ -66,7 +69,7 @@ export default function Game(props)
 
     // order for all component use
     const order = data.state.note_order
-    console.log("ORDER: " + order);
+    //console.log("ORDER: " + order);
 
     // duration for all component use
     const duration = data.state.duration
@@ -106,22 +109,59 @@ export default function Game(props)
         {
             await noteTimeout(order[i]);
         }
+        setIfStart(true);
     }
     
     function allowDrop(ev) {
-        console.log(ev);
+        //console.log(ev);
         ev.preventDefault();
     }
     
     function drop(ev) {
-        console.log(ev);
+        //console.log(ev);
         ev.preventDefault();
         var data = ev.dataTransfer.getData("text");
         ev.target.innerHTML = data;
     }
 
-    return (
-        <div id="gameContainer">
+    const endGame = () => {
+        let i = 'time';
+        var time = document.getElementById(i).innerHTML
+        if(window.confirm('End game?')) 
+        { 
+            navigate(`/end/${time}`) 
+        };
+    }
+
+
+    if(ifStart === false){
+        return (
+            <div id="gameContainer">
+            <TutorialEntry></TutorialEntry>
+            <div id="roundStartContainer">
+                <RoundStartButton value={tune} onClick={highlightNotes}></RoundStartButton>
+            </div>
+
+            <div id="answerContainer">
+                <div className='resultRows'></div>
+                    <div className='placement'>
+                        <div id='first' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)}  disabled></div>
+                        <div id='second' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
+                        <div id='third' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
+                        <div id='fourth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
+                        <div id='fifth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
+                    </div>
+            </div>
+            <div id ="end">
+                <Button className="endButton" onClick={endGame}> End game</Button>
+            </div>
+        </div>
+        )
+    }
+
+    if(ifStart === true){
+        return(
+            <div id="gameContainer">
             <TutorialEntry></TutorialEntry>
             <div id="roundStartContainer">
                 <RoundStartButton value={tune} onClick={highlightNotes}></RoundStartButton>
@@ -159,8 +199,53 @@ export default function Game(props)
                 <UndoSelection order={order}>Undo Selection</UndoSelection>
             </div>
             <div id ="end">
-                <Button className="endButton" onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</Button>
+                <Button className="endButton" onClick={endGame}> End game</Button>
             </div>
         </div>
-    );
+        )
+    }
+
+    // return (
+    //     <div id="gameContainer">
+    //         <TutorialEntry></TutorialEntry>
+    //         <div id="roundStartContainer">
+    //             <RoundStartButton value={tune} onClick={highlightNotes}></RoundStartButton>
+    //         </div>
+
+    //         <div id="answerContainer">
+    //             <div className='resultRows'></div>
+    //                 <div className='placement'>
+    //                     <div id='first' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)}  disabled></div>
+    //                     <div id='second' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
+    //                     <div id='third' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
+    //                     <div id='fourth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
+    //                     <div id='fifth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
+    //                 </div>
+    //         </div>
+
+    //         <Hint hint={tune} />
+
+    //         <ResultButton order={order}></ResultButton>
+    //         <div id="noteContainer">    
+    //             <NoteButton order={order} note="A_flat" selected={aFlatPlay}>Ab</NoteButton>
+    //             <NoteButton order={order} note="A" selected={aPlay}>A</NoteButton>
+    //             <NoteButton order={order} note="B_flat" selected={bFlatPlay}>Bb</NoteButton>      
+    //             <NoteButton order={order} note="B" selected={bPlay}>B</NoteButton>
+    //             <NoteButton order={order} note="C" selected={cPlay}>C</NoteButton>
+    //             <NoteButton order={order} note="D_flat" selected={dFlatPlay}>Db</NoteButton>
+    //             <NoteButton order={order} note="D" selected={dPlay}>D</NoteButton>
+    //             <NoteButton order={order} note="E_flat" selected={eFlatPlay}>Eb</NoteButton>
+    //             <NoteButton order={order} note="E" selected={ePlay}>E</NoteButton>
+    //             <NoteButton order={order} note="F" selected={fPlay}>F</NoteButton>
+    //             <NoteButton order={order} note="G_flat" selected={gFlatPlay}>Gb</NoteButton>
+    //             <NoteButton order={order} note="G"  selected={gPlay}>G</NoteButton>
+    //         </div>
+    //         <div id="undo">
+    //             <UndoSelection order={order}>Undo Selection</UndoSelection>
+    //         </div>
+    //         <div id ="end">
+    //             <Button className="endButton" onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</Button>
+    //         </div>
+    //     </div>
+    // );
 }

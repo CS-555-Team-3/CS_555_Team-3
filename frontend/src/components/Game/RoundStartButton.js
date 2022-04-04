@@ -36,7 +36,7 @@ export default function RoundStartButton(props) {
                 <Button className="roundStart" onClick={onClick} disabled={clicked}>
                     Round Start
                 </Button>
-                <h4>{time} Second{time === 0 ? '' : 's'}</h4>
+                <h4 id='time'>{time} Second{time === 0 ? '' : 's'}</h4>
                 <br></br>
             </div>
         </div>

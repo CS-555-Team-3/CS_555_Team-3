@@ -12,7 +12,7 @@ function App() {
         <Route exact path="/" element={<Home/>}></Route>
         <Route exact path="/settings" element={<Settings />}></Route>
         <Route exact path='/game' element={<Game />}></Route>
-        <Route exact path='/end' element={<GameOver/>}></Route>
+        <Route exact path='/end/:time' element={<GameOver/>}></Route>
       </Routes>
     </Router>
   );
