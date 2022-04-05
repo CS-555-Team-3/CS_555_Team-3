@@ -79,11 +79,11 @@ export default function ResultButton(props) {
       }
     }
 
-    const copytext = "Score: " + Score + " Difficulty: " + props.difficulty + " Time: " + props.timer
+    const copytext = "Score: " + Score + " Difficulty: " + props.difficulty + " Time: " + props.time
     const newScore = {
       id: Math.random().toString(36).substr(2, 9),
       text: Score,
-      time: props.timer,
+      time: props.time,
       difficulty: props.difficulty,
       copytext: copytext
     };

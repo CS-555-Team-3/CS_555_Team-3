@@ -72,7 +72,7 @@ export default function Game(props)
     const [showTimer, setShowTimer] = useState( (data.state.timer =='on'))
     //const [colorblind_mode, setColorblind_mode] = useState( (data.state.colorblind_mode=='on'))
     const [Leaderboard, setLeaderboard] = useState( (data.state.leaderboard=='on'))
-    
+    const [time, setTime] = useState(0);
     const color_blind = data.state.colorblind_mode
     const timer = data.state.timer
     const difficulty = data.state.difficulty
@@ -85,7 +85,6 @@ export default function Game(props)
 
     let show_tut = showTutorial;
     function UnrenderDragTut(){
-       const [time, setTime] = useState(0);
        let timer = useRef();
        if(show_tut==false){
            return true;
@@ -106,11 +105,11 @@ export default function Game(props)
     const endGame = () => {
         let i = 'time';
         let x = 'score'
-        var time = document.getElementById(i).innerHTML
-        var score = document.getElementById(x).innerHTML
+        var ptime = document.getElementById(i).innerHTML
+        var pscore = document.getElementById(x).innerHTML
         if(window.confirm('End game?')) 
         { 
-            navigate(`/end/${time}/${score}`) 
+            navigate(`/end/${ptime}/${pscore}`) 
         };
     }
 
@@ -131,7 +130,7 @@ export default function Game(props)
             <div id="gameContainer">
             <TutorialEntry></TutorialEntry>
             <div id="roundStartContainer">
-                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes}></RoundStartButton>
+                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes} setTime={setTime} time={time}></RoundStartButton>
             </div>
 
             <div id="answerContainer">
@@ -156,23 +155,19 @@ export default function Game(props)
             <div id="gameContainer">
             <TutorialEntry></TutorialEntry>
             <div id="roundStartContainer">
-                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes}></RoundStartButton>
+                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes} setTime={setTime} time={time}></RoundStartButton>
             </div>
 
             <BoxRow order = {order}></BoxRow>
 
             <div id="hint"> <Hint hint={tune} /></div>
 
-<<<<<<< HEAD
             <ResultButton order={order} difficulty={difficulty} time={time}></ResultButton>
 
             {(showTutorial && order.length == 4) && 
             (<img id='drag_tut' src={require('./img/drag_tutorial.gif')}></img>)}
             {show_tut && UnrenderDragTut()}
 
-=======
-            <ResultButton order={order} difficulty={difficulty} timer={timer}></ResultButton>
->>>>>>> parent of 053329f (lift up time. fixes scoreboard time)
             <NoteButtonRow 
                 order={order} 
                 duration={duration} 
