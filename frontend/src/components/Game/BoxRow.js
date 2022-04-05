@@ -10,6 +10,8 @@ export default function BoxRow(props) {
         console.log(ev);
         ev.preventDefault();
         var data = ev.dataTransfer.getData("text");
+        console.log(data);
+        ev.target.classList.add(data);
         ev.target.innerHTML = data;
     }
 

@@ -150,9 +150,9 @@ export default function Game(props)
                 <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes} setTime={setTime} time={time}></RoundStartButton>
             </div>
 
-            <BoxRow order = {order}></BoxRow>
+            <BoxRow order={order}></BoxRow>
 
-            <div id="hint"> <Hint hint={tune} /></div>
+            <div id="hint"><Hint hint={tune} /></div>
 
             <ResultButton order={order} difficulty={difficulty} time={time}></ResultButton>
 
@@ -170,7 +170,7 @@ export default function Game(props)
             <div id="undo">
                 <UndoSelection order={order}>Undo Selection</UndoSelection>
             </div>
-            <div id ="end">
+            <div id="end">
                 <Button className="endButton" onClick={endGame}> End game</Button>
             </div>
         </div>
