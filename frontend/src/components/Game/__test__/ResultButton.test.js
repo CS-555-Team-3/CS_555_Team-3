@@ -1,5 +1,4 @@
 import { render, screen, cleanup } from "@testing-library/react";
-import NoteButton from '../NoteButton.js';
 import ResultButton from "../ResultButton";
 import userEvent from '@testing-library/user-event';
 import React from "react";
@@ -31,22 +30,6 @@ describe("Does box lighted up", () => {
                 <div>
                 <ResultButton order={order} userChoice = {userChoice} boxes = {boxes}  >Submit Answer </ResultButton>
                 </div>
-                {/* <div>
-                <div id="noteContainer">    
-                    <NoteButton order={order} note="A_flat">Ab</NoteButton>
-                    <NoteButton order={order} note="A">A</NoteButton>
-                    <NoteButton order={order} note="B_flat">Bb</NoteButton>      
-                    <NoteButton order={order} note="B">B</NoteButton>
-                    <NoteButton order={order} note="C">C</NoteButton>
-                    <NoteButton order={order} note="D_flat">Db</NoteButton>
-                    <NoteButton order={order} note="D">D</NoteButton>
-                    <NoteButton order={order} note="E_flat">Eb</NoteButton>
-                    <NoteButton order={order} note="E">E</NoteButton>
-                    <NoteButton order={order} note="F">F</NoteButton>
-                    <NoteButton order={order} note="G_flat">Gb</NoteButton>
-                    <NoteButton order={order} note="G">G</NoteButton>
-                </div>
-                </div> */}
             </div>
     
     );
