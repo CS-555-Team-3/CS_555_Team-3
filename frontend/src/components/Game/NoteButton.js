@@ -73,7 +73,6 @@ export default function NoteButton(props)
     return( 
         <div draggable="true" onDragStart={(event) => drag(event)} className={`noteButton ${note} ${variable ? 'selected' : ''}`}>
             { !color_blind_mode && <SetNote note={note} order={props.order}>
-            {noteName}
             </SetNote> }
             { color_blind_mode && <SetNote note={note} order={props.order}>
             {icn}

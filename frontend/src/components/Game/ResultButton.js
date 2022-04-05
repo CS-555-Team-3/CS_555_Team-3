@@ -47,23 +47,19 @@ export default function ResultButton(props) {
     let answer = [];
     let Score = 0;
     if (props.order.length !== userChoice.length) throw "error";
-    //if (!props.order) throw "Backend hasn't input the music";
     for (let i = 0; i < props.order.length; i++) {
       if (props.order[i] !== userChoice[i]) {
-        // answer[i] = false;
         if (props.order.indexOf(userChoice[i]) < 0) {
             document.getElementById(boxes[i]).style.backgroundColor = "red";
           } else {
             document.getElementById(boxes[i]).style.backgroundColor = "yellow";
           }
       } else {
-        // answer[i] = true;
         document.getElementById(boxes[i]).style.backgroundColor = "green";
         Score++;
         console.log(Score)
       }
     }
-
     setScore(Score);
     setIfSubmit(true);
     

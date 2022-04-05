@@ -101,44 +101,44 @@ button.playnote {
 }
 
 .placement .notes {
-  background-color: grey;
+  border: 2px solid grey;
   margin: 10px;
 }
 
-div.noteButton.A_flat {
+div.noteButton.A_flat, .placement .notes.A_flat {
   background-color: #f387dc;
 }
-div.noteButton.A {
+div.noteButton.A, .placement .notes.A {
   background-color: #3dabb8;
 }
-div.noteButton.B_flat {
+div.noteButton.B_flat, .placement .notes.B_flat {
   background-color: #da7313;
 }
-div.noteButton.B {
+div.noteButton.B, .placement .notes.B {
   background-color: #c72020;
 }
-div.noteButton.C {
+div.noteButton.C, .placement .notes.C {
   background-color: #dee602;
 }
-div.noteButton.D_flat {
+div.noteButton.D_flat, .placement .notes.D_flat {
   background-color: #a3c4f3;
 }
-div.noteButton.D {
+div.noteButton.D, .placement .notes.D {
   background-color: #29f569;
 }
-div.noteButton.E_flat {
+div.noteButton.E_flat, .placement .notes.E_flat {
   background-color: #6e57d2;
 }
-div.noteButton.E {
+div.noteButton.E, .placement .notes.E {
   background-color: #f66d67;
 }
-div.noteButton.F {
+div.noteButton.F, .placement .notes.F {
   background-color: #b594b6;
 }
-div.noteButton.G_flat {
+div.noteButton.G_flat, .placement .notes.G_flat {
   background-color: #4b93fe;
 }
-div.noteButton.G {
+div.noteButton.G, .placement .notes.G {
   background-color: #ffcfd2;
 }
 
