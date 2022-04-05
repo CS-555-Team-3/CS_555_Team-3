@@ -114,6 +114,17 @@ export default function Game(props)
         };
     }
 
+    function allowDrop(ev) {
+        console.log(ev);
+        ev.preventDefault();
+    }
+    
+    function drop(ev) {
+        console.log(ev);
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.innerHTML = data;
+    }
 
     if(ifStart === false){
         return (
