@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import Confetti from "react-confetti";
 import { Button } from "@mui/material";
 
 export default function ResultButton(props) {
   const [score, setScore] = useState(0);
   const [ifSubmit, setIfSubmit] = useState(false);
-
   //console.log(props.order);
   var boxes = null;
   if (props.order) {
@@ -68,7 +68,7 @@ export default function ResultButton(props) {
   //restart
   const restart = () => {
     for (let i = 0; i < boxes.length; i++) {
-      document.getElementById(boxes[i]).style.backgroundColor = "grey";
+      document.getElementById(boxes[i]).className = "notes";
       document.getElementById(boxes[i]).innerHTML = "";
     }
     setScore(0);
@@ -88,6 +88,8 @@ export default function ResultButton(props) {
 
   return (
     <div id="resultButton">
+      {score === props.order.length ? 
+      <Confetti recycle="false"></Confetti>: <></>}
         <Button className="button" variant="contained" color="success" onClick={compare}>
           Submit Answer
         </Button>
