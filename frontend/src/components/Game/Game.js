@@ -1,5 +1,5 @@
 import {useNavigate, useLocation} from "react-router-dom"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import '../../styles/Game.css';
 import NoteButton from './NoteButton';
 import NoteButtonRow from './NoteButtonRow';
@@ -9,6 +9,7 @@ import ResultButton from './ResultButton';
 import Hint from './Hint';
 import TutorialEntry from './TutorialEntry';
 import {Button} from '@mui/material';
+import BoxRow from './BoxRow';
 
 export default function Game(props)
 {
@@ -49,6 +50,7 @@ export default function Game(props)
         }
      }
 
+
     // extract data from Home component 
     const data = useLocation();
 
@@ -70,15 +72,47 @@ export default function Game(props)
     const [showTimer, setShowTimer] = useState( (data.state.timer =='on'))
     //const [colorblind_mode, setColorblind_mode] = useState( (data.state.colorblind_mode=='on'))
     const [Leaderboard, setLeaderboard] = useState( (data.state.leaderboard=='on'))
-    
+    const [time, setTime] = useState(0);
     const color_blind = data.state.colorblind_mode
+    const timer = data.state.timer
+    const difficulty = data.state.difficulty
 
     const highlightNotes = async (e) =>
     {
         setClicked(true);
         setIfStart(true)
     }
+
+    let show_tut = showTutorial;
+    function UnrenderDragTut(){
+       let timer = useRef();
+       if(show_tut==false){
+           return true;
+       }
+       setTimeout(() => {
+           document.getElementById('drag_tut').id='drag_tut_hide'
+           show_tut = false;
+           return true;
+       setTime(0);
+           timer.current = setInterval(() => {
+               setTime((n) => {
+                   return n + 1;
+               });
+           }, 1000);}, 9000)
+       return true;
+   }
     
+    const endGame = () => {
+        let i = 'time';
+        let x = 'score'
+        var ptime = document.getElementById(i).innerHTML
+        var pscore = document.getElementById(x).innerHTML
+        if(window.confirm('End game?')) 
+        { 
+            navigate(`/end/${ptime}/${pscore}`) 
+        };
+    }
+
     function allowDrop(ev) {
         console.log(ev);
         ev.preventDefault();
@@ -90,36 +124,17 @@ export default function Game(props)
         var data = ev.dataTransfer.getData("text");
         ev.target.innerHTML = data;
     }
-    const endGame = () => {
-        let i = 'time';
-        let x = 'score'
-        var time = document.getElementById(i).innerHTML
-        var score = document.getElementById(x).innerHTML
-        if(window.confirm('End game?')) 
-        { 
-            navigate(`/end/${time}/${score}`) 
-        };
-    }
-
 
     if(ifStart === false){
         return (
             <div id="gameContainer">
-            <TutorialEntry></TutorialEntry>
+            {showTutorial && <TutorialEntry></TutorialEntry> }
             <div id="roundStartContainer">
-                <RoundStartButton value={tune} onClick={highlightNotes}></RoundStartButton>
+                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes} setTime={setTime} time={time}></RoundStartButton>
             </div>
 
-            <div id="answerContainer">
-                <div className='resultRows'></div>
-                    <div className='placement'>
-                        <div id='first' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)}  disabled></div>
-                        <div id='second' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                        <div id='third' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                        <div id='fourth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                        <div id='fifth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                    </div>
-            </div>
+            <BoxRow order = {order}></BoxRow>
+
             <div id ="end">
                 <Button className="endButton" onClick={endGame}> End game</Button>
             </div>
@@ -130,25 +145,21 @@ export default function Game(props)
     if(ifStart === true){
         return(
             <div id="gameContainer">
-            <TutorialEntry></TutorialEntry>
+            {showTutorial && <TutorialEntry></TutorialEntry> }
             <div id="roundStartContainer">
-                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes}></RoundStartButton>
+                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes} setTime={setTime} time={time}></RoundStartButton>
             </div>
 
-            <div id="answerContainer">
-                <div className='resultRows'></div>
-                    <div className='placement'>
-                        <div id='first' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)}  disabled></div>
-                        <div id='second' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                        <div id='third' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                        <div id='fourth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                        <div id='fifth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                    </div>
-            </div>
+            <BoxRow order = {order}></BoxRow>
 
             <div id="hint"> <Hint hint={tune} /></div>
 
-            <ResultButton order={order}></ResultButton>
+            <ResultButton order={order} difficulty={difficulty} time={time}></ResultButton>
+
+            {(showTutorial && order.length == 4) && 
+            (<img id='drag_tut' src={require('./img/drag_tutorial.gif')}></img>)}
+            {show_tut && UnrenderDragTut()}
+
             <NoteButtonRow 
                 order={order} 
                 duration={duration} 
@@ -164,5 +175,7 @@ export default function Game(props)
             </div>
         </div>
     );
+    
+  }
 }
-}
+

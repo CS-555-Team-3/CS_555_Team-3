@@ -5,9 +5,6 @@ import React from "react";
 
 
 afterEach(cleanup);
-afterEach(() => {
-  jest.clearAllMocks();
-});
 
 describe("Are boxes painted correctly after clicking resultButton", () => {
   test("submit answer and box is painted", async () => {

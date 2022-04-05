@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import difficulty_map from './../../config/DifficultyMap.json';
 import '../../styles/Home.css';
 
-export default function DifficultySelection({SetAudio, SetOrder, SetDuration})
+export default function DifficultySelection({SetAudio, SetOrder, SetDuration,SetDifficulty})
 {  
     // three states: difficulty, audio, order
     const [difficulty, setDifficulty] = useState(null);
@@ -34,6 +34,7 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration})
     useEffect(() => {
         if (order) {
             console.log(order)
+            
         }
     }, [order]);
 
@@ -74,7 +75,7 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration})
     }
 
     // once user select the difiiculty, update difficulty
-    const onChange = (value) => {
+    const onChangeDiff = (value) => {
         setDifficulty(value)
     }
 
@@ -84,7 +85,7 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration})
     return(
         <Grid container className="difficulty">
             <Grid item xs={4}>
-                <Select className="Difficulty" options={options} onChange={onChange}/>
+                <Select className="Difficulty" options={options} onChange={onChangeDiff}/>
             </Grid>
         </Grid>
     );

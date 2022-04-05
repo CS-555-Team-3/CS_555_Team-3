@@ -28,9 +28,9 @@ const Settings = ( {set_Difficulty,
     // e: colorblind mode
 
     const diff_options = [
-        { value: 'easy', label: "Easy"},
-        { value: 'moderate', label: "Moderate"},
-        { value: 'hard', label: "Hard"},
+        { value: "beginner", label: "Beginner"},
+        { value: "advanced", label: "Advanced"},
+        { value: "expert", label: "Expert"},
     ]
     const on_off_options = [
         { value: 'on', label: "On"},
