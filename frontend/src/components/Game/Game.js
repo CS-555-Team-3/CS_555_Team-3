@@ -116,21 +116,13 @@ export default function Game(props)
     if(ifStart === false){
         return (
             <div id="gameContainer">
-            <TutorialEntry></TutorialEntry>
+            {showTutorial && <TutorialEntry></TutorialEntry> }
             <div id="roundStartContainer">
                 <RoundStartButton value={tune} onClick={highlightNotes}></RoundStartButton>
             </div>
 
-            <div id="answerContainer">
-                <div className='resultRows'></div>
-                    <div className='placement'>
-                        <div id='first' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)}  disabled></div>
-                        <div id='second' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                        <div id='third' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                        <div id='fourth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                        <div id='fifth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                    </div>
-            </div>
+            <BoxRow order = {order}></BoxRow>
+
             <div id ="end">
                 <Button className="endButton" onClick={endGame}> End game</Button>
             </div>
@@ -141,7 +133,7 @@ export default function Game(props)
     if(ifStart === true){
         return(
             <div id="gameContainer">
-            <TutorialEntry></TutorialEntry>
+            {showTutorial && <TutorialEntry></TutorialEntry> }
             <div id="roundStartContainer">
                 <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes}></RoundStartButton>
             </div>
