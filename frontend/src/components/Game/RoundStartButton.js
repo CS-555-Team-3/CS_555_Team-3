@@ -3,9 +3,7 @@ import { Button } from '@mui/material';
 
 export default function RoundStartButton(props) {
     // count time
-    //const [time, setTime] = useState(0);
-    const time = props.time
-    const setTime = props.setTime
+    const [time, setTime] = useState(0);
     let timer = useRef();
 
     const [clicked, setClicked] = useState(false);
