@@ -1,10 +1,27 @@
-import React, { useState } from "react";
 import Confetti from "react-confetti";
+import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 
 export default function ResultButton(props) {
+
   const [score, setScore] = useState(0);
+  const [scores, setScores] = useState([]);
   const [ifSubmit, setIfSubmit] = useState(false);
+
+  useEffect(() => {
+    const json = localStorage.getItem("scores");
+    const savedScores = JSON.parse(json);
+    if (savedScores) { setScores(savedScores); }
+    }, 
+    []
+  );
+  useEffect(() => { 
+      const json = JSON.stringify(scores);
+      localStorage.setItem("scores", json);
+      }, 
+      [scores]
+  );
+
   //console.log(props.order);
   var boxes = null;
   if (props.order) {
@@ -60,7 +77,18 @@ export default function ResultButton(props) {
         console.log(Score)
       }
     }
-    setScore(Score);
+
+    const copytext = "Score: " + Score + " Difficulty: " + props.difficulty + " Time: " + props.time
+    const newScore = {
+      id: Math.random().toString(36).substr(2, 9),
+      text: Score,
+      time: props.time,
+      difficulty: props.difficulty,
+      copytext: copytext
+    };
+    setScores([...scores,newScore]);
+    setScore(Score)
+
     setIfSubmit(true);
     
   };
