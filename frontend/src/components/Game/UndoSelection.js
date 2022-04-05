@@ -15,6 +15,7 @@ export default function UndoSelection(props)
             let box = document.getElementById(boxes[i])
             if(box!=null && box.innerHTML !== "" && box.classList.length > 1) {
                 box.innerHTML = "";
+                box.className = "";
                 box.className = "notes";
                 break;
             }
