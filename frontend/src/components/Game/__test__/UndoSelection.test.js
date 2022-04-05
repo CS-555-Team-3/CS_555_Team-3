@@ -22,7 +22,7 @@ describe('Does Undo Selection Exist', () => {
 
 describe('Does it Undo', () => {
     const order = ["A", "B", "A", "A"]
-    test('Undoes', () => {
+    test('Undoes', async () => {
         render(
             <div id="gameContainer">
                 <div id="answerContainer">
@@ -46,10 +46,10 @@ describe('Does it Undo', () => {
                 </div>
             </div>
         );
-        userEvent.click(document.getElementsByClassName("A")[0]);
-        expect(document.getElementsByClassName("A").length).toBe(2);
+        userEvent.click(document.getElementsByClassName("A")[0].firstChild);
+        expect(document.getElementsByClassName("A").length).toBe(3);
         userEvent.click(screen.getByText('Undo Selection'));
-        expect(document.getElementsByClassName("A").length).toBe(1);
+        await expect(document.getElementsByClassName("A").length).toBe(2);
     });
 });
 
