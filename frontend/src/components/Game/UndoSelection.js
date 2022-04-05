@@ -12,8 +12,9 @@ export default function UndoSelection(props)
     {
         for(let i=order.length-1; i>=0; i--)  
         {
-            if(document.getElementById(boxes[i]).innerHTML !== "") {
-                document.getElementById(boxes[i]).innerHTML = "";
+            let box = document.getElementById(boxes[i])
+            if(box!=null && box.innerHTML !== "") {
+                box.innerHTML = "";
                 break;
             }
              

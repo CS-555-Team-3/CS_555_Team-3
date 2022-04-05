@@ -1,5 +1,5 @@
 import {useNavigate, useLocation} from "react-router-dom"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import '../../styles/Game.css';
 import NoteButton from './NoteButton';
 import NoteButtonRow from './NoteButtonRow';
@@ -9,6 +9,7 @@ import ResultButton from './ResultButton';
 import Hint from './Hint';
 import TutorialEntry from './TutorialEntry';
 import {Button} from '@mui/material';
+import BoxRow from './BoxRow';
 
 export default function Game(props)
 {
@@ -35,7 +36,7 @@ export default function Game(props)
     // });
 
     const [clicked, setClicked] = useState(false);
-
+    const [ifStart, setIfStart] = useState(false);
     const navigate = useNavigate()
 
     // helper function to create the tune
@@ -48,6 +49,7 @@ export default function Game(props)
             console.log('create audio error: ', e)
         }
      }
+
 
     // extract data from Home component 
     const data = useLocation();
@@ -78,23 +80,45 @@ export default function Game(props)
     const highlightNotes = async (e) =>
     {
         setClicked(true);
+        setIfStart(true)
     }
+
+    let show_tut = showTutorial;
+    function UnrenderDragTut(){
+       const [time, setTime] = useState(0);
+       let timer = useRef();
+       if(show_tut==false){
+           return true;
+       }
+       setTimeout(() => {
+           document.getElementById('drag_tut').id='drag_tut_hide'
+           show_tut = false;
+           return true;
+       setTime(0);
+           timer.current = setInterval(() => {
+               setTime((n) => {
+                   return n + 1;
+               });
+           }, 1000);}, 9000)
+       return true;
+   }
     
-    function allowDrop(ev) {
-        console.log(ev);
-        ev.preventDefault();
+    const endGame = () => {
+        let i = 'time';
+        let x = 'score'
+        var time = document.getElementById(i).innerHTML
+        var score = document.getElementById(x).innerHTML
+        if(window.confirm('End game?')) 
+        { 
+            navigate(`/end/${time}/${score}`) 
+        };
     }
-    
-    function drop(ev) {
-        console.log(ev);
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        ev.target.innerHTML = data;
-    }
-    //const delay = setTimeout(() => tune.play(), 5000);
-    return (
-        <div id="gameContainer">
-            {showTutorial && <TutorialEntry></TutorialEntry> }
+
+
+    if(ifStart === false){
+        return (
+            <div id="gameContainer">
+            <TutorialEntry></TutorialEntry>
             <div id="roundStartContainer">
                 <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes} setTime={setTime} time = {time}></RoundStartButton>
             </div>
@@ -109,10 +133,31 @@ export default function Game(props)
                         <div id='fifth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
                     </div>
             </div>
+            <div id ="end">
+                <Button className="endButton" onClick={endGame}> End game</Button>
+            </div>
+        </div>
+        )
+    }
+
+    if(ifStart === true){
+        return(
+            <div id="gameContainer">
+            <TutorialEntry></TutorialEntry>
+            <div id="roundStartContainer">
+                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes}></RoundStartButton>
+            </div>
+
+            <BoxRow order = {order}></BoxRow>
 
             <div id="hint"> <Hint hint={tune} /></div>
 
             <ResultButton order={order} difficulty={difficulty} time={time}></ResultButton>
+
+            {(showTutorial && order.length == 4) && 
+            (<img id='drag_tut' src={require('./img/drag_tutorial.gif')}></img>)}
+            {show_tut && UnrenderDragTut()}
+
             <NoteButtonRow 
                 order={order} 
                 duration={duration} 
@@ -124,8 +169,11 @@ export default function Game(props)
                 <UndoSelection order={order}>Undo Selection</UndoSelection>
             </div>
             <div id ="end">
-                <Button className="endButton" onClick={() => { if(window.confirm('End game?')) { navigate('/end') };}}> End game</Button>
+                <Button className="endButton" onClick={endGame}> End game</Button>
             </div>
         </div>
     );
+    
+  }
 }
+

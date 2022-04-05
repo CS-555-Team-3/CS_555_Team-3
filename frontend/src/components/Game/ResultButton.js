@@ -121,7 +121,8 @@ export default function ResultButton(props) {
         </Button>
         {restartButton}
         <div>
-          <h5>My score: {score}</h5>
+          <h5>My score: </h5>
+          <h5 id="score">{score}</h5>
         </div>
     </div>
   );
