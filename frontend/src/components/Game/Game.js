@@ -1,5 +1,5 @@
 import {useNavigate, useLocation} from "react-router-dom"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import '../../styles/Game.css';
 import NoteButton from './NoteButton';
 import NoteButtonRow from './NoteButtonRow';
@@ -9,6 +9,7 @@ import ResultButton from './ResultButton';
 import Hint from './Hint';
 import TutorialEntry from './TutorialEntry';
 import {Button} from '@mui/material';
+import BoxRow from './BoxRow';
 
 export default function Game(props)
 {
@@ -49,6 +50,7 @@ export default function Game(props)
         }
      }
 
+
     // extract data from Home component 
     const data = useLocation();
 
@@ -78,18 +80,27 @@ export default function Game(props)
         setClicked(true);
         setIfStart(true)
     }
+
+    let show_tut = showTutorial;
+    function UnrenderDragTut(){
+       const [time, setTime] = useState(0);
+       let timer = useRef();
+       if(show_tut==false){
+           return true;
+       }
+       setTimeout(() => {
+           document.getElementById('drag_tut').id='drag_tut_hide'
+           show_tut = false;
+           return true;
+       setTime(0);
+           timer.current = setInterval(() => {
+               setTime((n) => {
+                   return n + 1;
+               });
+           }, 1000);}, 9000)
+       return true;
+   }
     
-    function allowDrop(ev) {
-        console.log(ev);
-        ev.preventDefault();
-    }
-    
-    function drop(ev) {
-        console.log(ev);
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        ev.target.innerHTML = data;
-    }
     const endGame = () => {
         let i = 'time';
         let x = 'score'
@@ -135,20 +146,16 @@ export default function Game(props)
                 <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes}></RoundStartButton>
             </div>
 
-            <div id="answerContainer">
-                <div className='resultRows'></div>
-                    <div className='placement'>
-                        <div id='first' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)}  disabled></div>
-                        <div id='second' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                        <div id='third' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                        <div id='fourth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                        <div id='fifth' className='notes' onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} disabled></div>
-                    </div>
-            </div>
+            <BoxRow order = {order}></BoxRow>
 
             <div id="hint"> <Hint hint={tune} /></div>
 
             <ResultButton order={order}></ResultButton>
+
+            {(showTutorial && order.length == 4) && 
+            (<img id='drag_tut' src={require('./img/drag_tutorial.gif')}></img>)}
+            {show_tut && UnrenderDragTut()}
+             
             <NoteButtonRow 
                 order={order} 
                 duration={duration} 
@@ -164,5 +171,7 @@ export default function Game(props)
             </div>
         </div>
     );
+    
+  }
 }
-}
+

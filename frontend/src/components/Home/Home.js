@@ -14,7 +14,7 @@ export default function Home()
     const [duration, setDuration] = useState(null);
 
 
-    const [difficulty, setDifficulty] = useState('easy')
+    const [difficulty, setDifficulty] = useState("beginner");
     const [timer, setTimer] = useState('off') 
     const [tutorial, setTutorial] = useState('off')
     const [leaderboard, setLeaderboard] = useState('off') 
@@ -32,10 +32,10 @@ export default function Home()
                 SetAudio={setAudio} 
                 SetOrder={setOrder}
                 SetDuration={setDuration}
+                SetDifficulty={setDifficulty}
             ></DifficultySelection>
            
             <Settings
-                set_Difficulty={setDifficulty}
                 set_Timer={setTimer}
                 set_Tutorial={setTutorial}
                 set_Colorblind_mode={setColorblind_mode}
