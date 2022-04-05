@@ -72,8 +72,10 @@ export default function Game(props)
     const [showTimer, setShowTimer] = useState( (data.state.timer =='on'))
     //const [colorblind_mode, setColorblind_mode] = useState( (data.state.colorblind_mode=='on'))
     const [Leaderboard, setLeaderboard] = useState( (data.state.leaderboard=='on'))
-    
+    const [time, setTime] = useState(0);
     const color_blind = data.state.colorblind_mode
+    const timer = data.state.timer
+    const difficulty = data.state.difficulty
 
     const highlightNotes = async (e) =>
     {
@@ -83,7 +85,6 @@ export default function Game(props)
 
     let show_tut = showTutorial;
     function UnrenderDragTut(){
-       const [time, setTime] = useState(0);
        let timer = useRef();
        if(show_tut==false){
            return true;
@@ -104,21 +105,32 @@ export default function Game(props)
     const endGame = () => {
         let i = 'time';
         let x = 'score'
-        var time = document.getElementById(i).innerHTML
-        var score = document.getElementById(x).innerHTML
+        var ptime = document.getElementById(i).innerHTML
+        var pscore = document.getElementById(x).innerHTML
         if(window.confirm('End game?')) 
         { 
-            navigate(`/end/${time}/${score}`) 
+            navigate(`/end/${ptime}/${pscore}`) 
         };
     }
 
+    function allowDrop(ev) {
+        console.log(ev);
+        ev.preventDefault();
+    }
+    
+    function drop(ev) {
+        console.log(ev);
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.innerHTML = data;
+    }
 
     if(ifStart === false){
         return (
             <div id="gameContainer">
             {showTutorial && <TutorialEntry></TutorialEntry> }
             <div id="roundStartContainer">
-                <RoundStartButton value={tune} onClick={highlightNotes}></RoundStartButton>
+                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes} setTime={setTime} time={time}></RoundStartButton>
             </div>
 
             <BoxRow order = {order}></BoxRow>
@@ -135,19 +147,19 @@ export default function Game(props)
             <div id="gameContainer">
             {showTutorial && <TutorialEntry></TutorialEntry> }
             <div id="roundStartContainer">
-                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes}></RoundStartButton>
+                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes} setTime={setTime} time={time}></RoundStartButton>
             </div>
 
             <BoxRow order = {order}></BoxRow>
 
             <div id="hint"> <Hint hint={tune} /></div>
 
-            <ResultButton order={order}></ResultButton>
+            <ResultButton order={order} difficulty={difficulty} time={time}></ResultButton>
 
             {(showTutorial && order.length == 4) && 
             (<img id='drag_tut' src={require('./img/drag_tutorial.gif')}></img>)}
             {show_tut && UnrenderDragTut()}
-             
+
             <NoteButtonRow 
                 order={order} 
                 duration={duration} 
