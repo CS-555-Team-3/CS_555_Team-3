@@ -44,7 +44,7 @@ export default function ResultButton(props) {
       return;
     }
 
-    
+    let answer = [];
     let Score = 0;
     if (props.order.length !== userChoice.length) throw "error";
     //if (!props.order) throw "Backend hasn't input the music";
