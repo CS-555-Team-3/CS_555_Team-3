@@ -77,7 +77,11 @@ const Settings = ( {set_Difficulty,
                     
                     <Grid item className="settingsControl" xs={3}>
                         <h4>Instrument</h4>
-                        <Select className="Insturment" options={instrument_options} onChange={onChangeInstrument}/>
+                        <Select 
+                        defaultValue={instrument_options[0]}
+                        className="Insturment" 
+                        options={instrument_options} 
+                        onChange={onChangeInstrument}/>
                     </Grid>
 
                     <Grid item className="settingsControl" xs={3}>

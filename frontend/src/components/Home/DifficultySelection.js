@@ -38,8 +38,9 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration, Se
         }
     }, [order]);
 
+    // if user select instrument first without selecting difficulty, it won't send request
     useEffect(() => {
-        if (Instrument != "piano") {
+        if (Instrument != "piano" && difficulty) {
             getSounds(difficulty_map[difficulty][0], (difficulty_map[difficulty][1]).toFixed(1))
         }
     }, [Instrument]);
