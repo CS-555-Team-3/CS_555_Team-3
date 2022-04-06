@@ -49,6 +49,7 @@ export default function Home()
                 note_order: order, 
                 duration: duration,
                 difficulty: difficulty,
+                instrument: instrument,
                 timer:timer,
                 tutorial:tutorial,
                 leaderboard:leaderboard,

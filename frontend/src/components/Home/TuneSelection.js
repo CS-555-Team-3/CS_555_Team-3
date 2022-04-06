@@ -96,6 +96,7 @@ export default function TuneSelection({SetAudio, SetOrder, SetDuration, SetDiffi
 
     const onChangeInstrument = (value) => {
         setInstrument(value.value)
+        SetInstrument(value.value)
     }
 
 
