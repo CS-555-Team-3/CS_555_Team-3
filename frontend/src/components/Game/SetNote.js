@@ -13,12 +13,11 @@ export default function SetNote(props)
         for(let i=0; i<order.length; i++)  
         {
             if(document.getElementById(boxes[i]).innerHTML === "") {
-                document.getElementById(boxes[i]).innerHTML = `${noteName}`;
+                document.getElementById(boxes[i]).innerHTML = `${noteName}`
+                document.getElementById(boxes[i]).classList.add(noteName);
                 break;
-            }
-             
-        }
-        
+            }  
+        }  
     }
 
     return (
