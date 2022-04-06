@@ -8,7 +8,8 @@ const Settings = ( {set_Difficulty,
     set_Colorblind_mode,
     set_Timer,
     set_Tutorial,
-    set_Leaderboard, 
+    set_Leaderboard,
+    SetInstrument
     }  ) => {
     
 // The following code, allows the user to show/hide the settings menu 
@@ -37,8 +38,24 @@ const Settings = ( {set_Difficulty,
         { value: 'off', label: "Off"},
     ]
 
+    // instrument selection options
+    const instrument_options = [
+        { value: 'piano', label: 'Pinao' },
+        { value: 'guitar', label: 'Guitar' },
+        { value: 'viola', label: 'Viola' },
+        { value: 'oboe', label: 'Oboe' },
+        { value: 'mandolin', label: 'Mandolin' },
+        { value: 'flute', label: 'Flute' },
+        { value: 'cello', label: 'Cello' },
+        { value: 'basson', label: 'Basson' },
+        { value: 'banjo', label: 'Banjo' },
+    ]
 
-  return (
+    const onChangeInstrument = (value) => {
+        SetInstrument(value.value)
+    }
+
+    return (
      <div className='settings-page'>
          {!showMenu &&
             <Button className='set-head'  onClick={open}>Settings</Button>
@@ -58,6 +75,11 @@ const Settings = ( {set_Difficulty,
                         />
                     </Grid> */}
                     
+                    <Grid item className="settingsControl" xs={3}>
+                        <h4>Instrument</h4>
+                        <Select className="Insturment" options={instrument_options} onChange={onChangeInstrument}/>
+                    </Grid>
+
                     <Grid item className="settingsControl" xs={3}>
                         <h4>Color-blind Mode</h4>
                         <Select 

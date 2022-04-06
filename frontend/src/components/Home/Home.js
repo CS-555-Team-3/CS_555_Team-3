@@ -1,9 +1,7 @@
 import {Link} from 'react-router-dom';
-import TuneSelection from './TuneSelection'
+import DifficultySelection from './DifficultySelection'
 import React, { useState, useEffect } from 'react';
 import Settings from '../Settings/Settings';
-import {useNavigate} from "react-router-dom";
-import { Button } from '@mui/material';
 import '../../styles/Home.css';
 
 export default function Home()
@@ -12,7 +10,7 @@ export default function Home()
     const [audio, setAudio] = useState(null);
     const [order, setOrder] = useState(null);
     const [duration, setDuration] = useState(null);
-    const [instrument, setInstrument] = useState(null);
+    const [instrument, setInstrument] = useState("piano");
 
 
     const [difficulty, setDifficulty] = useState("beginner");
@@ -28,19 +26,22 @@ export default function Home()
     return(
         <div id='homeContainer'>
             <h1>Welcome to Soundle</h1>
-            <TuneSelection 
+            <h3>Please select a difficulty to play the game!</h3>
+            <DifficultySelection 
                 SetAudio={setAudio} 
                 SetOrder={setOrder}
                 SetDuration={setDuration}
                 SetDifficulty={setDifficulty}
                 SetInstrument={setInstrument}
-            ></TuneSelection>
+                Instrument={instrument}
+            ></DifficultySelection>
            
             <Settings
                 set_Timer={setTimer}
                 set_Tutorial={setTutorial}
                 set_Colorblind_mode={setColorblind_mode}
                 set_Leaderboard={setLeaderboard}
+                SetInstrument={setInstrument}
                 showSettings
             ></Settings>
 

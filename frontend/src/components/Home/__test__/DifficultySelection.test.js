@@ -1,5 +1,5 @@
 import {cleanup} from "@testing-library/react";
-import TuneSelection from "../TuneSelection";
+import DifficultySelection from "../DifficultySelection";
 import axios from 'axios';
 import { act } from 'react-dom/test-utils';
 import {mount} from 'enzyme';
@@ -26,18 +26,20 @@ describe('Does selection send request', () =>
         const setOrder = jest.fn();
         const setDuration = jest.fn();
         const setDifficulty = jest.fn();
+        const instrument = "piano"
 
-        const wrapper = mount(<TuneSelection 
+        const wrapper = mount(<DifficultySelection 
             SetAudio={setAudio} 
             SetOrder={setOrder}
             SetDuration={setDuration}
-            SetDifficulty={setDifficulty}/>);
+            SetDifficulty={setDifficulty}
+            Instrument={instrument}/>);
         act(()=>
         {
             wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Beginner', value: 'beginner' });
         });
         // If select beginner, it should send 4 notes, duration 2.0 secs
-        expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/4/2.0", {"responseType": "blob"})
+        expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/4/2.0/piano", {"responseType": "blob"})
 
     })
 
@@ -47,19 +49,21 @@ describe('Does selection send request', () =>
         const setOrder = jest.fn();
         const setDuration = jest.fn();
         const setDifficulty = jest.fn();
+        const instrument = "piano"
 
-        const wrapper = mount(<TuneSelection 
+        const wrapper = mount(<DifficultySelection 
             SetAudio={setAudio} 
             SetOrder={setOrder}
             SetDuration={setDuration}
-            SetDifficulty={setDifficulty}/>);
+            SetDifficulty={setDifficulty}
+            Instrument={instrument}/>);
         act(()=>
         {
             wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Advanced', value: 'advanced' });
         });
         
         // If select beginner, it should send 5 notes, duration 1.5 secs
-        expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/5/1.5", {"responseType": "blob"})
+        expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/5/1.5/piano", {"responseType": "blob"})
 
     })
 
@@ -69,12 +73,14 @@ describe('Does selection send request', () =>
         const setOrder = jest.fn();
         const setDuration = jest.fn();
         const setDifficulty = jest.fn();
+        const instrument = "piano"
 
-        const wrapper = mount(<TuneSelection 
+        const wrapper = mount(<DifficultySelection 
             SetAudio={setAudio} 
             SetOrder={setOrder}
             SetDuration={setDuration}
-            SetDifficulty={setDifficulty}/>);
+            SetDifficulty={setDifficulty}
+            Instrument={instrument}/>);
 
         act(()=>
         {
@@ -82,7 +88,7 @@ describe('Does selection send request', () =>
         });
         
         // If select beginner, it should send 6 notes, duration 1.0 secs
-        expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/6/1.0", {"responseType": "blob"})
+        expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/6/1.0/piano", {"responseType": "blob"})
 
     })
 })
