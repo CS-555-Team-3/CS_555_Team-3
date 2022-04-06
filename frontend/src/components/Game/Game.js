@@ -80,7 +80,7 @@ export default function Game(props)
         setClicked(true);
         setIfStart(true)
     }
-    const [time, setTime] = useState(0);
+    const [hide_time, setTime] = useState(0);
     let hide_timer = useRef();
     let show_tut = showTutorial;
     function UnrenderDragTut(){
