@@ -88,6 +88,12 @@ def getSounds(request, notes, durations, instrument):
             silenced_segment = AudioSegment.silent(duration=silence_duration)
             merged_sound += (sound_list[i][:durations[i]
                                            * 1000] + silenced_segment)
+        elif durations[0] == 1.5:
+            target_wav_time = 1500
+            silence_duration = target_wav_time - len(sound_list[i])
+            silenced_segment = AudioSegment.silent(duration=silence_duration)
+            merged_sound += (sound_list[i][:durations[i]
+                                           * 1000] + silenced_segment)
         else:
             merged_sound += sound_list[i][:durations[i] * 1000]
 
