@@ -3,6 +3,9 @@ import { render, cleanup } from '@testing-library/react';
 import userEvent from "@testing-library/user-event";
 import React from 'react';
 import { act } from 'react-dom/test-utils';
+import { mount } from "enzyme";
+import Enzyme from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
 afterEach(cleanup);
 afterEach(()=>
@@ -11,7 +14,7 @@ afterEach(()=>
 })
 
 beforeEach(()=> jest.setTimeout(30000));
-
+Enzyme.configure({ adapter: new Adapter() });
 describe('Does click play tune and activate highlight', () =>
 {
     test('play tune and hightlight', async () =>
@@ -35,6 +38,30 @@ describe('Does click play tune and activate highlight', () =>
         setTimeout(() => {
             expect(playTune).toHaveBeenCalled()
             expect(onClick).toHaveBeenCalled();
+        }, 4000)
+    });
+
+    test('click RoundStartButton and timer begins', async () =>
+    {
+        const audio = new Audio('/sound_notes/A.wav');
+        const onClick = jest.fn();
+        const wrapper = mount(<RoundStartButton
+            value={audio} onClick={onClick}  />)
+
+        
+        render(
+            <RoundStartButton value={audio} onClick={onClick}></RoundStartButton>
+        );
+        let button = document.getElementsByClassName('roundStart');
+        act(()=>{
+            userEvent.click(button[0]);
+        });
+
+        
+        // if click roundStart, timer will start
+        setTimeout(() => {
+            expect(wrapper.instance().setInterval()).toHaveBeenCalled();
+
         }, 4000)
     })
 })

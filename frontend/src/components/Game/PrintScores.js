@@ -5,9 +5,9 @@ import '../../styles/GameOver.css';
 
 export default function PrintScores(val) {
     const [scores, setScores] = useState([]);
-
-       //Load scores from local storage on pageload
-       useEffect(() => {
+    console.log(scores)
+    //Load scores from local storage on pageload
+    useEffect(() => {
         const json = localStorage.getItem("scores");
         const savedScores = JSON.parse(json);
         if (savedScores) { setScores(savedScores); }
@@ -27,8 +27,8 @@ export default function PrintScores(val) {
     const printScores = scores.sort((a,b) => Number(b.text) - Number(a.text)).slice(0,5).map((score) => (
         <div key={score.id}> 
             <div className="scoreGroup">
-                {score.text}
-                <CopyToClipboard text={score.text}>
+                Score: {score.text} Difficulty: {score.difficulty} Time: {score.time}
+                <CopyToClipboard text={score.copytext}>
                     <Button className="copyButton" variant="contained">Copy score</Button>
                 </CopyToClipboard>       
             </div>      

@@ -13,8 +13,10 @@ export default function UndoSelection(props)
         for(let i=order.length-1; i>=0; i--)  
         {
             let box = document.getElementById(boxes[i])
-            if(box!=null && box.innerHTML !== "") {
+            if(box!=null && box.innerHTML !== "" && box.classList.length > 1) {
                 box.innerHTML = "";
+                box.className = "";
+                box.className = "notes";
                 break;
             }
              
