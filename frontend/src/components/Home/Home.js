@@ -12,6 +12,7 @@ export default function Home()
     const [audio, setAudio] = useState(null);
     const [order, setOrder] = useState(null);
     const [duration, setDuration] = useState(null);
+    const [instrument, setInstrument] = useState(null);
 
 
     const [difficulty, setDifficulty] = useState("beginner");
@@ -27,12 +28,12 @@ export default function Home()
     return(
         <div id='homeContainer'>
             <h1>Welcome to Soundle</h1>
-            <h3>Please select a difficulty to play the game!</h3>
             <TuneSelection 
                 SetAudio={setAudio} 
                 SetOrder={setOrder}
                 SetDuration={setDuration}
                 SetDifficulty={setDifficulty}
+                SetInstrument={setInstrument}
             ></TuneSelection>
            
             <Settings

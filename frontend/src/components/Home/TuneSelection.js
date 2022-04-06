@@ -5,12 +5,13 @@ import React, { useState, useEffect } from 'react';
 import difficulty_map from '../../config/DifficultyMap.json';
 import '../../styles/Home.css';
 
-export default function TuneSelection({SetAudio, SetOrder, SetDuration, SetDifficulty})
+export default function TuneSelection({SetAudio, SetOrder, SetDuration, SetDifficulty, SetInstrument})
 {  
     // three states: difficulty, audio, order
     const [difficulty, setDifficulty] = useState(null);
     const [audio, setAudio] = useState(null);
     const [order, setOrder] = useState(null);
+    const [instrument, setInstrument] = useState(null);
     
 
     // once the user choose difficulty, send the request to backend
@@ -40,10 +41,23 @@ export default function TuneSelection({SetAudio, SetOrder, SetDuration, SetDiffi
 
     
     // difficulty selection options
-    const options = [
+    const difficulty_options = [
         { value: 'beginner', label: 'Beginner' },
         { value: 'advanced', label: 'Advanced' },
         { value: 'expert', label: 'Expert' }
+    ]
+
+     // instrument selection options
+     const instrument_options = [
+        { value: 'piano', label: 'Pinao' },
+        { value: 'guitar', label: 'Guitar' },
+        { value: 'viola', label: 'Viola' },
+        { value: 'oboe', label: 'Oboe' },
+        { value: 'mandolin', label: 'Mandolin' },
+        { value: 'flute', label: 'Flute' },
+        { value: 'cello', label: 'Cello' },
+        { value: 'basson', label: 'Basson' },
+        { value: 'banjo', label: 'Banjo' },
     ]
     
     // helper function to send request to receive audio
@@ -80,13 +94,25 @@ export default function TuneSelection({SetAudio, SetOrder, SetDuration, SetDiffi
         SetDifficulty(value.value)
     }
 
+    const onChangeInstrument = (value) => {
+        setInstrument(value.value)
+    }
+
 
     // Link only avaialable once the order is received, this forces the user to choose the difficulty
     // Link passes three props: tune(blob type), the order, duration
     return(
         <Grid container className="difficulty">
             <Grid item xs={4}>
-                <Select className="Difficulty" options={options} onChange={onChangeDiff}/>
+                <h3>Let's select an instrment!</h3>
+                <Select className="Insturment" options={instrument_options} onChange={onChangeInstrument}/>
+                {instrument ? 
+                    <div>
+                        <h3>Then select a difficulty to play the game!</h3>
+                        <Select isDisabled={!instrument} className="Difficulty" options={difficulty_options} onChange={onChangeDiff}/>
+                    </div>
+                    : null
+                }          
             </Grid>
         </Grid>
     );
