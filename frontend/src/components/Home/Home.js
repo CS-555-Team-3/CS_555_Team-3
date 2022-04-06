@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import DifficultySelection from './DifficultySelection'
+import TuneSelection from './TuneSelection'
 import React, { useState, useEffect } from 'react';
 import Settings from '../Settings/Settings';
 import {useNavigate} from "react-router-dom";
@@ -21,19 +21,19 @@ export default function Home()
     const [colorblind_mode, setColorblind_mode] = useState('off')
 
 
-    // pass three setState to DifficultySelection component
+    // pass three setState to TuneSelection component
     // Link only avaialable once the order is received, this forces the user to choose the difficulty
     // Link passes three props: tune(blob type), the order, duration
     return(
         <div id='homeContainer'>
             <h1>Welcome to Soundle</h1>
             <h3>Please select a difficulty to play the game!</h3>
-            <DifficultySelection 
+            <TuneSelection 
                 SetAudio={setAudio} 
                 SetOrder={setOrder}
                 SetDuration={setDuration}
                 SetDifficulty={setDifficulty}
-            ></DifficultySelection>
+            ></TuneSelection>
            
             <Settings
                 set_Timer={setTimer}

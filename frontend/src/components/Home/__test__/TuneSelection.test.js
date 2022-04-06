@@ -1,5 +1,5 @@
 import {cleanup} from "@testing-library/react";
-import DifficultySelection from "../DifficultySelection";
+import TuneSelection from "../TuneSelection";
 import axios from 'axios';
 import { act } from 'react-dom/test-utils';
 import {mount} from 'enzyme';
@@ -25,11 +25,13 @@ describe('Does selection send request', () =>
         const setAudio = jest.fn();
         const setOrder = jest.fn();
         const setDuration = jest.fn();
+        const setDifficulty = jest.fn();
 
-        const wrapper = mount(<DifficultySelection 
+        const wrapper = mount(<TuneSelection 
             SetAudio={setAudio} 
             SetOrder={setOrder}
-            SetDuration={setDuration}/>);
+            SetDuration={setDuration}
+            SetDifficulty={setDifficulty}/>);
         act(()=>
         {
             wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Beginner', value: 'beginner' });
@@ -44,12 +46,13 @@ describe('Does selection send request', () =>
         const setAudio = jest.fn();
         const setOrder = jest.fn();
         const setDuration = jest.fn();
+        const setDifficulty = jest.fn();
 
-        const wrapper = mount(<DifficultySelection 
+        const wrapper = mount(<TuneSelection 
             SetAudio={setAudio} 
             SetOrder={setOrder}
-            SetDuration={setDuration}/>);
-
+            SetDuration={setDuration}
+            SetDifficulty={setDifficulty}/>);
         act(()=>
         {
             wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Advanced', value: 'advanced' });
@@ -65,11 +68,13 @@ describe('Does selection send request', () =>
         const setAudio = jest.fn();
         const setOrder = jest.fn();
         const setDuration = jest.fn();
+        const setDifficulty = jest.fn();
 
-        const wrapper = mount(<DifficultySelection 
+        const wrapper = mount(<TuneSelection 
             SetAudio={setAudio} 
             SetOrder={setOrder}
-            SetDuration={setDuration}/>);
+            SetDuration={setDuration}
+            SetDifficulty={setDifficulty}/>);
 
         act(()=>
         {

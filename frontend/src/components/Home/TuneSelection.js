@@ -2,10 +2,10 @@ import Select from 'react-select'
 import axios from 'axios';
 import { Grid } from '@mui/material';
 import React, { useState, useEffect } from 'react';
-import difficulty_map from './../../config/DifficultyMap.json';
+import difficulty_map from '../../config/DifficultyMap.json';
 import '../../styles/Home.css';
 
-export default function DifficultySelection({SetAudio, SetOrder, SetDuration,SetDifficulty})
+export default function TuneSelection({SetAudio, SetOrder, SetDuration, SetDifficulty})
 {  
     // three states: difficulty, audio, order
     const [difficulty, setDifficulty] = useState(null);
@@ -17,8 +17,8 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration,Set
     useEffect(() => {
         if (difficulty) {
             // set the parent duration statese accoring to the difficulty_map
-            SetDuration(difficulty_map[difficulty.value][1])
-            getSounds(difficulty_map[difficulty.value][0], (difficulty_map[difficulty.value][1]).toFixed(1))
+            SetDuration(difficulty_map[difficulty][1])
+            getSounds(difficulty_map[difficulty][0], (difficulty_map[difficulty][1]).toFixed(1))
         }
       }, [difficulty]);
 
@@ -76,7 +76,8 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration,Set
 
     // once user select the difiiculty, update difficulty
     const onChangeDiff = (value) => {
-        setDifficulty(value)
+        setDifficulty(value.value)
+        SetDifficulty(value.value)
     }
 
 

@@ -59,7 +59,6 @@ export default function Game(props)
 
     // order for all component use
     const order = data.state.note_order
-    console.log("ORDER: " + order);
 
     // duration for all component use
     const duration = data.state.duration
