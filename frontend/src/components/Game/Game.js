@@ -80,11 +80,11 @@ export default function Game(props)
         setClicked(true);
         setIfStart(true)
     }
-
+    const [time, setTime] = useState(0);
+    let hide_timer = useRef();
     let show_tut = showTutorial;
     function UnrenderDragTut(){
-       const [time, setTime] = useState(0);
-       let timer = useRef();
+
        if(show_tut==false){
            return true;
        }
@@ -93,7 +93,7 @@ export default function Game(props)
            show_tut = false;
            return true;
        setTime(0);
-           timer.current = setInterval(() => {
+           hide_timer.current = setInterval(() => {
                setTime((n) => {
                    return n + 1;
                });
