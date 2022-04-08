@@ -9,7 +9,8 @@ const Settings = ( {set_Difficulty,
     set_Timer,
     set_Tutorial,
     set_Leaderboard,
-    SetInstrument
+    SetInstrument,
+    showSettings
     }  ) => {
     
 // The following code, allows the user to show/hide the settings menu 
@@ -58,12 +59,12 @@ const Settings = ( {set_Difficulty,
     return (
      <div className='settings-page'>
          {!showMenu &&
-            <Button className='set-head'  onClick={open}>Settings</Button>
+            <Button id = "set-button" className='set-head'  onClick={open}>Settings</Button>
             //todo - use only one Button calling a single onClick function
             }
-         {showMenu && 
+         {(showMenu || showSettings) && 
             <div className='setting-menu'>
-                <Button className='set-head'  onClick={close}>Settings</Button>
+                <Button id="test" className='set-head' onClick={close}>Settings</Button>
                 <Grid container spacing={2}>
                     {/* deciding whether or not this belongs in the settings panel or not
                     <Grid item className="settingsControl" xs={3}>
@@ -78,10 +79,10 @@ const Settings = ( {set_Difficulty,
                     <Grid item className="settingsControl" xs={3}>
                         <h4>Instrument</h4>
                         <Select 
-                        defaultValue={instrument_options[0]}
-                        className="Insturment" 
-                        options={instrument_options} 
-                        onChange={onChangeInstrument}/>
+                            className="Instrument"
+                            defaultValue={instrument_options[0]} 
+                            options={instrument_options} 
+                            onChange={onChangeInstrument}/>
                     </Grid>
 
                     <Grid item className="settingsControl" xs={3}>

@@ -19,8 +19,9 @@ export default function Home()
     const [leaderboard, setLeaderboard] = useState('off') 
     const [colorblind_mode, setColorblind_mode] = useState('off')
 
+    // this variable soley works for unit test
+    const showSettings = false
 
-    // pass three setState to TuneSelection component
     // Link only avaialable once the order is received, this forces the user to choose the difficulty
     // Link passes three props: tune(blob type), the order, duration
     return(
@@ -42,7 +43,7 @@ export default function Home()
                 set_Colorblind_mode={setColorblind_mode}
                 set_Leaderboard={setLeaderboard}
                 SetInstrument={setInstrument}
-                showSettings
+                showSettings={showSettings}
             ></Settings>
 
             <Link to={order ? "/game" : "#"} /* onClick={useGetSettings(setSettings)} */ state={{ 
