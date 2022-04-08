@@ -36,7 +36,7 @@ describe('Does selection send request', () =>
             Instrument={instrument}/>);
         act(()=>
         {
-            wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Beginner', value: 'beginner' });
+            wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Beginner', value: 'Beginner' });
         });
         // If select beginner, it should send 4 notes, duration 2.0 secs
         expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/4/2.0/piano", {"responseType": "blob"})
@@ -59,7 +59,7 @@ describe('Does selection send request', () =>
             Instrument={instrument}/>);
         act(()=>
         {
-            wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Advanced', value: 'advanced' });
+            wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Advanced', value: 'Advanced' });
         });
         
         // If select beginner, it should send 5 notes, duration 1.5 secs
@@ -84,7 +84,7 @@ describe('Does selection send request', () =>
 
         act(()=>
         {
-            wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Expert', value: 'expert' });
+            wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Expert', value: 'Expert' });
         });
         
         // If select beginner, it should send 6 notes, duration 1.0 secs
