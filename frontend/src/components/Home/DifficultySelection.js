@@ -48,9 +48,9 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration, Se
     
     // difficulty selection options
     const difficulty_options = [
-        { value: 'beginner', label: 'Beginner' },
-        { value: 'advanced', label: 'Advanced' },
-        { value: 'expert', label: 'Expert' }
+        { value: 'Beginner', label: 'Beginner' },
+        { value: 'Advanced', label: 'Advanced' },
+        { value: 'Expert', label: 'Expert' }
     ]
 
      
