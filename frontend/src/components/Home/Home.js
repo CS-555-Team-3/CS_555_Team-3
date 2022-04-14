@@ -2,8 +2,6 @@ import {Link} from 'react-router-dom';
 import DifficultySelection from './DifficultySelection'
 import React, { useState, useEffect } from 'react';
 import Settings from '../Settings/Settings';
-import {useNavigate} from "react-router-dom";
-import { Button } from '@mui/material';
 import '../../styles/Home.css';
 
 export default function Home()
@@ -12,6 +10,7 @@ export default function Home()
     const [audio, setAudio] = useState(null);
     const [order, setOrder] = useState(null);
     const [duration, setDuration] = useState(null);
+    const [instrument, setInstrument] = useState("piano");
 
     const [difficulty, setDifficulty] = useState("beginner");
     const [timer, setTimer] = useState('off') 
@@ -20,6 +19,9 @@ export default function Home()
     const [colorblind_mode, setColorblind_mode] = useState('off')
 
     // pass three setState to DifficultySelection component
+    // this variable soley works for unit test
+    const showSettings = false
+
     // Link only avaialable once the order is received, this forces the user to choose the difficulty
     // Link passes three props: tune(blob type), the order, duration
     return(
@@ -31,6 +33,8 @@ export default function Home()
                 SetOrder={setOrder}
                 SetDuration={setDuration}
                 SetDifficulty={setDifficulty}
+                SetInstrument={setInstrument}
+                Instrument={instrument}
             ></DifficultySelection>
            
             <Settings
@@ -38,7 +42,8 @@ export default function Home()
                 set_Tutorial={setTutorial}
                 set_Colorblind_mode={setColorblind_mode}
                 set_Leaderboard={setLeaderboard}
-                showSettings
+                SetInstrument={setInstrument}
+                showSettings={showSettings}
             ></Settings>
 
             <Link to={order ? "/game" : "#"} /* onClick={useGetSettings(setSettings)} */ state={{ 
@@ -46,6 +51,7 @@ export default function Home()
                 note_order: order, 
                 duration: duration,
                 difficulty: difficulty,
+                instrument: instrument,
                 timer:timer,
                 tutorial:tutorial,
                 leaderboard:leaderboard,

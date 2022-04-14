@@ -33,12 +33,14 @@ export default function Game(props)
     const data = useLocation();
 
     const tune = createTune(data.state.tune)
-    const order = data.state.note_order
+    const order = data.state.note_order;
     console.log("ORDER: " + order);
-    const duration = data.state.duration
 
-    // instrument for all component use, build it at sprint4
-    const instrument = "piano";
+    // duration for all component use
+    const duration = data.state.duration;
+
+    // instrument for all component use
+    const instrument = data.state.instrument;
     // States for the settings 
     const [showTutorial, setShowTutorial] = useState( (data.state.tutorial =='on'))
     const [showTimer, setShowTimer] = useState( (data.state.timer =='on'))
@@ -54,9 +56,9 @@ export default function Game(props)
         setIfStart(true)
     }
 
+    let hide_timer = useRef();
     let show_tut = showTutorial;
     function UnrenderDragTut(){
-       let timer = useRef();
        if(show_tut==false){
            return true;
        }
@@ -65,7 +67,7 @@ export default function Game(props)
            show_tut = false;
            return true;
        setTime(0);
-           timer.current = setInterval(() => {
+           hide_timer.current = setInterval(() => {
                setTime((n) => {
                    return n + 1;
                });
