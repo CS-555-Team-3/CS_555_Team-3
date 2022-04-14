@@ -11,7 +11,7 @@ class GetOrdersTestCase(APITestCase):
     def setUp(self):
         self.API_URL = reverse("orders")
         self.SOUND_API_URL = reverse(
-            "sounds", kwargs={'notes': 4, 'durations': 1.5})
+            "sounds", kwargs={'notes': 4, 'durations': 1.5, 'instrument': 'piano'})
         self.client = APIClient()
 
     def test_response_200(self):

@@ -26,7 +26,7 @@ p_keys = ['A',
 
 
 @api_view(["GET"])
-def getSounds(request, notes, durations):
+def getSounds(request, notes, durations, instrument):
     # this endpoint receives two query params: notes and durations
 
     # (0) allow for initial duration to be one single input or a list of inputs if your trying to get fancy
@@ -51,6 +51,9 @@ def getSounds(request, notes, durations):
     if min(durations) < 1 or max(durations) > 6.0:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
+    if instrument not in ["banjo", "basson", "cello", "flute", "guitar", "mandolin", "oboe", "piano", "viola"]:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
     # baes on the number of notes to randomlly open the sound files stored in the sound_notes folder
     for i in range(notes):
         # randrange(n) generates a number in the range [0, n - 1), randomly choose a file number
@@ -67,7 +70,7 @@ def getSounds(request, notes, durations):
         # open the sound file
         # sound = AudioSegment.from_mp3(path + f"/sound_notes/key{file_num}.mp3")
         sound = AudioSegment.from_file(
-            path + f"/sound_notes/{p_keys[rand_num]}.wav", format="wav")
+            path + f"/sound_notes/{instrument}/{p_keys[rand_num]}.wav", format="wav")
 
         # store the sound in the list
         sound_list.append(sound)
@@ -77,8 +80,22 @@ def getSounds(request, notes, durations):
 
     # iterate the sound_list and merge all sound notes with durations
     for i in range(len(sound_list)):
-        # durations * 1000 = duration secs
-        merged_sound += sound_list[i][:durations[i] * 1000]
+        # some free sound samples are not long enough to last for 2 secs, so it needs to
+        # inject silence duration
+        if durations[0] == 2.0:
+            target_wav_time = 2000
+            silence_duration = target_wav_time - len(sound_list[i])
+            silenced_segment = AudioSegment.silent(duration=silence_duration)
+            merged_sound += (sound_list[i][:durations[i]
+                                           * 1000] + silenced_segment)
+        elif durations[0] == 1.5:
+            target_wav_time = 1500
+            silence_duration = target_wav_time - len(sound_list[i])
+            silenced_segment = AudioSegment.silent(duration=silence_duration)
+            merged_sound += (sound_list[i][:durations[i]
+                                           * 1000] + silenced_segment)
+        else:
+            merged_sound += sound_list[i][:durations[i] * 1000]
 
     # convert the Audiosegment file to mp3
     mp3_file = merged_sound.export(format="wav")

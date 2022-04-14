@@ -1,13 +1,23 @@
-import { render,screen, cleanup, unmountComponentAtNode} from '@testing-library/react';
-import userEvent from "@testing-library/user-event";
+import Settings from "../Settings"
+import { act } from 'react-dom/test-utils';
+import {mount} from 'enzyme';
+import Enzyme from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import { render,screen, cleanup} from '@testing-library/react';
 import {Grid, Button} from '@mui/material';
 import React from 'react';
 import Select from 'react-select';
-import Settings from '../Settings';
+
 
 
 afterEach(cleanup);
+afterEach(()=>
+{
+    jest.clearAllMocks();
+})
 
+
+Enzyme.configure({ adapter: new Adapter() });
 
   describe('does the settings menu Exist', () => {
     const setTimer = "on";
@@ -103,5 +113,34 @@ test('genric test that it renders renders', () => {
 }); 
 
 
+})
+
+
+describe('Does selection and call setState', () =>
+{
+    test('Select guitar', async () =>
+    {
+        const setTimer = jest.fn();
+        const setTutorial = jest.fn();
+        const setColorblind_mode = jest.fn();
+        const setLeaderboard = jest.fn();
+        const setInstrument = jest.fn();
+        const showSettings = true
+        const wrapper = mount(<Settings 
+            set_Timer={setTimer}
+            set_Tutorial={setTutorial}
+            set_Colorblind_mode={setColorblind_mode}
+            set_Leaderboard={setLeaderboard}
+            SetInstrument={setInstrument}
+            showSettings={showSettings}/>);
+        
+        
+        act(()=>
+        {
+            wrapper.find('Select.Instrument').instance().selectOption({ label: 'Guitar', value: 'guitar' });
+        });
+        
+        expect(setInstrument).toHaveBeenCalled();
+    })
 })
 

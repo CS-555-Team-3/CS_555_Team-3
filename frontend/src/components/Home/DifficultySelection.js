@@ -2,10 +2,10 @@ import Select from 'react-select'
 import axios from 'axios';
 import { Grid } from '@mui/material';
 import React, { useState, useEffect } from 'react';
-import difficulty_map from './../../config/DifficultyMap.json';
+import difficulty_map from '../../config/DifficultyMap.json';
 import '../../styles/Home.css';
 
-export default function DifficultySelection({SetAudio, SetOrder, SetDuration,SetDifficulty})
+export default function DifficultySelection({SetAudio, SetOrder, SetDuration, SetDifficulty, Instrument})
 {  
     // three states: difficulty, audio, order
     const [difficulty, setDifficulty] = useState(null);
@@ -17,8 +17,8 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration,Set
     useEffect(() => {
         if (difficulty) {
             // set the parent duration statese accoring to the difficulty_map
-            SetDuration(difficulty_map[difficulty.value][1])
-            getSounds(difficulty_map[difficulty.value][0], (difficulty_map[difficulty.value][1]).toFixed(1))
+            SetDuration(difficulty_map[difficulty][1])
+            getSounds(difficulty_map[difficulty][0], (difficulty_map[difficulty][1]).toFixed(1))
         }
       }, [difficulty]);
 
@@ -38,18 +38,27 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration,Set
         }
     }, [order]);
 
+    // if user select instrument first without selecting difficulty, it won't send request
+    useEffect(() => {
+        if (Instrument != "piano" && difficulty) {
+            getSounds(difficulty_map[difficulty][0], (difficulty_map[difficulty][1]).toFixed(1))
+        }
+    }, [Instrument]);
+
     
     // difficulty selection options
-    const options = [
-        { value: 'beginner', label: 'Beginner' },
-        { value: 'advanced', label: 'Advanced' },
-        { value: 'expert', label: 'Expert' }
+    const difficulty_options = [
+        { value: 'Beginner', label: 'Beginner' },
+        { value: 'Advanced', label: 'Advanced' },
+        { value: 'Expert', label: 'Expert' }
     ]
+
+     
     
     // helper function to send request to receive audio
     const getSounds = async(num_notes, durations) => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/sounds/${num_notes}/${durations}`, {responseType:'blob'})
+            const response = await axios.get(`http://localhost:8000/api/sounds/${num_notes}/${durations}/${Instrument}`, {responseType:'blob'})
             // since Link pass seems not able to pass audui file, create a Blob object and pass it
             // the actual audio file will be created in Game component
             const wav = new Blob([response.data], { type: 'audio/wav' })
@@ -76,8 +85,10 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration,Set
 
     // once user select the difiiculty, update difficulty
     const onChangeDiff = (value) => {
-        setDifficulty(value)
+        setDifficulty(value.value)
+        SetDifficulty(value.value)
     }
+
 
 
     // Link only avaialable once the order is received, this forces the user to choose the difficulty
@@ -85,7 +96,7 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration,Set
     return(
         <Grid container className="difficulty">
             <Grid item xs={4}>
-                <Select className="Difficulty" options={options} onChange={onChangeDiff}/>
+                <Select className="Difficulty" options={difficulty_options} onChange={onChangeDiff}/>          
             </Grid>
         </Grid>
     );

@@ -19,6 +19,7 @@ register_converter(FloatUrlParameterConverter, 'float')
 
 # sound urls
 urlpatterns = [
-    path("<int:notes>/<float:durations>", views.getSounds, name="sounds"),
+    path("<int:notes>/<float:durations>/<str:instrument>",
+         views.getSounds, name="sounds"),
     path("orders/", views.getOrders, name="orders"),
 ]

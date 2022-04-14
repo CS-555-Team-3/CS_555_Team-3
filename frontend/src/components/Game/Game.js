@@ -59,14 +59,12 @@ export default function Game(props)
 
     // order for all component use
     const order = data.state.note_order
-    console.log("ORDER: " + order);
 
     // duration for all component use
     const duration = data.state.duration
 
     // instrument for all component use, build it at sprint4
-    // const instrument = data.state.instrument
-    const instrument = "piano";
+    const instrument = data.state.instrument
     // States for the settings 
     const [showTutorial, setShowTutorial] = useState( (data.state.tutorial =='on'))
     const [showTimer, setShowTimer] = useState( (data.state.timer =='on'))
