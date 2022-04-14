@@ -4,7 +4,7 @@
   margin-top: 5%;
 }
 
-div#answerContainer {
+div.answerContainer {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -91,6 +91,12 @@ button.playnote {
   height: 80px;
 }
 
+.resultItem
+{
+  width: 60px;
+  height: 60px;
+}
+
 .noteButton {
   position: relative;
   background-color: #e1ebf5;
@@ -100,7 +106,8 @@ button.playnote {
   float: left
 }
 
-.placement .notes {
+.placement .notes,
+.answerContainer .resultItem {
   border: 2px solid grey;
   margin: 10px;
 }
@@ -146,6 +153,21 @@ div.noteButton.selected
 {
   opacity: 70% !important;
   border: 3px solid black;
+}
+
+.answerContainer .resultItem.green
+{
+  background-color: green;
+}
+
+.answerContainer .resultItem.yellow
+{
+  background-color: yellow;
+}
+
+.answerContainer .resultItem.red
+{
+  background-color: red;
 }
 
 .button{

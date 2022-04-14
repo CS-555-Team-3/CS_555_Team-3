@@ -13,7 +13,6 @@ class AButton extends React.Component {
       audio.load()
       await audio.play()
       const order = (await axios.get('http://localhost:8000/api/sounds/orders/')).data
-      console.log(order)
     } catch (e) {
       console.log('play audio error: ', e)
     }

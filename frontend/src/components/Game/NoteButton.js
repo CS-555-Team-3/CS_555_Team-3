@@ -62,7 +62,6 @@ export default function NoteButton(props)
         setSelected(true);
         setTimeout(()=>{
             setSelected(false);
-            console.log('finished')
         }, 2000)
     }
 

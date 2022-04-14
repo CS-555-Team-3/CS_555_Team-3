@@ -1,11 +1,37 @@
+import { useEffect } from "react";
+
 export default function ResultRow(props)
 {
-    //TODO - resultRows in Game should have these appended each time they submit
-    //with the wordle-style result colors 
-    //props should probably be each slot we have and whether they got it right, wrong or close so that they are colored properly
-    let final_line = props.children;
+    let numBoxes = props.numBoxes;
+    let index = props.index;
+    let answerBoxOrder = props.answer;
+
+        let answers;
+        const results = document.getElementsByClassName(`${index} resultItem`);
+        if (answerBoxOrder && answerBoxOrder !== '' && answerBoxOrder.split(',').length === numBoxes)
+        {
+            answers = answerBoxOrder.split(',');
+            console.log("ANSWERS + " +answers);
+            for (let i = 0; i < numBoxes.length; i++){
+                results[i].classList.add(`${answers[i]}`);
+            }
+        }
+
+    const resultBoxes = (nBoxes) =>
+    {
+        let ret = [];
+        let answers = [];
+
+        for(let i = 0; i < nBoxes; i++)
+        {
+            ret.push(<div className={`resultItem ${index}`}></div>)
+        }
+        return ret;
+    }
 
     return (
-        <h1>{final_line}</h1>
+        <div className="answerContainer">
+            {resultBoxes(numBoxes)}
+        </div>
     );
 }

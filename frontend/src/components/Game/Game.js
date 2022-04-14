@@ -2,6 +2,7 @@ import {useNavigate, useLocation} from "react-router-dom"
 import { useState, useEffect, useRef } from "react";
 import '../../styles/Game.css';
 import NoteButton from './NoteButton';
+import ResultRow from "./ResultRow";
 import NoteButtonRow from './NoteButtonRow';
 import RoundStartButton from './RoundStartButton';
 import UndoSelection from './UndoSelection';
@@ -88,8 +89,9 @@ export default function Game(props)
             <div id="gameGrid">
                 {order.map((val, index) =>
                 //this creates # of rows we want, right now it will be # of available notes
-                    <BoxRow index={index} order={order}></BoxRow>
+                <ResultRow numBoxes={order.length} index={index} key={index}></ResultRow>
                 )}
+                <BoxRow order={order}></BoxRow>
             </div>
 
             <div id="hint"><Hint hint={tune} /></div>
