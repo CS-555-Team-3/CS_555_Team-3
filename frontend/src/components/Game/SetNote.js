@@ -23,6 +23,4 @@ export default function SetNote(props)
     return (
         <button className="setNote" onClick={handleClick}>{buttonText}</button>
     );
-
-
 }

@@ -13,9 +13,7 @@ export default function NoteButton(props)
     const [color_blind_mode, set_Colorblind_mode] = useState(color_blind == 'on')
 
     const  [icn, setIcon] = useState("null")
-    useEffect ( ()=>{ 
-        //console.log("note button",color_blind);
-        //console.log(note == "A", note == 'A');
+    useEffect ( ()=>{ //TODO switch statement
         if (color_blind == 'on') {
             if (note == "A_flat") {
                 setIcon("😊");

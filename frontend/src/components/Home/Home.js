@@ -13,13 +13,11 @@ export default function Home()
     const [order, setOrder] = useState(null);
     const [duration, setDuration] = useState(null);
 
-
     const [difficulty, setDifficulty] = useState("beginner");
     const [timer, setTimer] = useState('off') 
     const [tutorial, setTutorial] = useState('off')
     const [leaderboard, setLeaderboard] = useState('off') 
     const [colorblind_mode, setColorblind_mode] = useState('off')
-
 
     // pass three setState to DifficultySelection component
     // Link only avaialable once the order is received, this forces the user to choose the difficulty

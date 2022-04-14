@@ -5,6 +5,7 @@ import { Button } from "@mui/material";
 export default function ResultButton(props) {
 
   const [score, setScore] = useState(0);
+  const [attempt, setAttempt] = useState(0);
   const [scores, setScores] = useState([]);
   const [ifSubmit, setIfSubmit] = useState(false);
 
@@ -22,11 +23,9 @@ export default function ResultButton(props) {
       [scores]
   );
 
-  //console.log(props.order);
   var boxes = null;
   if (props.order) {
-    let boxLength = props.order.length;
-    switch (boxLength) {
+    switch (props.order.length) {
       case 4:
         boxes = ["first", "second", "third", "fourth"];
         break;
@@ -42,10 +41,7 @@ export default function ResultButton(props) {
   }
 
   const compare = () => {
-    //let order = ["A", "B", "C", "D", "E"];   //The array is the input music array from backend
     let userChoice = []; //After clicking the boxes by user, it also generate an array
-    //const boxes = ['first', 'second', 'third', 'fourth', 'fifth'];
-    console.log(props.order)
     if (!props.order) throw "Backend hasn't input the music";
 
     for (let i = 0; i < props.order.length; i++) {
@@ -74,7 +70,6 @@ export default function ResultButton(props) {
       } else {
         document.getElementById(boxes[i]).style.backgroundColor = "green";
         Score++;
-        console.log(Score)
       }
     }
 
@@ -90,7 +85,7 @@ export default function ResultButton(props) {
     setScore(Score)
 
     setIfSubmit(true);
-    
+    setAttempt(attempt+1);
   };
 
   //restart
@@ -123,6 +118,7 @@ export default function ResultButton(props) {
         </Button>
         {restartButton}
         <div>
+          <h5 id="attempt">Attempt: {attempt}</h5>
           <h5>My score: </h5>
           <h5 id="score">{score}</h5>
         </div>
