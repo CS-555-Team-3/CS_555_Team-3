@@ -2,6 +2,8 @@ import PrintScores from "../Game/PrintScores"
 import { Link, useParams } from 'react-router-dom';
 import '../../styles/GameOver.css';
 
+
+
 export default function GameOver(props) {
     let {time} = useParams()
     let {score} = useParams()

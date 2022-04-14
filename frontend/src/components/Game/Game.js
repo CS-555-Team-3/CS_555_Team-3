@@ -101,6 +101,8 @@ export default function Game(props)
            }, 1000);}, 9000)
        return true;
    }
+
+
     
     const endGame = () => {
         let i = 'time';
@@ -125,6 +127,16 @@ export default function Game(props)
         ev.target.innerHTML = data;
     }
 
+    if(time === 11){                 // if time is 180, it will automatically click submit answer
+                                      // You can change it if you want user to have more time to play
+        document.getElementById("submit").click();
+        let x = 'score'
+        let i = 'time';
+        var ptime = document.getElementById(i).innerHTML
+        var pscore = document.getElementById(x).innerHTML
+        navigate(`/end/${ptime}/${pscore}`)      // user can't play because time is over
+       }
+
     if(ifStart === false){
         return (
             <div id="gameContainer">
@@ -132,6 +144,8 @@ export default function Game(props)
             <div id="roundStartContainer">
                 <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes} setTime={setTime} time={time}></RoundStartButton>
             </div>
+            <br />
+            <br />
 
             <BoxRow order = {order}></BoxRow>
 

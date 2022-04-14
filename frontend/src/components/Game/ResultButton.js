@@ -42,16 +42,22 @@ export default function ResultButton(props) {
   }
 
   const compare = () => {
-    //let order = ["A", "B", "C", "D", "E"];   //The array is the input music array from backend
-    let userChoice = []; //After clicking the boxes by user, it also generate an array
-    //const boxes = ['first', 'second', 'third', 'fourth', 'fifth'];
-    console.log(props.order)
+    let userChoice = []; 
+    // console.log(props.order)
     if (!props.order) throw "Backend hasn't input the music";
-
     for (let i = 0; i < props.order.length; i++) {
       let value = document.getElementById(boxes[i]).innerHTML;
       if(value.length>0){
         userChoice.push(value);
+      }
+    }
+
+    if(props.time === 10){    //when time is over, it will automatically fulfill boxes with wrong if user can't finish them 
+                               // You can change it if you want user to have more time to play
+      if(userChoice.length < props.order.length){
+        for(let i = userChoice.length; i < props.order.length; i++){
+        userChoice.push('0')  //"0" is the wrong answer
+        }
       }
     }
     
@@ -98,6 +104,7 @@ export default function ResultButton(props) {
     for (let i = 0; i < boxes.length; i++) {
       document.getElementById(boxes[i]).className = "notes";
       document.getElementById(boxes[i]).innerHTML = "";
+      document.getElementById(boxes[i]).style.backgroundColor = "gray";
     }
     setScore(0);
     setIfSubmit(false);
@@ -118,7 +125,7 @@ export default function ResultButton(props) {
     <div id="resultButton">
       {props.order && score === props.order.length ? 
       <Confetti recycle="false"></Confetti>: <></>}
-        <Button className="button" variant="contained" color="success" onClick={compare}>
+        <Button id="submit" className="button" variant="contained" color="success" onClick={compare}>
           Submit Answer
         </Button>
         {restartButton}
