@@ -15,10 +15,10 @@ const Settings = ( {set_Difficulty,
     
 // The following code, allows the user to show/hide the settings menu 
     const [showMenu, setShowMenu] = useState(false)
-    function open () {
+    function openMenu() {
         setShowMenu(true)
     }
-    function close () {
+    function closeMenu() {
         setShowMenu(false)
     }
 
@@ -59,12 +59,12 @@ const Settings = ( {set_Difficulty,
     return (
      <div className='settings-page'>
          {!showMenu &&
-            <Button id = "set-button" className='set-head'  onClick={open}>Settings</Button>
+            <Button id="set-button" className='set-head'  onClick={openMenu}>Settings</Button>
             //todo - use only one Button calling a single onClick function
             }
          {(showMenu || showSettings) && 
             <div className='setting-menu'>
-                <Button id="test" className='set-head' onClick={close}>Settings</Button>
+                <Button id="test" className='set-head'  onClick={closeMenu}>Settings</Button>
                 <Grid container spacing={2}>
                     {/* deciding whether or not this belongs in the settings panel or not
                     <Grid item className="settingsControl" xs={3}>

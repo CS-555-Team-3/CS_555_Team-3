@@ -18,10 +18,8 @@ export default function UndoSelection(props)
                 box.className = "";
                 box.className = "notes";
                 break;
-            }
-             
+            }  
         }
-        
     }
 
     return (

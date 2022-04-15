@@ -12,13 +12,13 @@ export default function Home()
     const [duration, setDuration] = useState(null);
     const [instrument, setInstrument] = useState("piano");
 
-
     const [difficulty, setDifficulty] = useState("beginner");
     const [timer, setTimer] = useState('off') 
     const [tutorial, setTutorial] = useState('off')
     const [leaderboard, setLeaderboard] = useState('off') 
     const [colorblind_mode, setColorblind_mode] = useState('off')
 
+    // pass three setState to DifficultySelection component
     // this variable soley works for unit test
     const showSettings = false
 

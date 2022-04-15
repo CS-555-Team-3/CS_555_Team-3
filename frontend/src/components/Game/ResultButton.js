@@ -5,6 +5,7 @@ import { Button } from "@mui/material";
 export default function ResultButton(props) {
 
   const [score, setScore] = useState(0);
+  const [attempt, setAttempt] = useState(0);
   const [scores, setScores] = useState([]);
   const [ifSubmit, setIfSubmit] = useState(false);
 
@@ -22,11 +23,9 @@ export default function ResultButton(props) {
       [scores]
   );
 
-  //console.log(props.order);
   var boxes = null;
   if (props.order) {
-    let boxLength = props.order.length;
-    switch (boxLength) {
+    switch (props.order.length) {
       case 4:
         boxes = ["first", "second", "third", "fourth"];
         break;
@@ -42,10 +41,7 @@ export default function ResultButton(props) {
   }
 
   const compare = () => {
-    //let order = ["A", "B", "C", "D", "E"];   //The array is the input music array from backend
     let userChoice = []; //After clicking the boxes by user, it also generate an array
-    //const boxes = ['first', 'second', 'third', 'fourth', 'fifth'];
-    console.log(props.order)
     if (!props.order) throw "Backend hasn't input the music";
 
     for (let i = 0; i < props.order.length; i++) {
@@ -56,25 +52,23 @@ export default function ResultButton(props) {
     }
     
     if (boxes&&userChoice.length <  boxes.length) {
-      console.log(userChoice.length)
       alert("Not enough answers, please finish them!");
       return;
     }
 
-    let answer = [];
+    let answerOrder = [];
     let Score = 0;
     if (props.order.length !== userChoice.length) throw "error";
     for (let i = 0; i < props.order.length; i++) {
       if (props.order[i] !== userChoice[i]) {
         if (props.order.indexOf(userChoice[i]) < 0) {
-            document.getElementById(boxes[i]).style.backgroundColor = "red";
+            answerOrder.push("red");
           } else {
-            document.getElementById(boxes[i]).style.backgroundColor = "yellow";
+            answerOrder.push("yellow");
           }
       } else {
-        document.getElementById(boxes[i]).style.backgroundColor = "green";
+        answerOrder.push("green");
         Score++;
-        console.log(Score)
       }
     }
 
@@ -90,39 +84,42 @@ export default function ResultButton(props) {
     setScore(Score)
 
     setIfSubmit(true);
-    
+    setAttempt(attempt+1);
+
+    const resultRows = document.getElementsByClassName("answerContainer");
+    Array.from(resultRows[attempt].children).forEach((box, x) =>
+    {
+      box.classList.add(answerOrder[x]);
+    });
+    restart();
+    //resultRows[attempt].setAttribute('answer', answerOrder);
   };
 
   //restart
-  const restart = () => {
+  function restart(){
     for (let i = 0; i < boxes.length; i++) {
       document.getElementById(boxes[i]).className = "notes";
       document.getElementById(boxes[i]).innerHTML = "";
     }
-    setScore(0);
     setIfSubmit(false);
   };
-
-  let restartButton = null;
-  if (ifSubmit) {
-    restartButton = (
-      <Button id="restart" className="button" onClick={restart}>
-        Restart
-      </Button>
-    );
-  } else {
-    restartButton = "";
-  }
 
   return (
     <div id="resultButton">
       {props.order && score === props.order.length ? 
       <Confetti recycle="false"></Confetti>: <></>}
+      {
+        props.order && attempt !== props.order.length ?
         <Button className="button" variant="contained" color="success" onClick={compare}>
           Submit Answer
-        </Button>
-        {restartButton}
+        </Button> : <h3>Game Over!</h3>
+      }
+        {ifSubmit ? 
+        <Button id="restart" className="button" onClick={restart()}>
+        Restart
+        </Button> : <></>}
         <div>
+          <h5 id="attempt">Attempt: {attempt+1}</h5>
           <h5>My score: </h5>
           <h5 id="score">{score}</h5>
         </div>

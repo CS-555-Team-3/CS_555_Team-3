@@ -2,6 +2,7 @@ import {useNavigate, useLocation} from "react-router-dom"
 import { useState, useEffect, useRef } from "react";
 import '../../styles/Game.css';
 import NoteButton from './NoteButton';
+import ResultRow from "./ResultRow";
 import NoteButtonRow from './NoteButtonRow';
 import RoundStartButton from './RoundStartButton';
 import UndoSelection from './UndoSelection';
@@ -13,28 +14,6 @@ import BoxRow from './BoxRow';
 
 export default function Game(props)
 {
-    /**TODO
-     * -answer container
-     *      -appending a new row after input is submitted
-     *      -adding wordle-style results in prior row
-     * */
-
-    // there is a way to do this with an object but it wasn't working!
-    // const [notesState, setNotesState] = useState({
-    //     "A_flat": false,
-    //     "A": false,
-    //     "B_flat": false,     
-    //     "B": false,
-    //     "C": false,
-    //     "D_flat": false,
-    //     "D": false,
-    //     "E_flat": false,
-    //     "E": false,
-    //     "F": false,
-    //     "G_flat": false,
-    //     "G": false
-    // });
-
     const [clicked, setClicked] = useState(false);
     const [ifStart, setIfStart] = useState(false);
     const navigate = useNavigate()
@@ -50,30 +29,26 @@ export default function Game(props)
         }
      }
 
-
     // extract data from Home component 
     const data = useLocation();
 
-    // tune for all component use
     const tune = createTune(data.state.tune)
-
-    // order for all component use
-    const order = data.state.note_order
+    const order = data.state.note_order;
+    console.log("ORDER: " + order);
 
     // duration for all component use
-    const duration = data.state.duration
+    const duration = data.state.duration;
 
-    // instrument for all component use, build it at sprint4
-    const instrument = data.state.instrument
+    // instrument for all component use
+    const instrument = data.state.instrument;
     // States for the settings 
     const [showTutorial, setShowTutorial] = useState( (data.state.tutorial =='on'))
     const [showTimer, setShowTimer] = useState( (data.state.timer =='on'))
-    //const [colorblind_mode, setColorblind_mode] = useState( (data.state.colorblind_mode=='on'))
     const [Leaderboard, setLeaderboard] = useState( (data.state.leaderboard=='on'))
     const [time, setTime] = useState(0);
-    const color_blind = data.state.colorblind_mode
-    const timer = data.state.timer
-    const difficulty = data.state.difficulty
+    const color_blind = data.state.colorblind_mode;
+    const timer = data.state.timer;
+    const difficulty = data.state.difficulty;
 
     const highlightNotes = async (e) =>
     {
@@ -101,54 +76,25 @@ export default function Game(props)
    }
     
     const endGame = () => {
-        let i = 'time';
-        let x = 'score'
-        var ptime = document.getElementById(i).innerHTML
-        var pscore = document.getElementById(x).innerHTML
-        if(window.confirm('End game?')) 
-        { 
-            navigate(`/end/${ptime}/${pscore}`) 
-        };
+        var ptime = document.getElementById('time').innerHTML;
+        var pscore = document.getElementById('score').innerHTML;
+        if(window.confirm('End game?')) navigate(`/end/${ptime}/${pscore}`);
     }
 
-    function allowDrop(ev) {
-        console.log(ev);
-        ev.preventDefault();
-    }
-    
-    function drop(ev) {
-        console.log(ev);
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        ev.target.innerHTML = data;
-    }
-
-    if(ifStart === false){
-        return (
-            <div id="gameContainer">
+    return(
+        <div id="gameContainer">
             {showTutorial && <TutorialEntry></TutorialEntry> }
             <div id="roundStartContainer">
                 <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes} setTime={setTime} time={time}></RoundStartButton>
             </div>
 
-            <BoxRow order = {order}></BoxRow>
-
-            <div id ="end">
-                <Button className="endButton" onClick={endGame}> End game</Button>
+            <div id="gameGrid">
+                {order.map((val, index) =>
+                //this creates # of rows we want, right now it will be # of available notes
+                <ResultRow numBoxes={order.length} index={index} key={index}></ResultRow>
+                )}
+                <BoxRow order={order}></BoxRow>
             </div>
-        </div>
-        )
-    }
-
-    if(ifStart === true){
-        return(
-            <div id="gameContainer">
-            {showTutorial && <TutorialEntry></TutorialEntry> }
-            <div id="roundStartContainer">
-                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes} setTime={setTime} time={time}></RoundStartButton>
-            </div>
-
-            <BoxRow order={order}></BoxRow>
 
             <div id="hint"><Hint hint={tune} /></div>
 
@@ -158,22 +104,21 @@ export default function Game(props)
             (<img id='drag_tut' src={require('./img/drag_tutorial.gif')}></img>)}
             {show_tut && UnrenderDragTut()}
 
-            <NoteButtonRow 
-                order={order} 
-                duration={duration} 
-                clicked={clicked} 
-                instrument={instrument}
-                color_blind={color_blind}>
-            </NoteButtonRow>
-            <div id="undo">
+            {ifStart ? <>
+                <NoteButtonRow 
+                    order={order} 
+                    duration={duration} 
+                    clicked={clicked} 
+                    instrument={instrument}
+                    color_blind={color_blind}>
+                </NoteButtonRow> 
                 <UndoSelection order={order}>Undo Selection</UndoSelection>
-            </div>
+            </>
+            : <></>}
             <div id="end">
                 <Button className="endButton" onClick={endGame}> End game</Button>
             </div>
         </div>
     );
-    
-  }
 }
 
