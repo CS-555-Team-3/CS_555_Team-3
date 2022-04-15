@@ -12,6 +12,8 @@ export default function Home()
     const [duration, setDuration] = useState(null);
     const [instrument, setInstrument] = useState("piano");
 
+    const [familiar, setFamiliar] = useState(0);
+
     const [difficulty, setDifficulty] = useState("beginner");
     const [timer, setTimer] = useState('off') 
     const [tutorial, setTutorial] = useState('off')
@@ -35,6 +37,7 @@ export default function Home()
                 SetDifficulty={setDifficulty}
                 SetInstrument={setInstrument}
                 Instrument={instrument}
+                Familiar={familiar}
             ></DifficultySelection>
            
             <Settings
@@ -43,7 +46,9 @@ export default function Home()
                 set_Colorblind_mode={setColorblind_mode}
                 set_Leaderboard={setLeaderboard}
                 SetInstrument={setInstrument}
+                SetFamiliar={setFamiliar}
                 showSettings={showSettings}
+    
             ></Settings>
 
             <Link to={order ? "/game" : "#"} /* onClick={useGetSettings(setSettings)} */ state={{ 
@@ -52,6 +57,7 @@ export default function Home()
                 duration: duration,
                 difficulty: difficulty,
                 instrument: instrument,
+                familiar:familiar,
                 timer:timer,
                 tutorial:tutorial,
                 leaderboard:leaderboard,
