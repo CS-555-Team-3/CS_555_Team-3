@@ -6,6 +6,7 @@ export default function ResultButton(props) {
 
   const [score, setScore] = useState(0);
   const [attempt, setAttempt] = useState(0);
+  const [emojis, setEmojis] = useState([])
   const [scores, setScores] = useState([]);
   const [ifSubmit, setIfSubmit] = useState(false);
 
@@ -58,6 +59,7 @@ export default function ResultButton(props) {
 
     let answerOrder = [];
     let Score = 0;
+    let emojifeed=""
     if (props.order.length !== userChoice.length) throw "error";
     for (let i = 0; i < props.order.length; i++) {
       if (props.order[i] !== userChoice[i]) {
@@ -71,18 +73,35 @@ export default function ResultButton(props) {
         Score++;
       }
     }
-
-    const copytext = "Score: " + Score + " Difficulty: " + props.difficulty + " Time: " + props.time
-    const newScore = {
-      id: Math.random().toString(36).substr(2, 9),
-      text: Score,
-      time: props.time,
-      difficulty: props.difficulty,
-      copytext: copytext
-    };
-    setScores([...scores,newScore]);
+    for (let i = 0; i <answerOrder.length; i++) {
+      if (answerOrder[i] == "red") {
+        emojifeed+="🟥";
+      }
+      else if (answerOrder[i] =="yellow") {
+        emojifeed+="🟨";
+      }
+      else if (answerOrder[i] =="green") {
+        emojifeed+="🟩";
+      }
+    }
+    emojifeed+="\n"
+    setEmojis(emojis+emojifeed)
+    console.log("emojis",emojis)
+    console.log("emojifeed",emojifeed)
+    console.log("answerorder",answerOrder)
+    if (attempt == 4) {
+      const copytext = "Score: " + Score + " Difficulty: " + props.difficulty + " Time: " + props.time
+      const newScore = {
+        id: Math.random().toString(36).substr(2, 9),
+        text: Score,
+        time: props.time,
+        difficulty: props.difficulty,
+        copytext: copytext,
+        emojis: emojis+emojifeed
+      };
+      setScores([...scores,newScore]);
+    }
     setScore(Score)
-
     setIfSubmit(true);
     setAttempt(attempt+1);
 

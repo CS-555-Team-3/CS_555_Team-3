@@ -30,7 +30,10 @@ export default function PrintScores(val) {
                 Score: {score.text} Difficulty: {score.difficulty} Time: {score.time}
                 <CopyToClipboard text={score.copytext}>
                     <Button className="copyButton" variant="contained">Copy score</Button>
-                </CopyToClipboard>       
+                </CopyToClipboard>
+                <CopyToClipboard text={score.emojis}>
+                    <Button className="copyButton" variant="contained">Copy emoji</Button>
+                </CopyToClipboard>
             </div>      
         </div>
     ))
