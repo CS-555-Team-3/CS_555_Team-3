@@ -87,15 +87,15 @@ def getSounds(request, notes, durations, instrument, familiar):
 
     # baes on the number of notes to randomlly open the sound files stored in the sound_notes folder
     for i in range(notes):
+        if familiar == 0:
         # randrange(n) generates a number in the range [0, n - 1), randomly choose a file number
         # since the file name start from 01, we need to + 1 at the end, then convert to string type
-        rand_num = randrange(0, 12)
+            rand_num = randrange(0, 12)
 
         # record the num in order
         # -> change made to send back list of notes played --> works on my end
         
         # ---> chage #2 : added the ability for the familiar tunes to be played
-        if familiar == 0:
             order.append(p_keys[rand_num])
 
         # get the backend folder path
@@ -103,8 +103,9 @@ def getSounds(request, notes, durations, instrument, familiar):
 
         # open the sound file
         # sound = AudioSegment.from_mp3(path + f"/sound_notes/key{file_num}.mp3")
+        print(order[i])
         sound = AudioSegment.from_file(
-            path + f"/sound_notes/{instrument}/{p_keys[rand_num]}.wav", format="wav")
+            path + f"/sound_notes/{instrument}/{order[i]}.wav", format="wav")
 
         # store the sound in the list
         sound_list.append(sound)
