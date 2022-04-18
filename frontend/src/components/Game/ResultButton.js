@@ -86,9 +86,6 @@ export default function ResultButton(props) {
     }
     emojifeed+="\n"
     setEmojis(emojis+emojifeed)
-    console.log("emojis",emojis)
-    console.log("emojifeed",emojifeed)
-    console.log("answerorder",answerOrder)
     
     if (attempt === answerOrder.length-1 || answerOrder.reduce((n, x) => n + (x === "green"), 0) === answerOrder.length) {
       const copytext = "Score: " + Score + " Difficulty: " + props.difficulty + " Time: " + props.time

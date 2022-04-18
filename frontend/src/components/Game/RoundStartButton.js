@@ -24,10 +24,14 @@ export default function RoundStartButton(props) {
 
     // show-timer settings from parent component
     const show_timer = props.timer;
-   
+    let delaytime = 9
+    if (props.order.length === 6) {
+        delaytime = 8
+    }
+
     // once the user click the button, play the tune
     const onClick = () => {
-        setCountDownTime(3);
+        setCountDownTime(delaytime);
         timer2.current = setInterval(() => {
             setCountDownTime((n) => {
                 return n - 1;
@@ -46,7 +50,7 @@ export default function RoundStartButton(props) {
         }
         // start count time
         //TODO wait until sound is done playing for count time to begin
-        setTime(0);
+        setTime(-delaytime+3);
         timer.current = setInterval(() => {
             setTime((n) => {
                 return n + 1;
