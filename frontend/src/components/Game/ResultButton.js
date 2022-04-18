@@ -74,13 +74,13 @@ export default function ResultButton(props) {
       }
     }
     for (let i = 0; i <answerOrder.length; i++) {
-      if (answerOrder[i] == "red") {
+      if (answerOrder[i] === "red") {
         emojifeed+="🟥";
       }
-      else if (answerOrder[i] =="yellow") {
+      else if (answerOrder[i] ==="yellow") {
         emojifeed+="🟨";
       }
-      else if (answerOrder[i] =="green") {
+      else if (answerOrder[i] ==="green") {
         emojifeed+="🟩";
       }
     }
@@ -89,7 +89,7 @@ export default function ResultButton(props) {
     console.log("emojis",emojis)
     console.log("emojifeed",emojifeed)
     console.log("answerorder",answerOrder)
-    if (attempt == 4) {
+    if (attempt === 4 || answerOrder.reduce((n, x) => n + (x === "green"), 0) === 5) {
       const copytext = "Score: " + Score + " Difficulty: " + props.difficulty + " Time: " + props.time
       const newScore = {
         id: Math.random().toString(36).substr(2, 9),
