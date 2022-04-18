@@ -41,6 +41,10 @@ export default function Game(props)
 
     // instrument for all component use
     const instrument = data.state.instrument;
+
+    const familair = data.state.familair
+
+
     // States for the settings 
     const [showTutorial, setShowTutorial] = useState( (data.state.tutorial =='on'))
     const [showTimer, setShowTimer] = useState( (data.state.timer =='on'))

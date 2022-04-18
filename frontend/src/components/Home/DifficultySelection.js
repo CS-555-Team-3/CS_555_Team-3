@@ -5,13 +5,14 @@ import React, { useState, useEffect } from 'react';
 import difficulty_map from '../../config/DifficultyMap.json';
 import '../../styles/Home.css';
 
-export default function DifficultySelection({SetAudio, SetOrder, SetDuration, SetDifficulty, Instrument})
+export default function DifficultySelection({SetAudio, SetOrder, SetDuration, SetDifficulty, Instrument, Familiar})
 {  
     // three states: difficulty, audio, order
     const [difficulty, setDifficulty] = useState(null);
     const [audio, setAudio] = useState(null);
     const [order, setOrder] = useState(null);
     
+    console.log("Familair is ", Familiar)
 
     // once the user choose difficulty, send the request to backend
     useEffect(() => {
@@ -45,6 +46,13 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration, Se
         }
     }, [Instrument]);
 
+    // Update the sound selectiono if the user changes familair setting
+    useEffect(() => {
+        if(difficulty){
+            getSounds(difficulty_map[difficulty][0], (difficulty_map[difficulty][1]).toFixed(1))
+        }
+    }, [Familiar]);
+
     
     // difficulty selection options
     const difficulty_options = [
@@ -58,7 +66,7 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration, Se
     // helper function to send request to receive audio
     const getSounds = async(num_notes, durations) => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/sounds/${num_notes}/${durations}/${Instrument}`, {responseType:'blob'})
+            const response = await axios.get(`http://localhost:8000/api/sounds/${num_notes}/${durations}/${Instrument}/${Familiar}`, {responseType:'blob'})
             // since Link pass seems not able to pass audui file, create a Blob object and pass it
             // the actual audio file will be created in Game component
             const wav = new Blob([response.data], { type: 'audio/wav' })

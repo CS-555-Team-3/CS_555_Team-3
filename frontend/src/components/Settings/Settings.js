@@ -10,6 +10,7 @@ const Settings = ( {set_Difficulty,
     set_Tutorial,
     set_Leaderboard,
     SetInstrument,
+    SetFamiliar,
     showSettings
     }  ) => {
     
@@ -37,6 +38,10 @@ const Settings = ( {set_Difficulty,
     const on_off_options = [
         { value: 'on', label: "On"},
         { value: 'off', label: "Off"},
+    ]
+    const yes_no_options = [
+        { value: '1', label: "On"},
+        { value: '0', label: "Off"},
     ]
 
     // instrument selection options
@@ -83,6 +88,14 @@ const Settings = ( {set_Difficulty,
                             defaultValue={instrument_options[0]} 
                             options={instrument_options} 
                             onChange={onChangeInstrument}/>
+                    </Grid>
+                    <Grid item className="settingsControl" xs={3}>
+                        <h4> Familiar</h4>
+                        <Select 
+                            className="Familiar"
+                            defaultValue={yes_no_options[1]} 
+                            options={yes_no_options} 
+                            onChange={(value) => SetFamiliar(value.value)}/>
                     </Grid>
 
                     <Grid item className="settingsControl" xs={3}>
