@@ -17,6 +17,8 @@ export default function Game(props) {
   const [ifStart, setIfStart] = useState(false);
   const navigate = useNavigate();
 
+  let roundTime = 180 // every round has 180s
+
   // helper function to create the tune
   const createTune = (wav) => {
     try {
@@ -46,6 +48,7 @@ export default function Game(props) {
     data.state.leaderboard == "on"
   );
   const [time, setTime] = useState(0);
+  const [totalTime, setTotalTime]=useState(0);
   const color_blind = data.state.colorblind_mode;
   const timer = data.state.timer;
   const difficulty = data.state.difficulty;
@@ -76,19 +79,15 @@ export default function Game(props) {
   }
 
   const endGame = () => {
-    var ptime = document.getElementById("time").innerHTML;
+    var ptime = document.getElementById("totalTime").innerHTML;
     var pscore = document.getElementById("score").innerHTML;
     if (window.confirm("End game?")) navigate(`/end/${ptime}/${pscore}`);
   };
 
-  if (time === 181) {
-    // if time is 180, it will automatically click submit answer
-    // You can change it if you want user to have more time to play
-    document.getElementById("submit").click();
-    let x = "score";
-    let i = "time";
-    var ptime = document.getElementById(i).innerHTML;
-    var pscore = document.getElementById(x).innerHTML;
+  if (time > roundTime) {
+    // if time is over, it will automatically go to the endgame page
+    var ptime = document.getElementById("totalTime").innerHTML;
+    var pscore = document.getElementById("score").innerHTML;
     navigate(`/end/${ptime}/${pscore}`); // user can't play because time is over
   }
 
@@ -102,6 +101,9 @@ export default function Game(props) {
           onClick={highlightNotes}
           setTime={setTime}
           time={time}
+          roundTime={roundTime}
+          totalTime={totalTime}
+          setTotalTime={setTotalTime}
         ></RoundStartButton>
       </div>
 
@@ -125,6 +127,7 @@ export default function Game(props) {
         order={order}
         difficulty={difficulty}
         time={time}
+        setTime={setTime}
       ></ResultButton>
 
       {showTutorial && order.length == 4 && (

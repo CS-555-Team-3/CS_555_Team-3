@@ -6,10 +6,14 @@ export default function RoundStartButton(props) {
     const time = props.time
     const [countdown_time , setCountDownTime] = useState(0);
     const setTime = props.setTime
+    const totalTime = props.totalTime
+    const setTotalTime = props.setTotalTime
     let timer = useRef();
     let timer2 = useRef();
     const [countdown, setCountDown] = useState(true);
     const [clicked, setClicked] = useState(false);
+
+    let roundTime=props.roundTime
 
     useEffect(() => { 
         if(countdown_time <0){
@@ -47,25 +51,30 @@ export default function RoundStartButton(props) {
         // start count time
         //TODO wait until sound is done playing for count time to begin
         setTime(0);
+        setTotalTime(0);
         timer.current = setInterval(() => {
             setTime((n) => {
+                return n + 1;
+            });
+            setTotalTime((n) => {
                 return n + 1;
             });
         }, 1000);}, 3000)
 
 
     };
-     //   when time is at 150 seconds, it will remind user that there is not much time left for 5 seconds
-     //   and you can define how long to display it
+     //   when time is going to run out, it will remind the user 
     return (
         <div>
             <div>
+                {countdown && <h4 id='totalTime'>{countdown_time} Second{countdown_time === 0 ? '' : 's'}</h4>}
+                {!countdown && <h4 id='totalTime'>Total Time: {totalTime} Second{totalTime === 0 ? '' : 's'}</h4>}
+                <h4 id='time'>Round Time: {time} Second{time === 0 ? '' : 's'}</h4>
+                <p id='timeAlert'>{time >= (roundTime * 0.75) && time <= roundTime ? `Game will end in ${roundTime-time} seconds if you haven't submitted answer` : ''}</p>
                 <Button className="roundStart" onClick={onClick} disabled={clicked}>
                     Round Start
-                </Button>
-                <p>{time >= 150 && time <= 155 ? `${180-time} seconds left until the end of game` : ''}</p>
-                {countdown && <h4 id='time'>{countdown_time} Second{countdown_time === 0 ? '' : 's'}</h4>}
-                {!countdown && <h4 id='time'>{time} Second{time === 0 ? '' : 's'}</h4>}
+                </Button> 
+
                 <br></br>
             </div>
         </div>

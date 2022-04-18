@@ -1,6 +1,7 @@
 import Confetti from "react-confetti";
 import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
+import RoundStartButton from "./RoundStartButton";
 
 export default function ResultButton(props) {
   const [score, setScore] = useState(0);
@@ -45,16 +46,6 @@ export default function ResultButton(props) {
       let value = document.getElementById(boxes[i]).innerHTML;
       if (value.length > 0) {
         userChoice.push(value);
-      }
-    }
-
-    if (props.time === 180) {
-      //when time is over, it will automatically fulfill boxes with wrong if user can't finish them
-      // You can change it if you want user to have more time to play
-      if (userChoice.length < props.order.length) {
-        for (let i = userChoice.length; i < props.order.length; i++) {
-          userChoice.push("0"); //"0" is the wrong answer
-        }
       }
     }
 
@@ -105,6 +96,7 @@ export default function ResultButton(props) {
     });
     restart();
     //resultRows[attempt].setAttribute('answer', answerOrder);
+    props.setTime(0)
   };
 
   //restart
@@ -145,8 +137,7 @@ export default function ResultButton(props) {
       )}
       <div>
         <h5 id="attempt">Attempt: {attempt + 1}</h5>
-        <h5>My score: </h5>
-        <h5 id="score">{score}</h5>
+        <h5 id="score">My score: {score} </h5>
       </div>
     </div>
   );

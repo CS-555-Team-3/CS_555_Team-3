@@ -39,6 +39,14 @@ div.answerContainer {
   display: flex;
   justify-content: center;
 }
+#timeAlert {
+  color: #c72020;
+}
+
+#time {
+  position: fixed;
+  margin-top: auto;
+}
 
 #tutorialOverlayBG {
   position: fixed;
