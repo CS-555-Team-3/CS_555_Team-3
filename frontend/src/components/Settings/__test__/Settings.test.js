@@ -58,7 +58,6 @@ Enzyme.configure({ adapter: new Adapter() });
             { value: 'on', label: "On"},
             { value: 'off', label: "Off"},
         ]
-        const showMenu = true;
       render( 
         <div className='setting-menu'>
             <Button className='set-head'  onClick={close}>Settings</Button>
@@ -125,6 +124,7 @@ describe('Does selection and call setState', () =>
         const setColorblind_mode = jest.fn();
         const setLeaderboard = jest.fn();
         const setInstrument = jest.fn();
+        const setFamiliar = jest.fn();
         const showSettings = true
         const wrapper = mount(<Settings 
             set_Timer={setTimer}
@@ -132,6 +132,7 @@ describe('Does selection and call setState', () =>
             set_Colorblind_mode={setColorblind_mode}
             set_Leaderboard={setLeaderboard}
             SetInstrument={setInstrument}
+            SetFamiliar={setFamiliar}
             showSettings={showSettings}/>);
         
         
@@ -141,6 +142,39 @@ describe('Does selection and call setState', () =>
         });
         
         expect(setInstrument).toHaveBeenCalled();
+    })
+})
+
+
+
+describe('Does the familair tunes settings work', () =>
+{
+    test('Familiar is on', async () =>
+    {
+        const setTimer = jest.fn();
+        const setTutorial = jest.fn();
+        const setColorblind_mode = jest.fn();
+        const setLeaderboard = jest.fn();
+        const setInstrument = jest.fn();
+        const setFamiliar = jest.fn();
+        const showSettings = true
+        const wrapper = mount(<Settings 
+            set_Timer={setTimer}
+            set_Tutorial={setTutorial}
+            set_Colorblind_mode={setColorblind_mode}
+            set_Leaderboard={setLeaderboard}
+            SetInstrument={setInstrument}
+            SetFamiliar={setFamiliar}
+            showSettings={showSettings}/>
+            );
+
+
+        act(()=>
+        {
+            wrapper.find('Select.Familiar').instance().selectOption({ label: 'On', value: '1' });
+        });
+
+        expect(setFamiliar).toHaveBeenCalled();
     })
 })
 

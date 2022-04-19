@@ -23,12 +23,29 @@ p_keys = ['A',
           'E_flat',
           'G_flat'
           ]
+familiar_tune_map = [
+    [ #1 - beginner
+        ['A', 'E', 'F', 'D'], ['A', 'B_flat', 'E', 'A'], ['C',  'G', 'A_flat', 'F'], 
+         ['F', 'C', 'A_flat',  'G'], ['A_flat', 'C',  'G', 'F']
+    ],
+    [ #2 - Advanced
+        ['E_flat',  'G', 'D', 'A_flat', 'C'], [ 'G', 'D', 'F', 'C', 'D_flat'], ['C', 'D', 'E_flat',  'G', 'D'],
+        ['A_flat', 'D', 'E_flat', 'B_flat', 'C'],['A_flat', 'D', 'E_flat', 'B_flat', 'C']
+    ]
+    ,
+    [ #3 - Expert
+        ['A', 'A_flat', 'D', 'C', 'E', 'B_flat'], [  'G', 'F', 'C', 'A_flat', 'D', 'B'],[ 'G', 'C', 'F', 'C', 'A_flat', 'D'],
+        [ 'G', 'C', 'F', 'C', 'A_flat', 'D'],['G', 'F', 'F', 'E_flat', 'B_flat',  'G']
+    ]
+]
+
 
 
 @api_view(["GET"])
-def getSounds(request, notes, durations, instrument):
+def getSounds(request, notes, durations, instrument, familiar):
     # this endpoint receives two query params: notes and durations
-
+    
+        
     # (0) allow for initial duration to be one single input or a list of inputs if your trying to get fancy
     if(type(durations) is not list):
         durations = [durations for i in range(notes)]
@@ -53,24 +70,42 @@ def getSounds(request, notes, durations, instrument):
 
     if instrument not in ["banjo", "basson", "cello", "flute", "guitar", "mandolin", "oboe", "piano", "viola"]:
         return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+    # ----------------------------------------   
+    # -------- Familair tunes logic ----------
+    # ----------------------------------------
+        # 1.0: added check for familair tunes : shlomo
+    if familiar != 0 and familiar != 1:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+        # 2.0: added change to randomly select the familar-tume bases on difficulty selection
+    if familiar == 1:
+        # diff == which index to choose from(0:begginer),(1:advanced),(2:expert)
+        diff = notes - 4   
+        rand_num = randrange(0, 4)
+        order = familiar_tune_map[diff][rand_num]
 
     # baes on the number of notes to randomlly open the sound files stored in the sound_notes folder
     for i in range(notes):
+        if familiar == 0:
         # randrange(n) generates a number in the range [0, n - 1), randomly choose a file number
         # since the file name start from 01, we need to + 1 at the end, then convert to string type
-        rand_num = randrange(0, 12)
+            rand_num = randrange(0, 12)
 
         # record the num in order
         # -> change made to send back list of notes played --> works on my end
-        order.append(p_keys[rand_num])
+        
+        # ---> chage #2 : added the ability for the familiar tunes to be played
+            order.append(p_keys[rand_num])
 
         # get the backend folder path
         path = str(pathlib.Path(__file__).parent.parent.parent.resolve())
 
         # open the sound file
         # sound = AudioSegment.from_mp3(path + f"/sound_notes/key{file_num}.mp3")
+        print(order[i])
         sound = AudioSegment.from_file(
-            path + f"/sound_notes/{instrument}/{p_keys[rand_num]}.wav", format="wav")
+            path + f"/sound_notes/{instrument}/{order[i]}.wav", format="wav")
 
         # store the sound in the list
         sound_list.append(sound)

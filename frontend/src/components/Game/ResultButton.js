@@ -43,7 +43,7 @@ export default function ResultButton(props) {
 
   const compare = () => {
     let userChoice = []; //After clicking the boxes by user, it also generate an array
-    if (!props.order) throw "Backend hasn't input the music";
+    if (!props.order) throw Error("Backend hasn't input the music");
 
     for (let i = 0; i < props.order.length; i++) {
       let value = document.getElementById(boxes[i]).innerHTML;
@@ -60,7 +60,8 @@ export default function ResultButton(props) {
     let answerOrder = [];
     let Score = 0;
     let emojifeed=""
-    if (props.order.length !== userChoice.length) throw "error";
+    if (props.order.length !== userChoice.length) throw Error("error");
+
     for (let i = 0; i < props.order.length; i++) {
       if (props.order[i] !== userChoice[i]) {
         if (props.order.indexOf(userChoice[i]) < 0) {
@@ -109,7 +110,6 @@ export default function ResultButton(props) {
       box.classList.add(answerOrder[x]);
     });
     restart();
-    //resultRows[attempt].setAttribute('answer', answerOrder);
   };
 
   //restart
