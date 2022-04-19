@@ -58,7 +58,6 @@ Enzyme.configure({ adapter: new Adapter() });
             { value: 'on', label: "On"},
             { value: 'off', label: "Off"},
         ]
-        const showMenu = true;
       render( 
         <div className='setting-menu'>
             <Button className='set-head'  onClick={close}>Settings</Button>
