@@ -12,8 +12,6 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration, Se
     const [audio, setAudio] = useState(null);
     const [order, setOrder] = useState(null);
     
-    console.log("Familair is ", Familiar)
-
     // once the user choose difficulty, send the request to backend
     useEffect(() => {
         if (difficulty) {
@@ -59,10 +57,8 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration, Se
         { value: 'Beginner', label: 'Beginner' },
         { value: 'Advanced', label: 'Advanced' },
         { value: 'Expert', label: 'Expert' }
-    ]
-
+    ];
      
-    
     // helper function to send request to receive audio
     const getSounds = async(num_notes, durations) => {
         try {
@@ -76,7 +72,6 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration, Se
         catch (e) {
             console.log('play audio error: ', e)
         }
-
     }
 
     // helper function to send request to receive the note order
@@ -96,8 +91,6 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration, Se
         setDifficulty(value.value)
         SetDifficulty(value.value)
     }
-
-
 
     // Link only avaialable once the order is received, this forces the user to choose the difficulty
     // Link passes three props: tune(blob type), the order, duration

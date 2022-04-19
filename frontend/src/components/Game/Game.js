@@ -1,7 +1,6 @@
 import {useNavigate, useLocation} from "react-router-dom"
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import '../../styles/Game.css';
-import NoteButton from './NoteButton';
 import ResultRow from "./ResultRow";
 import NoteButtonRow from './NoteButtonRow';
 import RoundStartButton from './RoundStartButton';
@@ -42,16 +41,12 @@ export default function Game(props)
     // instrument for all component use
     const instrument = data.state.instrument;
 
-    const familair = data.state.familair
-
-
     // States for the settings 
-    const [showTutorial, setShowTutorial] = useState( (data.state.tutorial =='on'))
-    const [showTimer, setShowTimer] = useState( (data.state.timer =='on'))
-    const [Leaderboard, setLeaderboard] = useState( (data.state.leaderboard=='on'))
+    const [showTutorial, setShowTutorial] = useState((data.state.tutorial === 'on'));
+    const [showTimer, setShowTimer] = useState((data.state.timer === 'on'));
+    const [Leaderboard, setLeaderboard] = useState((data.state.leaderboard === 'on'));
     const [time, setTime] = useState(0);
     const color_blind = data.state.colorblind_mode;
-    const timer = data.state.timer;
     const difficulty = data.state.difficulty;
 
     const highlightNotes = async (e) =>
@@ -63,7 +58,7 @@ export default function Game(props)
     let hide_timer = useRef();
     let show_tut = showTutorial;
     function UnrenderDragTut(){
-       if(show_tut==false){
+       if(show_tut === false){
            return true;
        }
        setTimeout(() => {
@@ -104,7 +99,7 @@ export default function Game(props)
 
             <ResultButton order={order} difficulty={difficulty} time={time}></ResultButton>
 
-            {(showTutorial && order.length == 4) && 
+            {(showTutorial && order.length === 4) && 
             (<img id='drag_tut' src={require('./img/drag_tutorial.gif')}></img>)}
             {show_tut && UnrenderDragTut()}
 

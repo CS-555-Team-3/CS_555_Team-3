@@ -22,7 +22,7 @@ export default function Home()
 
     // pass three setState to DifficultySelection component
     // this variable soley works for unit test
-    const showSettings = false
+    const showSettings = false;
 
     // Link only avaialable once the order is received, this forces the user to choose the difficulty
     // Link passes three props: tune(blob type), the order, duration

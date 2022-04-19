@@ -10,42 +10,56 @@ export default function NoteButton(props)
     let parentSelected = props.selected;
     let instrument = props.instrument
     let color_blind = props.color_blind; //how to add colorBlind as a prop?
-    const [color_blind_mode, set_Colorblind_mode] = useState(color_blind == 'on')
 
-    const  [icn, setIcon] = useState("null")
-    useEffect ( ()=>{ //TODO switch statement
-        if (color_blind == 'on') {
-            if (note == "A_flat") {
-                setIcon("😊");
-            }else if (note == "A") {
-                setIcon("😂");
-            }else if (note == "B_flat") {
-                setIcon("❤️");
-            }else if (note == "B") {
-                setIcon("😁");
-            }else if (note == "C") {
-                setIcon("😍");
-            }else if (note == "D_flat") {
-                setIcon("😎");
-            }else if (note == "D") {
-                setIcon("🎶");
-            }else if (note == "E_flat") {
-                setIcon("💕");
-            }else if (note == "E") {
-                setIcon("🤩");
-            }else if (note == "F") {
-                setIcon("😴");
-            }else if (note == "G_flat") {
-                setIcon("😉");
-            }else if (note == "G") {
-                setIcon("😋");
-            }else{
-                setIcon(note)
+    const [icn, setIcon] = useState("null");
+    useEffect(()=>{ 
+        if (color_blind === 'on') {
+            switch(note)
+            {
+                case("A_flat"): 
+                    setIcon("😊");
+                    break;
+                case("A"): 
+                    setIcon("😂");
+                    break;
+                case("B_flat"):
+                    setIcon("❤️");
+                    break;
+                case("B"):
+                    setIcon("😁");
+                    break;
+                case("C"):
+                    setIcon("😍");
+                    break;
+                case("D_flat"):
+                    setIcon("😎");
+                    break;
+                case("D"):
+                    setIcon("🎶");
+                    break;
+                case("E_flat"):
+                    setIcon("💕");
+                    break;
+                case("E"):
+                    setIcon("🤩");
+                    break;
+                case("F"):
+                    setIcon("😴")
+                    break;
+                case("G_flat"):
+                    setIcon("😉");
+                    break;
+                case("G"): 
+                    setIcon("😋");
+                    break;
+                default:
+                    setIcon(note);
             }
-        }else{
+        }
+        else{
             setIcon(note)
         }
-    })
+    });
 
     const [selected, setSelected] = useState(false);
 
@@ -58,7 +72,6 @@ export default function NoteButton(props)
         let notePath = `/sound_notes/${instrument}/${note}.wav`;
         let noteAudio = new Audio(notePath);
         await noteAudio.play();
-        console.log(noteAudio);
         setSelected(true);
         setTimeout(()=>{
             setSelected(false);
@@ -69,17 +82,12 @@ export default function NoteButton(props)
 
     return( 
         <div draggable="true" id={note} onDragStart={(event) => drag(event)} className={`noteButton ${note} ${variable ? 'selected' : ''}`}>
-            { !color_blind_mode && <SetNote note={note} order={props.order}>
-                {noteName}
-            </SetNote> }
-            { color_blind_mode && <SetNote note={note} order={props.order}>
-            {icn}
-            </SetNote> }
+            <SetNote note={note} order={props.order}>
+                {color_blind ? icn : noteName}
+            </SetNote>
             <button className={`playnote ${noteName}`} onClick={(e)=>handleClick(e)}><MusicNote></MusicNote></button>
             <PlayNote note={note}>
             </PlayNote>
         </div>
-        
-        
     );
 }
