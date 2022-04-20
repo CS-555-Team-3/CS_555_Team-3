@@ -85,7 +85,7 @@ export default function Game(props) {
   };
 
   if (time > roundTime) {
-    // if time is over, it will automatically go to the endgame page
+    // if time is over, it will automatically end
     var ptime = document.getElementById("totalTime").innerHTML;
     var pscore = document.getElementById("score").innerHTML;
     navigate(`/end/${ptime}/${pscore}`); // user can't play because time is over

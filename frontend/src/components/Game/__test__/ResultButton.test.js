@@ -3,6 +3,7 @@ import ResultButton from "../ResultButton";
 import ResultRow from "../ResultRow";
 import userEvent from '@testing-library/user-event';
 import React from "react";
+import { mount } from "enzyme";
 
 
 afterEach(cleanup);
@@ -14,6 +15,10 @@ describe("Are boxes painted correctly after clicking resultButton", () => {
     // expect color = ["green", "yellow", "red", "green"]
     const order = ["A", "B", "C", "D"];
     const boxes = ["first", "second", "third", "fourth"];
+    const difficulty = "begin";
+    const time = 180;
+    const setTime = jest.fn();
+    // const wrapper = mount(<ResultButton setTime = {setTime} difficulty = {difficulty} time = {time} />);
     
     render(
         <div id="gameContainer">
@@ -22,7 +27,7 @@ describe("Are boxes painted correctly after clicking resultButton", () => {
                       <ResultRow numBoxes={4} index={0}></ResultRow>
                     </div>
                     <div className='placement'>
-                        <button id={boxes[0]} className='notes'  disabled >A</button>
+                        <button id={boxes[0]} className='notes' disabled>A</button>
                         <button id={boxes[1]} className='notes' disabled>C</button>
                         <button id={boxes[2]} className='notes' disabled>G</button>
                         <button id={boxes[3]} className='notes' disabled>D</button>
@@ -30,7 +35,7 @@ describe("Are boxes painted correctly after clicking resultButton", () => {
                     </div>
                 </div>
                 <div>
-                <ResultButton order={order}  >Submit Answer</ResultButton>
+                  <ResultButton order={order} difficulty={difficulty} time={time} setTime={setTime} >Submit Answer</ResultButton>
                 </div>
 
             </div>
