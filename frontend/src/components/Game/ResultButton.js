@@ -8,6 +8,10 @@ export default function ResultButton(props) {
   const [attempt, setAttempt] = useState(0);
   const [scores, setScores] = useState([]);
   const [ifSubmit, setIfSubmit] = useState(false);
+  const time = props.time;
+  const order = props.order;
+  const setTime = props.setTime;
+  const difficulty = props.difficulty;
 
   useEffect(() => {
     const json = localStorage.getItem("scores");
@@ -24,8 +28,8 @@ export default function ResultButton(props) {
   );
 
   var boxes = null;
-  if (props.order) {
-    switch (props.order.length) {
+  if (order) {
+    switch (order.length) {
       case 4:
         boxes = ["first", "second", "third", "fourth"];
         break;
@@ -42,9 +46,9 @@ export default function ResultButton(props) {
 
   const compare = () => {
     let userChoice = []; //After clicking the boxes by user, it also generate an array
-    if (!props.order) throw "Backend hasn't input the music";
+    if (!order) throw "Backend hasn't input the music";
 
-    for (let i = 0; i < props.order.length; i++) {
+    for (let i = 0; i < order.length; i++) {
       let value = document.getElementById(boxes[i]).innerHTML;
       if(value.length>0){
         userChoice.push(value);
@@ -58,10 +62,10 @@ export default function ResultButton(props) {
 
     let answerOrder = [];
     let Score = 0;
-    if (props.order.length !== userChoice.length) throw "error";
-    for (let i = 0; i < props.order.length; i++) {
-      if (props.order[i] !== userChoice[i]) {
-        if (props.order.indexOf(userChoice[i]) < 0) {
+    if (order.length !== userChoice.length) throw "error";
+    for (let i = 0; i < order.length; i++) {
+      if (order[i] !== userChoice[i]) {
+        if (order.indexOf(userChoice[i]) < 0) {
             answerOrder.push("red");
           } else {
             answerOrder.push("yellow");
@@ -76,8 +80,8 @@ export default function ResultButton(props) {
     const newScore = {
       id: Math.random().toString(36).substr(2, 9),
       text: Score,
-      time: props.time,
-      difficulty: props.difficulty,
+      time: time,
+      difficulty: difficulty,
       copytext: copytext
     };
     setScores([...scores,newScore]);
@@ -92,6 +96,7 @@ export default function ResultButton(props) {
       box.classList.add(answerOrder[x]);
     });
     restart();
+    setTime(0);
     //resultRows[attempt].setAttribute('answer', answerOrder);
   };
 
@@ -106,10 +111,10 @@ export default function ResultButton(props) {
 
   return (
     <div id="resultButton">
-      {props.order && score === props.order.length ? 
+      {order && score === order.length ? 
       <Confetti recycle="false"></Confetti>: <></>}
       {
-        props.order && attempt !== props.order.length ?
+        order && attempt !== order.length ?
         <Button className="button" variant="contained" color="success" onClick={compare}>
           Submit Answer
         </Button> : <h3>Game Over!</h3>

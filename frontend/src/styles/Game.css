@@ -40,6 +40,15 @@ div.answerContainer {
   justify-content: center;
 }
 
+#timeAlert {
+  color: #c72020;
+}
+
+#time {
+  position: fixed;
+  margin-top: auto;
+}
+
 #tutorialOverlayBG {
   position: fixed;
   display: block;

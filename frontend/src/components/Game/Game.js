@@ -18,6 +18,8 @@ export default function Game(props)
     const [ifStart, setIfStart] = useState(false);
     const navigate = useNavigate()
 
+    let roundTime = 180 // every round has 180s
+
     // helper function to create the tune
     const createTune = (wav) => {
         try {
@@ -46,6 +48,7 @@ export default function Game(props)
     const [showTimer, setShowTimer] = useState( (data.state.timer =='on'))
     const [Leaderboard, setLeaderboard] = useState( (data.state.leaderboard=='on'))
     const [time, setTime] = useState(0);
+    const [totalTime, setTotalTime]=useState(0);
     const color_blind = data.state.colorblind_mode;
     const timer = data.state.timer;
     const difficulty = data.state.difficulty;
@@ -76,16 +79,23 @@ export default function Game(props)
    }
     
     const endGame = () => {
-        var ptime = document.getElementById('time').innerHTML;
+        var ptime = document.getElementById('totalTime').innerHTML;
         var pscore = document.getElementById('score').innerHTML;
         if(window.confirm('End game?')) navigate(`/end/${ptime}/${pscore}`);
     }
+
+    if (time > roundTime) {
+        // if time is over, it will automatically go to the endgame page
+        var ptime = document.getElementById("totalTime").innerHTML;
+        var pscore = document.getElementById("score").innerHTML;
+        navigate(`/end/${ptime}/${pscore}`); // user can't play because time is over
+      }
 
     return(
         <div id="gameContainer">
             {showTutorial && <TutorialEntry></TutorialEntry> }
             <div id="roundStartContainer">
-                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes} setTime={setTime} time={time}></RoundStartButton>
+                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes} setTime={setTime} time={time} roundTime={roundTime} totalTime={totalTime} setTotalTime={setTotalTime}></RoundStartButton>
             </div>
 
             <div id="gameGrid">
@@ -98,7 +108,7 @@ export default function Game(props)
 
             <div id="hint"><Hint hint={tune} /></div>
 
-            <ResultButton order={order} difficulty={difficulty} time={time}></ResultButton>
+            <ResultButton order={order} difficulty={difficulty} time={time} setTime={setTime} ></ResultButton>
 
             {(showTutorial && order.length == 4) && 
             (<img id='drag_tut' src={require('./img/drag_tutorial.gif')}></img>)}

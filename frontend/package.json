@@ -15,6 +15,7 @@
     "enzyme": "^3.11.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.2",
+    "react-component-export-image": "^1.0.6",
     "react-confetti": "^6.0.1",
     "react-copy-to-clipboard": "^5.0.4",
     "react-countdown": "^2.3.2",

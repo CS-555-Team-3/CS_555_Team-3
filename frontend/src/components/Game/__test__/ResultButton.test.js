@@ -14,6 +14,9 @@ describe("Are boxes painted correctly after clicking resultButton", () => {
     // expect color = ["green", "yellow", "red", "green"]
     const order = ["A", "B", "C", "D"];
     const boxes = ["first", "second", "third", "fourth"];
+    const difficulty = "begin";
+    const time = 180;
+    const setTime = jest.fn();
     
     render(
         <div id="gameContainer">
@@ -30,7 +33,7 @@ describe("Are boxes painted correctly after clicking resultButton", () => {
                     </div>
                 </div>
                 <div>
-                <ResultButton order={order}  >Submit Answer</ResultButton>
+                <ResultButton order={order} difficulty={difficulty} time={time} setTime={setTime} >Submit Answer</ResultButton>
                 </div>
 
             </div>
