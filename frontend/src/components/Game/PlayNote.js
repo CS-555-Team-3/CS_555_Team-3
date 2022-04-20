@@ -5,8 +5,6 @@ export default function PlayNote(props)
 {
     const noteName = props.note;
     const [selected, setSelected] = useState(false);
-    //input check for noteName being one of our accepted names
-    //test - name that doesn't work fails
     function isPlaying(audelem) { return !audelem.paused || !audelem.ended; }
 
     const handleClick = async (e) =>
@@ -14,7 +12,6 @@ export default function PlayNote(props)
         let notePath = `/sound_notes/${noteName}.wav`;
         let noteAudio = new Audio(notePath);
         await noteAudio.play();
-        console.log(noteAudio);
         setSelected(true);
         setTimeout(()=>{
             setSelected(false);

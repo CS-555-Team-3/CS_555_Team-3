@@ -98,6 +98,7 @@ export default function ResultButton(props) {
     restart();
     setTime(0);
     //resultRows[attempt].setAttribute('answer', answerOrder);
+
   };
 
   //restart

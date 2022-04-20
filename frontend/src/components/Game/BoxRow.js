@@ -7,8 +7,8 @@ export default function BoxRow(props) {
     
     const drop = (ev) =>{
         ev.preventDefault();
-        if (disabled) console.log('nope'); 
-        else {
+        if (!disabled)
+        {
             var data = ev.dataTransfer.getData("text");
             ev.target.classList.add(data);
             ev.target.innerHTML = data;

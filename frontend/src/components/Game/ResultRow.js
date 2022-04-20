@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 export default function ResultRow(props)
 {
     let numBoxes = props.numBoxes;
@@ -20,11 +18,10 @@ export default function ResultRow(props)
     const resultBoxes = (nBoxes) =>
     {
         let ret = [];
-        let answers = [];
 
         for(let i = 0; i < nBoxes; i++)
         {
-            ret.push(<div className={`resultItem ${index}`}></div>)
+            ret.push(<div key={index} className={`resultItem ${index}`}></div>)
         }
         return ret;
     }
