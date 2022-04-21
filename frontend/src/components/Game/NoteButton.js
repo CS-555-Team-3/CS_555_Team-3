@@ -16,18 +16,18 @@ export default function NoteButton(props)
         if (color_blind === 'on') {
             switch(note)
             {
-                case("A_flat"): setIcon("😊"); break;
-                case("A"): setIcon("😂"); break;
-                case("B_flat"): setIcon("❤️"); break;
-                case("B"): setIcon("😁"); break;
-                case("C"): setIcon("😍"); break;
-                case("D_flat"): setIcon("😎"); break;
-                case("D"): setIcon("🎶"); break;
-                case("E_flat"): setIcon("💕"); break;
-                case("E"): setIcon("🤩"); break;
-                case("F"): setIcon("😴"); break;
-                case("G_flat"): setIcon("😉"); break;
-                case("G"): setIcon("😋"); break;
+                case("A_flat"): setIcon("🐯"); break;
+                case("A"): setIcon("🐒"); break;
+                case("B_flat"): setIcon("🦁"); break;
+                case("B"): setIcon("🐦"); break;
+                case("C"): setIcon("🐍"); break;
+                case("D_flat"): setIcon("🐸"); break;
+                case("D"): setIcon("🦓"); break;
+                case("E_flat"): setIcon("🐨"); break;
+                case("E"): setIcon("🦧"); break;
+                case("F"): setIcon("🦛"); break;
+                case("G_flat"): setIcon("🦏"); break;
+                case("G"): setIcon("🦥"); break;
                 default: setIcon(note);
             }
         }
