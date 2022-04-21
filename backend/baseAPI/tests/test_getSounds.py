@@ -9,7 +9,7 @@ from rest_framework import status
 class GetSoundsTestCase(APITestCase):
     def setUp(self):
         self.API_URL = reverse(
-            "sounds", kwargs={'notes': 4, 'durations': 1.5, 'instrument': 'piano','familiar':0})
+            "sounds", kwargs={'notes': 4, 'durations': 1.5, 'instrument': 'piano','familiar':0, 'dailyChallenge':0})
         self.client = APIClient()
 
     def test_response_200(self):
