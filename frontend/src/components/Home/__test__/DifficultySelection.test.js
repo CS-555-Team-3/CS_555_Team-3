@@ -44,7 +44,7 @@ describe('Does selection send request', () =>
             wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Beginner', value: 'Beginner' });
         });
         // If select beginner, it should send 4 notes, duration 2.0 secs
-        expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/4/2.0/piano/0", {"responseType": "blob"})
+        expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/4/2.0/piano/0/0", {"responseType": "blob"})
 
     })
 
@@ -64,15 +64,16 @@ describe('Does selection send request', () =>
             SetDuration={setDuration}
             SetDifficulty={setDifficulty}
             Instrument={instrument}
-            Familiar={familiar}/>);
+            Familiar={familiar}
             DailyChallenge = {daily_challenge}
+            />);
         act(()=>
         {
             wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Advanced', value: 'Advanced' });
         });
         
         // If select beginner, it should send 5 notes, duration 1.5 secs
-        expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/5/1.5/piano/0", {"responseType": "blob"})
+        expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/5/1.5/piano/0/0", {"responseType": "blob"})
 
     })
 
@@ -92,15 +93,16 @@ describe('Does selection send request', () =>
             SetDuration={setDuration}
             SetDifficulty={setDifficulty}
             Instrument={instrument}
-            Familiar={familiar}/>);
+            Familiar={familiar}
             DailyChallenge = {daily_challenge}
+            />);
         act(()=>
         {
             wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Expert', value: 'Expert' });
         });
         
         // If select beginner, it should send 6 notes, duration 1.0 secs
-        expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/6/1.0/piano/0", {"responseType": "blob"})
+        expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/6/1.0/piano/0/0", {"responseType": "blob"})
 
     })
 
@@ -119,20 +121,22 @@ describe('Does selection send request', () =>
         const  familiar = 1;
         const daily_challenge = 0;
 
+
         const wrapper = mount(<DifficultySelection 
             SetAudio={setAudio} 
             SetOrder={setOrder}
             SetDuration={setDuration}
             SetDifficulty={setDifficulty}
             Instrument={instrument}
-            Familiar={familiar}/>);
+            Familiar={familiar}
             DailyChallenge = {daily_challenge}
+            />);
         act(()=>
         {
             wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Beginner', value: 'Beginner' });
         });
         // If select beginner, it should send 4 notes, duration 2.0 secs
-        expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/4/2.0/piano/1", {"responseType": "blob"})
+        expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/4/2.0/piano/1/0", {"responseType": "blob"})
 
     })
 
@@ -152,15 +156,16 @@ describe('Does selection send request', () =>
             SetDuration={setDuration}
             SetDifficulty={setDifficulty}
             Instrument={instrument}
-            Familiar={familiar}/>);
+            Familiar={familiar}
             DailyChallenge = {daily_challenge}
+            />);
         act(()=>
         {
             wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Advanced', value: 'Advanced' });
         });
         
         // If select beginner, it should send 5 notes, duration 1.5 secs
-        expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/5/1.5/piano/1", {"responseType": "blob"})
+        expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/5/1.5/piano/1/0", {"responseType": "blob"})
 
     })
 
@@ -180,8 +185,9 @@ describe('Does selection send request', () =>
             SetDuration={setDuration}
             SetDifficulty={setDifficulty}
             Instrument={instrument}
-            Familiar={familiar}/>);
+            Familiar={familiar}
             DailyChallenge = {daily_challenge}
+            />);
 
         act(()=>
         {
@@ -189,7 +195,7 @@ describe('Does selection send request', () =>
         });
         
         // If select beginner, it should send 6 notes, duration 1.0 secs
-        expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/6/1.0/piano/1", {"responseType": "blob"})
+        expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/sounds/6/1.0/piano/1/0", {"responseType": "blob"})
 
     })
 })
