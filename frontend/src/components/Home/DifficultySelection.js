@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import difficulty_map from '../../config/DifficultyMap.json';
 import '../../styles/Home.css';
 
-export default function DifficultySelection({SetAudio, SetOrder, SetDuration, SetDifficulty, Instrument, Familiar})
+export default function DifficultySelection({SetAudio, SetOrder, SetDuration, SetDifficulty, Instrument, Familiar, DailyChallenge})
 {  
     // three states: difficulty, audio, order
     const [difficulty, setDifficulty] = useState(null);
@@ -62,7 +62,7 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration, Se
     // helper function to send request to receive audio
     const getSounds = async(num_notes, durations) => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/sounds/${num_notes}/${durations}/${Instrument}/${Familiar}`, {responseType:'blob'})
+            const response = await axios.get(`http://localhost:8000/api/sounds/${num_notes}/${durations}/${Instrument}/${Familiar}/${DailyChallenge}`, {responseType:'blob'})
             // since Link pass seems not able to pass audui file, create a Blob object and pass it
             // the actual audio file will be created in Game component
             const wav = new Blob([response.data], { type: 'audio/wav' })

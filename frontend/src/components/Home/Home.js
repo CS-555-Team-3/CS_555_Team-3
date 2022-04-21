@@ -20,6 +20,8 @@ export default function Home()
     const [leaderboard, setLeaderboard] = useState('off') 
     const [colorblind_mode, setColorblind_mode] = useState('off')
 
+    const [daily_challenge, setDaily_Challenge] = useState(0);
+
     // pass three setState to DifficultySelection component
     // this variable soley works for unit test
     const showSettings = false;
@@ -38,6 +40,7 @@ export default function Home()
                 SetInstrument={setInstrument}
                 Instrument={instrument}
                 Familiar={familiar}
+                DailyChallenge = {daily_challenge}
             ></DifficultySelection>
            
             <Settings
@@ -47,6 +50,7 @@ export default function Home()
                 set_Leaderboard={setLeaderboard}
                 SetInstrument={setInstrument}
                 SetFamiliar={setFamiliar}
+                SetDailyChallenge={setDaily_Challenge}
                 showSettings={showSettings}
     
             ></Settings>

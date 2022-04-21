@@ -2,12 +2,15 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from random import randrange
+import random
+from datetime import date
 from pydub import AudioSegment
 from django.http import FileResponse
 
 import pathlib
 # view acts as a controller in Django, we process program logic here
-
+# temp
+dailyChallenge = True
 # global order list to record the order of notes
 order = []
 p_keys = ['A',
@@ -42,7 +45,7 @@ familiar_tune_map = [
 
 
 @api_view(["GET"])
-def getSounds(request, notes, durations, instrument, familiar):
+def getSounds(request, notes, durations, instrument, familiar, dailyChallenge):
     # this endpoint receives two query params: notes and durations
     
         
@@ -84,6 +87,17 @@ def getSounds(request, notes, durations, instrument, familiar):
         diff = notes - 4   
         rand_num = randrange(0, 4)
         order = familiar_tune_map[diff][rand_num]
+
+    # ----------------------------------------   
+    # -------- Daily Challenge logic ---------
+    # ----------------------------------------
+        #Setting the initial seed to today's date
+    seed = str(date.today()) + str(notes)
+        #If Daily Challenge is enabled we make the seed today's date, else we set it to a random value.
+    if dailyChallenge:
+        random.seed(seed)
+    else:
+        random.seed(None)
 
     # baes on the number of notes to randomlly open the sound files stored in the sound_notes folder
     for i in range(notes):

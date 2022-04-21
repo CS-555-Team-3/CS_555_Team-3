@@ -11,6 +11,7 @@ const Settings = ( {set_Difficulty,
     set_Leaderboard,
     SetInstrument,
     SetFamiliar,
+    SetDailyChallenge,
     showSettings
     }  ) => {
     
@@ -99,6 +100,16 @@ const Settings = ( {set_Difficulty,
                     </Grid>
 
                     <Grid item className="settingsControl" xs={3}>
+                        <h4>Daily Challenge</h4>
+                        <Select  
+                            name='DailyChallenge' 
+                            defaultValue={yes_no_options[1]}
+                            options={yes_no_options}
+                            onChange={(value) => SetDailyChallenge(value.value)}
+                        />
+                    </Grid>
+
+                    <Grid item className="settingsControl" xs={3}>
                         <h4>Color-blind Mode</h4>
                         <Select 
                             name='color-blind' 
@@ -133,6 +144,7 @@ const Settings = ( {set_Difficulty,
                             options={on_off_options}  onChange={(value) => set_Leaderboard(value.value)}
                         />
                     </Grid>
+
                 </Grid>
             </div>
         }
