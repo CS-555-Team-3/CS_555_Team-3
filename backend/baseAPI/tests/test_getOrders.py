@@ -11,7 +11,7 @@ class GetOrdersTestCase(APITestCase):
     def setUp(self):
         self.API_URL = reverse("orders")
         self.SOUND_API_URL = reverse(
-            "sounds", kwargs={'notes': 4, 'durations': 1.5, 'instrument': 'piano','familiar':0 })
+            "sounds", kwargs={'notes': 4, 'durations': 1.5, 'instrument': 'piano','familiar':0, 'dailyChallenge':1 })
         self.client = APIClient()
 
     def test_response_200(self):
@@ -31,3 +31,10 @@ class GetOrdersTestCase(APITestCase):
         self.client.get(self.SOUND_API_URL)
         response = json.loads(self.client.get(self.API_URL).content)
         self.assertEqual(type(response[0]), str)
+    
+    def test_daily_challenge_order(self):
+        """ test if orders are same with Daily Challenge"""
+        self.client.get(self.SOUND_API_URL)
+        response1 = json.loads(self.client.get(self.API_URL).content)
+        response2 = json.loads(self.client.get(self.API_URL).content)
+        self.assertEqual(response1,response2)
