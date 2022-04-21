@@ -30,13 +30,13 @@ describe("Are boxes painted correctly after clicking resultButton", () => {
                     </div>
                 </div>
                 <div>
-                <ResultButton order={order}  >Submit Answer</ResultButton>
+                <ResultButton order={order}  >🦋 Submit Answer! 🐞</ResultButton>
                 </div>
 
             </div>
     
     );
-    userEvent.click(screen.getByText('Submit Answer'));
+    userEvent.click(screen.getByText('🦋 Submit Answer! 🐞'));
     expect(document.getElementById(boxes[0]).style.backgroundColor).toBe("");
     expect(document.getElementsByClassName("green").length).toBe(2);
     expect(document.getElementsByClassName("red").length).toBe(1);
