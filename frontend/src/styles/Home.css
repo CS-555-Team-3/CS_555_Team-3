@@ -1,20 +1,28 @@
+body {
+    background-image: linear-gradient(rgba(7, 7, 7, 0.527), rgba(7,7, 7, 0.5)), url(https://www.frostgroupdc.com/wp-content/uploads/2017/11/background_grass_crop-07.png);
+    background-size: 1300px 900px;
+}
+
 #homeContainer
 {
     width: 50%;
     height: 100%;
 }
 
+
 .setting-menu, .settings-page
 {
     margin-block: 5px;
     display:flex;
     flex-direction: column;
+    color: aliceblue;
 }
 
 h1, h3, a
 {
     display: flex;
     justify-content: center;
+    color: aliceblue;
 }
 
 h1, text, #homeContainer, .MuiButton-root.set-head

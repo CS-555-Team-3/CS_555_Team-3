@@ -28,7 +28,7 @@ export default function Home()
     // Link passes three props: tune(blob type), the order, duration
     return(
         <div id='homeContainer'>
-            <h1>Welcome to Soundle</h1>
+            <h1>🌴🌳 Welcome to Soundle 🌳🌴</h1>
             <h3>Please select a difficulty to play the game!</h3>
             <DifficultySelection 
                 SetAudio={setAudio} 
@@ -62,7 +62,7 @@ export default function Home()
                 tutorial:tutorial,
                 leaderboard:leaderboard,
                 colorblind_mode:colorblind_mode,
-            }}>Play Game</Link>
+            }}>🐼Play Game!🐵</Link>
         </div>
     );
 }

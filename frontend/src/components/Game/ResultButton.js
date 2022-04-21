@@ -110,7 +110,7 @@ export default function ResultButton(props) {
       {
         props.order && attempt !== props.order.length ?
         <Button className="button" variant="contained" color="success" onClick={compare}>
-          Submit Answer
+          🦋 Submit Answer! 🐞
         </Button> : <h3>Game Over!</h3>
       }
         {ifSubmit ? 

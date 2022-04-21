@@ -60,7 +60,7 @@ export default function RoundStartButton(props) {
         <div>
             <div>
                 <Button className="roundStart" onClick={onClick} disabled={clicked}>
-                    Round Start
+                    Start Round!
                 </Button>
                 {countdown && <h4 id='time'>{countdown_time} Second{countdown_time === 0 ? '' : 's'}</h4>}
                 {!countdown && <h4 id='time'>{time} Second{time === 0 ? '' : 's'}</h4>}

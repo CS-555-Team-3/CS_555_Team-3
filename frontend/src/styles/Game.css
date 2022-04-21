@@ -1,7 +1,14 @@
+body {
+  color: aliceblue;
+}
+
 #gameContainer {
   display: flex;
   flex-direction: column;
   margin-top: 5%;
+  background-color: #065b21;
+  background-image: linear-gradient(rgba(5, 5, 5, 0.527), rgba(5, 5, 5, 0.5)), url(https://www.frostgroupdc.com/wp-content/uploads/2017/11/background_grass_crop-07.png);
+  background-size: 1300px 1100px;
 }
 
 div.answerContainer {
@@ -72,7 +79,7 @@ div.answerContainer {
 
 button#tutorialExit.MuiButton-text:hover
 {
-  background-color: lightgray !important;
+  background-color: aliceblue !important;
 }
 
 .tutorialText {
@@ -99,7 +106,7 @@ button.playnote {
 
 .noteButton {
   position: relative;
-  background-color: #e1ebf5;
+  background-color: aliceblue;
 }
 
 .notes {
@@ -108,7 +115,7 @@ button.playnote {
 
 .placement .notes,
 .answerContainer .resultItem {
-  border: 2px solid grey;
+  border: 2px solid rgb(255, 248, 248);
   margin: 10px;
 }
 
