@@ -28,6 +28,7 @@ describe('Does selection send request', () =>
         const setDifficulty = jest.fn();
         const instrument = "piano";
         const  familiar = 0;
+        const daily_challenge = 0;
 
         const wrapper = mount(<DifficultySelection 
             SetAudio={setAudio} 
@@ -35,7 +36,9 @@ describe('Does selection send request', () =>
             SetDuration={setDuration}
             SetDifficulty={setDifficulty}
             Instrument={instrument}
-            Familiar={familiar}/>);
+            Familiar={familiar}
+            DailyChallenge = {daily_challenge}
+            />);
         act(()=>
         {
             wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Beginner', value: 'Beginner' });
@@ -53,6 +56,7 @@ describe('Does selection send request', () =>
         const setDifficulty = jest.fn();
         const instrument = "piano";
         const  familiar = 0;
+        const daily_challenge = 0;
 
         const wrapper = mount(<DifficultySelection 
             SetAudio={setAudio} 
@@ -61,6 +65,7 @@ describe('Does selection send request', () =>
             SetDifficulty={setDifficulty}
             Instrument={instrument}
             Familiar={familiar}/>);
+            DailyChallenge = {daily_challenge}
         act(()=>
         {
             wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Advanced', value: 'Advanced' });
@@ -79,6 +84,7 @@ describe('Does selection send request', () =>
         const setDifficulty = jest.fn();
         const  familiar = 0;
         const instrument = "piano"
+        const daily_challenge = 0;
 
         const wrapper = mount(<DifficultySelection 
             SetAudio={setAudio} 
@@ -87,7 +93,7 @@ describe('Does selection send request', () =>
             SetDifficulty={setDifficulty}
             Instrument={instrument}
             Familiar={familiar}/>);
-
+            DailyChallenge = {daily_challenge}
         act(()=>
         {
             wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Expert', value: 'Expert' });
@@ -111,6 +117,7 @@ describe('Does selection send request', () =>
         const setDifficulty = jest.fn();
         const instrument = "piano";
         const  familiar = 1;
+        const daily_challenge = 0;
 
         const wrapper = mount(<DifficultySelection 
             SetAudio={setAudio} 
@@ -119,6 +126,7 @@ describe('Does selection send request', () =>
             SetDifficulty={setDifficulty}
             Instrument={instrument}
             Familiar={familiar}/>);
+            DailyChallenge = {daily_challenge}
         act(()=>
         {
             wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Beginner', value: 'Beginner' });
@@ -136,6 +144,7 @@ describe('Does selection send request', () =>
         const setDifficulty = jest.fn();
         const instrument = "piano";
         const  familiar = 1;
+        const daily_challenge = 0;
 
         const wrapper = mount(<DifficultySelection 
             SetAudio={setAudio} 
@@ -144,6 +153,7 @@ describe('Does selection send request', () =>
             SetDifficulty={setDifficulty}
             Instrument={instrument}
             Familiar={familiar}/>);
+            DailyChallenge = {daily_challenge}
         act(()=>
         {
             wrapper.find('Select.Difficulty').instance().selectOption({ label: 'Advanced', value: 'Advanced' });
@@ -162,7 +172,8 @@ describe('Does selection send request', () =>
         const setDifficulty = jest.fn();
         const instrument = "piano";
         const  familiar = 1;
-
+        const daily_challenge = 0;
+        
         const wrapper = mount(<DifficultySelection 
             SetAudio={setAudio} 
             SetOrder={setOrder}
@@ -170,6 +181,7 @@ describe('Does selection send request', () =>
             SetDifficulty={setDifficulty}
             Instrument={instrument}
             Familiar={familiar}/>);
+            DailyChallenge = {daily_challenge}
 
         act(()=>
         {
