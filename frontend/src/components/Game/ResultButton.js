@@ -52,7 +52,7 @@ export default function ResultButton(props) {
     }
     
     if (boxes&&userChoice.length <  boxes.length) {
-      alert("Not enough answers, please finish them!");
+      alert("Please finish inputting your answer.");
       return;
     }
 

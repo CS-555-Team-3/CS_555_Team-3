@@ -91,7 +91,7 @@ const Settings = ( {set_Difficulty,
                             onChange={onChangeInstrument}/>
                     </Grid>
                     <Grid item className="settingsControl" xs={3}>
-                        <h4> Familiar</h4>
+                        <h4>Familiar</h4>
                         <Select 
                             className="Familiar"
                             defaultValue={yes_no_options[1]} 
@@ -110,7 +110,7 @@ const Settings = ( {set_Difficulty,
                     </Grid>
 
                     <Grid item className="settingsControl" xs={3}>
-                        <h4>Color-blind Mode</h4>
+                        <h4>Color Blind Mode</h4>
                         <Select 
                             name='color-blind' 
                             defaultValue={on_off_options[1]}
