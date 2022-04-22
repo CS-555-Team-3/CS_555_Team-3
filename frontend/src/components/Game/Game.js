@@ -10,6 +10,8 @@ import Hint from './Hint';
 import TutorialEntry from './TutorialEntry';
 import {Button} from '@mui/material';
 import BoxRow from './BoxRow';
+import FadeIn from 'react-fade-in';
+
 
 export default function Game(props)
 {
@@ -54,25 +56,6 @@ export default function Game(props)
         setClicked(true);
         setIfStart(true)
     }
-
-    let hide_timer = useRef();
-    let show_tut = showTutorial;
-    function UnrenderDragTut(){
-       if(show_tut === false){
-           return true;
-       }
-       setTimeout(() => {
-           document.getElementById('drag_tut').id='drag_tut_hide'
-           show_tut = false;
-           return true;
-       setTime(0);
-           hide_timer.current = setInterval(() => {
-               setTime((n) => {
-                   return n + 1;
-               });
-           }, 1000);}, 9000)
-       return true;
-   }
     
     const endGame = () => {
         var ptime = document.getElementById('time').innerHTML;
@@ -86,7 +69,7 @@ export default function Game(props)
             <div id="roundStartContainer">
                 <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes} setTime={setTime} time={time}></RoundStartButton>
             </div>
-
+            <FadeIn>
             <div id="gameGrid">
                 {order.map((val, index) =>
                 //this creates # of rows we want, right now it will be # of available notes
@@ -94,14 +77,12 @@ export default function Game(props)
                 )}
                 <BoxRow order={order}></BoxRow>
             </div>
-
+            </FadeIn>
             <div id="hint"><Hint hint={tune} /></div>
 
             <ResultButton order={order} difficulty={difficulty} time={time}></ResultButton>
 
-            {(showTutorial && order.length === 4) && 
-            (<img id='drag_tut' src={require('./img/drag_tutorial.gif')}></img>)}
-            {show_tut && UnrenderDragTut()}
+            
 
             {ifStart ? <>
                 <NoteButtonRow 
@@ -109,7 +90,8 @@ export default function Game(props)
                     duration={duration} 
                     clicked={clicked} 
                     instrument={instrument}
-                    color_blind={color_blind}>
+                    color_blind={color_blind}
+                    showTutorial={showTutorial}>
                 </NoteButtonRow> 
                 <UndoSelection order={order}>Undo Selection</UndoSelection>
             </>

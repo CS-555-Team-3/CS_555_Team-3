@@ -5,11 +5,13 @@ import {MusicNote} from '@mui/icons-material'
 
 export default function NoteButton(props)
 {
+    let order = props.order;
     let note = props.note;
     let noteName = props.children;
     let parentSelected = props.selected;
     let instrument = props.instrument
     let color_blind = props.color_blind; //how to add colorBlind as a prop?
+    let showTutorial = props.showTutorial;
 
     const [icn, setIcon] = useState("null");
     useEffect(()=>{ 
@@ -52,11 +54,11 @@ export default function NoteButton(props)
             setSelected(false);
         }, 2000)
     }
-
+    let showTut = (showTutorial && order.length===4 && note==="A")
     let variable = selected || parentSelected;
 
     return( 
-        <div draggable="true" id={note} onDragStart={(event) => drag(event)} className={`noteButton ${note} ${variable ? 'selected' : ''}`}>
+        <div draggable="true" id={note} onDragStart={(event) => drag(event)} className={`noteButton ${note} ${variable ? 'selected' : ''} ${showTut ? 'dragTut' : ''}`}>
             <SetNote note={note} order={props.order}>
                 {color_blind ? icn : noteName}
             </SetNote>

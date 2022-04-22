@@ -7,7 +7,8 @@ export default function NoteButtonRow(props) {
   const duration = props.duration;
   const clicked = props.clicked;
   const instrument = props.instrument;
-  const color_blind = props.color_blind
+  const color_blind = props.color_blind;
+  const showTutorial = props.showTutorial;
 
   const [aPlay, setAPlay] = useState(false);
   const [aFlatPlay, setAFlatPlay] = useState(false);
@@ -31,7 +32,7 @@ export default function NoteButtonRow(props) {
 
   pitchRange.pitchRange.forEach((item, index) => {
     note_buttons.push(<NoteButton key={index} order={order} note={item} 
-      selected={state_array[index]} instrument={instrument} color_blind={color_blind}></NoteButton>)
+      selected={state_array[index]} instrument={instrument} color_blind={color_blind} showTutorial={showTutorial}></NoteButton>)
   })
 
 
@@ -81,8 +82,8 @@ export default function NoteButtonRow(props) {
 
 
   return (
-    <div id="noteContainer">
+      <div id="noteContainer">
         {note_buttons}
-    </div>
+      </div>
 );
 }
