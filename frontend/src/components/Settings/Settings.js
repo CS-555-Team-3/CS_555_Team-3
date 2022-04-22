@@ -47,7 +47,7 @@ const Settings = ( {set_Difficulty,
 
     // instrument selection options
     const instrument_options = [
-        { value: 'piano', label: 'Pinao' },
+        { value: 'piano', label: 'Piano' },
         { value: 'guitar', label: 'Guitar' },
         { value: 'viola', label: 'Viola' },
         { value: 'oboe', label: 'Oboe' },
