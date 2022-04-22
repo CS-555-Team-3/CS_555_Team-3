@@ -32,7 +32,7 @@ export default function Home()
     return(
         <div id='homeContainer'>
             <h1>🌴🌳 Welcome to Soundle 🌳🌴</h1>
-            <h3>Please select a difficulty to play the game!</h3>
+            <h3>🌲 Select a difficulty to get started! 🌲</h3>
             <FadeIn>
             <DifficultySelection 
                 SetAudio={setAudio} 

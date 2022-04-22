@@ -8,7 +8,7 @@ export default function GameOver(props) {
     return (
         <div id="endGameContainer">
             <Link to="/">🐘 Play Again! 🦔</Link>
-            <h3>You total time is: {time}</h3>
+            <h3>Your total time was: {time}</h3>
             <h3>Your top 5 scores are: {score}</h3>
             <PrintScores />
         </div>
