@@ -1,3 +1,4 @@
+import FadeIn from 'react-fade-in';
 export default function BoxRow(props) {
     const disabled = props.disabled;
 
@@ -23,7 +24,8 @@ export default function BoxRow(props) {
     }
 
     return (            
-    <div className="answerContainer">
+    
+    <FadeIn className="answerContainer">
         <div className='placement'>{answer_boxes}</div>
-    </div>);
+    </FadeIn>);
 }

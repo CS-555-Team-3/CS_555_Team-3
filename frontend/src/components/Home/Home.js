@@ -3,6 +3,7 @@ import DifficultySelection from './DifficultySelection'
 import React, { useState, useEffect } from 'react';
 import Settings from '../Settings/Settings';
 import '../../styles/Home.css';
+import FadeIn from 'react-fade-in';
 
 export default function Home()
 {  
@@ -32,6 +33,7 @@ export default function Home()
         <div id='homeContainer'>
             <h1>🌴🌳 Welcome to Soundle 🌳🌴</h1>
             <h3>Please select a difficulty to play the game!</h3>
+            <FadeIn>
             <DifficultySelection 
                 SetAudio={setAudio} 
                 SetOrder={setOrder}
@@ -67,6 +69,8 @@ export default function Home()
                 leaderboard:leaderboard,
                 colorblind_mode:colorblind_mode,
             }}>🐼Play Game!🐵</Link>
+            </FadeIn>
         </div>
+        
     );
 }
