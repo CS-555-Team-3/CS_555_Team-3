@@ -25,8 +25,9 @@ describe('Does click play tune and activate highlight', () =>
             .spyOn(window.HTMLMediaElement.prototype, 'play')
 
         const onClick = jest.fn();
+        const order = ["a","b","c","d"]
         render(
-            <RoundStartButton value={audio} onClick={onClick}></RoundStartButton>
+            <RoundStartButton value={audio} onClick={onClick} order={order}></RoundStartButton>
         );
         let button = document.getElementsByClassName('roundStart');
         act(()=>{
@@ -45,12 +46,13 @@ describe('Does click play tune and activate highlight', () =>
     {
         const audio = new Audio('/sound_notes/A.wav');
         const onClick = jest.fn();
+        const order = ["a","b","c","d"]
         const wrapper = mount(<RoundStartButton
-            value={audio} onClick={onClick}  />)
+            value={audio} onClick={onClick} order={order} />)
 
         
         render(
-            <RoundStartButton value={audio} onClick={onClick}></RoundStartButton>
+            <RoundStartButton value={audio} onClick={onClick} order={order}></RoundStartButton>
         );
         let button = document.getElementsByClassName('roundStart');
         act(()=>{
