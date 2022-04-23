@@ -67,7 +67,7 @@ export default function Game(props)
         <div id="gameContainer">
             {showTutorial && <TutorialEntry></TutorialEntry> }
             <div id="roundStartContainer">
-                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes} setTime={setTime} time={time}></RoundStartButton>
+                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes} setTime={setTime} time={time} order={order}></RoundStartButton>
             </div>
             <FadeIn>
             <div id="gameGrid">
