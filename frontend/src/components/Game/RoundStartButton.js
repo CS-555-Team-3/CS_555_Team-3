@@ -10,7 +10,6 @@ export default function RoundStartButton(props) {
     const setTotalTime = props.setTotalTime
     let timer = useRef();
     let timer2 = useRef();
-    let timer3 = useRef();
     const [countdown, setCountDown] = useState(true);
     const [clicked, setClicked] = useState(false);
     let roundTime=props.roundTime
@@ -71,10 +70,6 @@ export default function RoundStartButton(props) {
     return (
         <div>
             <div>
-                {/* {countdown && <h4 id='totalTime'>{countdown_time} Second{countdown_time === 0 ? '' : 's'}</h4>}
-                {!countdown && <h4 id='totalTime'> {totalTime} Second{totalTime === 0 ? '' : 's'}</h4>}
-                <h4 id='time'>Round Time: {time} Second{time === 0 ? '' : 's'}</h4>
-                 */}
                 <Button className="roundStart" onClick={onClick} disabled={clicked}>
                     Start Round!
                 </Button>
