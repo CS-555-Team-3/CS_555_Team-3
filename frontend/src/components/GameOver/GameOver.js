@@ -1,16 +1,31 @@
-import PrintScores from "../Game/PrintScores"
-import { Link, useParams } from 'react-router-dom';
-import '../../styles/GameOver.css';
+import PrintScores from "../Game/PrintScores";
+import { Link, useParams } from "react-router-dom";
+import {
+  exportComponentAsJPEG
+} from "react-component-export-image";
+import React, { useRef } from 'react';
+import "../../styles/GameOver.css";
 
 export default function GameOver(props) {
-    let {time} = useParams()
-    let {score} = useParams()
-    return (
-        <div id="endGameContainer">
+    let { totalTime } = useParams();
+    let { score } = useParams();
+  
+    const ComponentToPrint = React.forwardRef((props, ref) => (
+      <div ref={ref}>
             <Link to="/">🐘 Play Again! 🦔</Link>
-            <h3>Your total time was: {time}</h3>
+            <h3>Your total time was: {totalTime}</h3>
             <h3>Your top 5 scores are: {score}</h3>
             <PrintScores />
-        </div>
+      </div>
+    ));
+    const componentRef = useRef();
+  
+    return (
+      <div id="endGameContainer">
+        <ComponentToPrint ref={componentRef} />
+        <button onClick={() => exportComponentAsJPEG(componentRef)}>
+          Export Scores
+        </button>
+      </div>
     );
-}
+  }
