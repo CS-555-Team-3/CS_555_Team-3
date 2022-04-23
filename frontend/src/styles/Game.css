@@ -61,18 +61,6 @@ div.answerContainer {
   justify-content: center;
 }
 
-#timeAlert {
-  color: red;
-  font-weight: bolder;
-  position: fixed;
-  margin-top: auto;
-}
-
-#time {
-  position: fixed;
-  margin-top: auto;
-}
-
 #tutorialOverlayBG {
   position: fixed;
   display: block;
