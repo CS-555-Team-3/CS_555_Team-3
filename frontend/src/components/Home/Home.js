@@ -17,7 +17,7 @@ export default function Home()
     const [difficulty, setDifficulty] = useState("beginner");
     const [timer, setTimer] = useState('off') 
     const [tutorial, setTutorial] = useState('off')
-    const [leaderboard, setLeaderboard] = useState('off') 
+    const [leaderboard, setLeaderboard] = useState('on') 
     const [colorblind_mode, setColorblind_mode] = useState('off')
 
     const [daily_challenge, setDaily_Challenge] = useState(0);
