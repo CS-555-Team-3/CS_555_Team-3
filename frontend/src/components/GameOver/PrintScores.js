@@ -25,21 +25,23 @@ export default function PrintScores(val) {
     
     //Gets top 5 scores from local storage
     const printScores = scores.sort((a,b) => Number(b.text) - Number(a.text)).slice(0,5).map((score) => (
-        <div key={score.id}> 
-            <div className="scoreGroup">
-                Score: {score.text} Difficulty: {score.difficulty} Time: {score.time}
-                <CopyToClipboard text={score.copytext}>
-                    <Button className="copyButton" variant="contained">Copy score</Button>
-                </CopyToClipboard>
-                <CopyToClipboard text={score.emojis}>
-                    <Button className="copyButton" variant="contained">Copy emoji</Button>
-                </CopyToClipboard>
-            </div>      
+        <div className="scoreGroup" key={score.id}> 
+            Score: {score.text} Difficulty: {score.difficulty} Time: {score.time}
+            <br/>
+            <div>
+            <CopyToClipboard text={score.copytext}>
+                <Button className="copyButton" variant="contained">Copy score</Button>
+            </CopyToClipboard>
+            <CopyToClipboard text={score.emojis}>
+                <Button className="copyButton" variant="contained">Copy emoji</Button>
+            </CopyToClipboard>
+            </div>
+            <br/>
         </div>
     ))
 
     return (
-        <div className="Score">
+        <div className="score">
             <ul>{printScores}</ul>
         </div>
     );

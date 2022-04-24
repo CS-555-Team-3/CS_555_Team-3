@@ -9,8 +9,8 @@ export default function NoteButton(props)
     let note = props.note;
     let noteName = props.children;
     let parentSelected = props.selected;
-    let instrument = props.instrument
-    let color_blind = props.color_blind; //how to add colorBlind as a prop?
+    let instrument = props.instrument;
+    let color_blind = props.color_blind;
     let showTutorial = props.showTutorial;
 
     const [icn, setIcon] = useState("null");
