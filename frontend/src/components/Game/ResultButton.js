@@ -51,9 +51,7 @@ export default function ResultButton(props) {
 
     for (let i = 0; i < order.length; i++) {
       let value = document.getElementById(boxes[i]).innerHTML;
-      if(value.length>0){
-        userChoice.push(value);
-      }
+      if(value.length>0) userChoice.push(value);
     }
     
     if (boxes&&userChoice.length <  boxes.length) {
@@ -68,25 +66,20 @@ export default function ResultButton(props) {
 
     for (let i = 0; i < order.length; i++) {
       if (order[i] !== userChoice[i]) {
-        if (order.indexOf(userChoice[i]) < 0) {
-            answerOrder.push("red");
-          } else {
-            answerOrder.push("yellow");
-          }
+        if (order.indexOf(userChoice[i]) < 0) answerOrder.push("red");
+        else answerOrder.push("yellow");
       } else {
         answerOrder.push("green");
         Score++;
       }
     }
     for (let i = 0; i <answerOrder.length; i++) {
-      if (answerOrder[i] === "red") {
-        emojifeed+="🟥";
-      }
-      else if (answerOrder[i] ==="yellow") {
-        emojifeed+="🟨";
-      }
-      else if (answerOrder[i] ==="green") {
-        emojifeed+="🟩";
+      switch(answerOrder[i])
+      {
+        case("red"): emojifeed+="🟥"; break;
+        case("yellow"): emojifeed+="🟨"; break;
+        case("green"): emojifeed+="🟩"; break;
+        default: console.log('not an option'); break;
       }
     }
     emojifeed+="\n"
@@ -115,7 +108,6 @@ export default function ResultButton(props) {
     });
     restart();
     setTime(0);
-    //resultRows[attempt].setAttribute('answer', answerOrder);
 
   };
 
@@ -138,14 +130,12 @@ export default function ResultButton(props) {
           🦋 Submit Answer! 🐞
         </Button> : <h3>Game Over!</h3>
       }
-        {ifSubmit ? 
-        <Button id="restart" className="button" onClick={restart()}>
-        Restart
-        </Button> : <></>}
+        {ifSubmit && <Button id="restart" className="button" onClick={restart()}>
+            Restart
+        </Button>}
         <div>
           <h5 id="attempt">Attempt: {attempt+1}</h5>
-          <h5>My score: </h5>
-          <h5 id="score">{score}</h5>
+          <h5 id="score">My score: {score}</h5>
         </div>
     </div>
   );

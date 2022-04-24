@@ -35,8 +35,6 @@ export default function NoteButtonRow(props) {
       selected={state_array[index]} instrument={instrument} color_blind={color_blind} showTutorial={showTutorial}></NoteButton>)
   })
 
-
-
   const noteSwitch = (note, bool) =>
     {
       switch(note)
@@ -85,5 +83,5 @@ export default function NoteButtonRow(props) {
       <div id="noteContainer">
         {note_buttons}
       </div>
-);
+  );
 }

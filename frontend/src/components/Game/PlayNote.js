@@ -5,7 +5,6 @@ export default function PlayNote(props)
 {
     const noteName = props.note;
     const [selected, setSelected] = useState(false);
-    function isPlaying(audelem) { return !audelem.paused || !audelem.ended; }
 
     const handleClick = async (e) =>
     {

@@ -31,6 +31,13 @@ ul
 .scoreInfo
 {
     display: flex;
+    min-width: 175px;
+    flex-direction: column;
+}
+
+.scoreInfo h4
+{
+    margin-block: 5px;
 }
 
 .score,
@@ -39,4 +46,10 @@ ul
 {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.copyGroup .MuiButton-root
+{
+    max-height: 50px;
 }

@@ -3,21 +3,19 @@ import { Button } from '@mui/material';
 
 export default function RoundStartButton(props) {
     
-    const time = props.time
+    const time = props.time;
     const [countdown_time , setCountDownTime] = useState(0);
-    const setTime = props.setTime
-    const totalTime = props.totalTime
-    const setTotalTime = props.setTotalTime
+    const setTime = props.setTime;
+    const totalTime = props.totalTime;
+    const setTotalTime = props.setTotalTime;
     let timer = useRef();
     let timer2 = useRef();
     const [countdown, setCountDown] = useState(true);
     const [clicked, setClicked] = useState(false);
-    let roundTime=props.roundTime
+    let roundTime=props.roundTime;
 
     useEffect(() => { 
-        if(countdown_time <0){
-            setCountDown(false);        
-        }
+        if(countdown_time <0) setCountDown(false);        
         }, 
         [countdown_time]
     );
@@ -46,13 +44,11 @@ export default function RoundStartButton(props) {
             props.onClick();
         try {
             setClicked(true);
-            //const delay = setTimeout(tune.play(), 5000);
             tune.play();
         } catch (e) {
             console.log('play audio error: ', e);
         }
         // start count time
-        //TODO wait until sound is done playing for count time to begin
         setTotalTime(-delaytime+3);
         setTime(-delaytime+3);
         timer.current = setInterval(() => {
@@ -69,17 +65,15 @@ export default function RoundStartButton(props) {
 
     return (
         <div>
-            <div>
-                <Button className="roundStart" onClick={onClick} disabled={clicked}>
-                    Start Round!
-                </Button>
-                <p id='timeAlert'>{time >= (roundTime * 0.75) && time <= roundTime ? `Game will end in ${roundTime-time} seconds if you haven't submitted answer` : ''}</p>
-                {countdown && <h4 id='totalTime'>{countdown_time} Second{countdown_time === 0 ? '' : 's'}</h4>}
-                {!countdown && <h4 id='totalTime'>{totalTime} Second{totalTime === 0 ? '' : 's'}</h4>}
-                {!countdown && <h4 id='time'>Round Time: {time} Second{time === 0 ? '' : 's'}</h4>}
-                
-                <br></br>
-            </div>
+            <Button className="roundStart" onClick={onClick} disabled={clicked}>
+                Start Round!
+            </Button>
+            <p id='timeAlert'>{time >= (roundTime * 0.75) && time <= roundTime ? `Game will end in ${roundTime-time} seconds if you haven't submitted answer` : ''}</p>
+            {countdown && <h4 id='totalTime'>{countdown_time} Second{countdown_time === 0 ? '' : 's'}</h4>}
+            {!countdown && <h4 id='totalTime'>{totalTime} Second{totalTime === 0 ? '' : 's'}</h4>}
+            {!countdown && <h4 id='time'>Round Time: {time} Second{time === 0 ? '' : 's'}</h4>}
+            
+            <br></br>
         </div>
     );
 }

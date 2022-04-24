@@ -48,7 +48,6 @@ export default function Game(props)
     // States for the settings 
     const [showTutorial, setShowTutorial] = useState((data.state.tutorial === 'on'));
     const [showTimer, setShowTimer] = useState((data.state.timer === 'on'));
-    const [Leaderboard, setLeaderboard] = useState((data.state.leaderboard === 'on'));
     const [time, setTime] = useState(0);
     const [totalTime, setTotalTime]=useState(0);
     const color_blind = data.state.colorblind_mode;
@@ -92,9 +91,7 @@ export default function Game(props)
 
             <ResultButton order={order} difficulty={difficulty} time={time} setTime={setTime} ></ResultButton>
 
-            
-
-            {ifStart ? <>
+            {ifStart && <>
                 <NoteButtonRow 
                     order={order} 
                     duration={duration} 
@@ -104,10 +101,9 @@ export default function Game(props)
                     showTutorial={showTutorial}>
                 </NoteButtonRow> 
                 <UndoSelection order={order}>Undo Selection</UndoSelection>
-            </>
-            : <></>}
+            </>}
             <div id="end">
-                <Button className="endButton" onClick={endGame}> End game</Button>
+                <Button className="endButton" onClick={endGame} variant="contained"> End game</Button>
             </div>
         </div>
     );

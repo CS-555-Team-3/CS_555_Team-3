@@ -5,9 +5,6 @@ export default function SetNote(props)
     const buttonText = props.children;
     const boxes = ["first","second","third","fourth","fifth", "sixth"];
 
-    //input check for noteName being one of our accepted names
-    //test - name that doesn't work fails
-
     const handleClick = (e) =>
     {
         for(let i=0; i<order.length; i++)  

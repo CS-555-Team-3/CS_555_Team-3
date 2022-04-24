@@ -1,5 +1,6 @@
 import Select from 'react-select'
 import axios from 'axios';
+import { colors } from '../../styles/styleUtil';
 import { Grid } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import difficulty_map from '../../config/DifficultyMap.json';
@@ -28,14 +29,6 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration, Se
             getOrder()
         }
     }, [audio]);
-
-    // for debugging: once the system receives the order, print it out in console
-    useEffect(() => {
-        if (order) {
-            console.log(order)
-            
-        }
-    }, [order]);
 
     // if user select instrument first without selecting difficulty, it won't send request
     useEffect(() => {
@@ -97,7 +90,7 @@ export default function DifficultySelection({SetAudio, SetOrder, SetDuration, Se
     return(
         <Grid container className="difficulty">
             <Grid item xs={4}>
-                <Select className="Difficulty" options={difficulty_options} onChange={onChangeDiff}/>          
+                <Select className="Difficulty" styles={colors} options={difficulty_options} onChange={onChangeDiff}/>          
             </Grid>
         </Grid>
     );

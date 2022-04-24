@@ -5,8 +5,6 @@ export default function UndoSelection(props)
     const buttonText = props.children;
     const order = props.order;
     const boxes = ["first","second","third","fourth","fifth", "sixth"];
-    //input check for noteName being one of our accepted names
-    //test - name that doesn't work fails
 
     const handleClick = (e) =>
     {
@@ -23,7 +21,7 @@ export default function UndoSelection(props)
     }
 
     return (
-        <Button onClick={handleClick}>{buttonText}</Button>
+        <Button onClick={handleClick} variant="contained">{buttonText}</Button>
     );
 
 

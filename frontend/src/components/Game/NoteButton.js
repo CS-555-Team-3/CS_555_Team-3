@@ -62,9 +62,7 @@ export default function NoteButton(props)
             <SetNote note={note} order={props.order}>
                 {color_blind ? icn : noteName}
             </SetNote>
-            <button className={`playnote ${noteName}`} onClick={(e)=>handleClick(e)}><MusicNote></MusicNote></button>
-            <PlayNote note={note}>
-            </PlayNote>
+            <button className={`playnote ${note}`} onClick={(e)=>handleClick(e)}><MusicNote></MusicNote></button>
         </div>
     );
 }

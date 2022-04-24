@@ -5,10 +5,11 @@ body {
 
 #homeContainer
 {
+    margin-block: 10% !important;
     width: 50%;
+    margin: auto;
     height: 100%;
 }
-
 
 .setting-menu, .settings-page
 {
@@ -25,7 +26,7 @@ h1, h3, a
     color: aliceblue;
 }
 
-h1, text, #homeContainer, .MuiButton-root.set-head
+h1, text, .MuiButton-root.set-head
 {
     margin: auto !important;
 }

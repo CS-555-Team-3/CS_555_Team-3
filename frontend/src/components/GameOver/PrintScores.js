@@ -10,7 +10,7 @@ export default function PrintScores(val) {
     useEffect(() => {
         const json = localStorage.getItem("scores");
         const savedScores = JSON.parse(json);
-        if (savedScores) { setScores(savedScores); }
+        if (savedScores) setScores(savedScores);
         }, 
         []
     );
@@ -26,15 +26,19 @@ export default function PrintScores(val) {
     //Gets top 5 scores from local storage
     const printScores = scores.sort((a,b) => Number(b.text) - Number(a.text)).slice(0,5).map((score) => (
         <div className="scoreGroup" key={score.id}> 
-            Score: {score.text} Difficulty: {score.difficulty} Time: {score.time}
             <br/>
-            <div>
-            <CopyToClipboard text={score.copytext}>
-                <Button className="copyButton" variant="contained">Copy score</Button>
-            </CopyToClipboard>
-            <CopyToClipboard text={score.emojis}>
-                <Button className="copyButton" variant="contained">Copy emoji</Button>
-            </CopyToClipboard>
+            <div className="copyGroup">
+                <div className="scoreInfo">
+                    <h4>Score: {score.text}</h4> 
+                    <h4>Difficulty: {score.difficulty}</h4> 
+                    <h4>Time: {score.time}</h4>
+                </div>
+                <CopyToClipboard text={score.copytext}>
+                    <Button className="copyButton" variant="contained">Copy score</Button>
+                </CopyToClipboard>
+                <CopyToClipboard text={score.emojis}>
+                    <Button className="copyButton" variant="contained">Copy emoji</Button>
+                </CopyToClipboard>
             </div>
             <br/>
         </div>

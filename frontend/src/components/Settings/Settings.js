@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Select from 'react-select';
 import {Grid, Button} from '@mui/material';
+import { colors } from '../../styles/styleUtil';
 import '../../styles/Home.css';
 
 const Settings = ( {set_Difficulty,
@@ -15,13 +16,11 @@ const Settings = ( {set_Difficulty,
     showSettings
     }  ) => {
     
-// The following code, allows the user to show/hide the settings menu 
+//show/hide the settings menu 
     const [showMenu, setShowMenu] = useState(false)
-    function openMenu() {
-        setShowMenu(true)
-    }
-    function closeMenu() {
-        setShowMenu(false)
+    function toggleMenu() {
+        let menuVal = showMenu;
+        setShowMenu(!menuVal);
     }
 
 // States of all the settings
@@ -64,27 +63,14 @@ const Settings = ( {set_Difficulty,
 
     return (
      <div className='settings-page'>
-         {!showMenu &&
-            <Button id="set-button" className='set-head'  onClick={openMenu}>Settings</Button>
-            //todo - use only one Button calling a single onClick function
-            }
+        <Button id="set-button" variant="contained" className='set-head'  onClick={toggleMenu}>Settings</Button>
          {(showMenu || showSettings) && 
             <div className='setting-menu'>
-                <Button id="test" className='set-head'  onClick={closeMenu}>Settings</Button>
-                <Grid container spacing={2}>
-                    {/* deciding whether or not this belongs in the settings panel or not
-                    <Grid item className="settingsControl" xs={3}>
-                        <h4>Select Difficulty</h4>
-                        <Select 
-                            name='difficulty' 
-                            defaultValue={diff_options[0]}
-                            options={diff_options}  onChange={(value) =>set_Difficulty(value.value)} 
-                        />
-                    </Grid> */}
-                    
+                <Grid container spacing={2}>                   
                     <Grid item className="settingsControl" xs={3}>
                         <h4>Instrument</h4>
                         <Select 
+                            styles={colors}
                             className="Instrument"
                             defaultValue={instrument_options[0]} 
                             options={instrument_options} 
@@ -93,6 +79,7 @@ const Settings = ( {set_Difficulty,
                     <Grid item className="settingsControl" xs={3}>
                         <h4>Familiar</h4>
                         <Select 
+                            styles={colors}
                             className="Familiar"
                             defaultValue={yes_no_options[1]} 
                             options={yes_no_options} 
@@ -101,7 +88,8 @@ const Settings = ( {set_Difficulty,
 
                     <Grid item className="settingsControl" xs={3}>
                         <h4>Daily Challenge</h4>
-                        <Select  
+                        <Select 
+                            styles={colors}
                             name='DailyChallenge' 
                             defaultValue={yes_no_options[1]}
                             options={yes_no_options}
@@ -112,6 +100,7 @@ const Settings = ( {set_Difficulty,
                     <Grid item className="settingsControl" xs={3}>
                         <h4>Color Blind Mode</h4>
                         <Select 
+                            styles={colors}
                             name='color-blind' 
                             defaultValue={on_off_options[1]}
                             options={on_off_options}  onChange={(value) =>set_Colorblind_mode(value.value)} 
@@ -121,6 +110,7 @@ const Settings = ( {set_Difficulty,
                     <Grid item className="settingsControl" xs={3}>
                         <h4>Timer</h4>
                         <Select  
+                            styles={colors}
                             name='timer' 
                             defaultValue={on_off_options[1]}
                             options={on_off_options}  onChange={(value) =>set_Timer(value.value)} 
@@ -130,6 +120,7 @@ const Settings = ( {set_Difficulty,
                     <Grid item className="settingsControl" xs={3}>
                         <h4>Tutorial</h4>
                         <Select 
+                            styles={colors}
                             name='tutorial' 
                             defaultValue={on_off_options[1]}
                             options={on_off_options}  onChange={(value) =>set_Tutorial(value.value)} 
@@ -139,6 +130,7 @@ const Settings = ( {set_Difficulty,
                     <Grid item className="settingsControl" xs={3}>
                         <h4>Leaderboard</h4>
                         <Select  
+                            styles={colors}
                             name='leaderboard' 
                             defaultValue={on_off_options[1]}
                             options={on_off_options}  onChange={(value) => set_Leaderboard(value.value)}
