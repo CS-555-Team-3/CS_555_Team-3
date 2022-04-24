@@ -2,7 +2,6 @@ import { Button } from "@mui/material";
 
 export default function UndoSelection(props) 
 {
-    const buttonText = props.children;
     const order = props.order;
     const boxes = ["first","second","third","fourth","fifth", "sixth"];
 
@@ -21,7 +20,7 @@ export default function UndoSelection(props)
     }
 
     return (
-        <Button onClick={handleClick} variant="contained">{buttonText}</Button>
+        <Button className="undo" onClick={handleClick} variant="contained">Undo Selection</Button>
     );
 
 

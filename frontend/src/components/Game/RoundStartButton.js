@@ -60,20 +60,18 @@ export default function RoundStartButton(props) {
             });
         }, 1000);}, 3000)
 
-
     };
 
     return (
-        <div>
-            <Button className="roundStart" onClick={onClick} disabled={clicked}>
+        <>
+            {!clicked ? <Button className="roundStart" onClick={onClick} variant="contained" disabled={clicked}>
                 Start Round!
-            </Button>
-            <p id='timeAlert'>{time >= (roundTime * 0.75) && time <= roundTime ? `Game will end in ${roundTime-time} seconds if you haven't submitted answer` : ''}</p>
-            {countdown && <h4 id='totalTime'>{countdown_time} Second{countdown_time === 0 ? '' : 's'}</h4>}
-            {!countdown && <h4 id='totalTime'>{totalTime} Second{totalTime === 0 ? '' : 's'}</h4>}
-            {!countdown && <h4 id='time'>Round Time: {time} Second{time === 0 ? '' : 's'}</h4>}
-            
-            <br></br>
-        </div>
+            </Button> :
+            <>
+                {time >= (roundTime * 0.75) && time <= roundTime ? <h4 id='timeAlert'>`Game ends in {roundTime-time} seconds if you do not submit an answer!`</h4> : <></>}
+                <h4 id='totalTime'>{countdown ? `Get Ready! ${countdown_time} Second${countdown_time === 0 ? '' : 's'}` : `Round Time: ${totalTime} Second${totalTime === 0 ? '' : 's'}`}</h4>            
+            </>
+            }
+        </>
     );
 }

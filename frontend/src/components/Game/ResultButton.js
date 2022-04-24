@@ -133,7 +133,7 @@ export default function ResultButton(props) {
         {ifSubmit && <Button id="restart" className="button" onClick={restart()}>
             Restart
         </Button>}
-        <div>
+        <div id="resultinfo">
           <h5 id="attempt">Attempt: {attempt+1}</h5>
           <h5 id="score">My score: {score}</h5>
         </div>

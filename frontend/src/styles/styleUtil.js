@@ -5,7 +5,7 @@ const colors = {
         ...styles,
         color: "black"
       };
-    },
+    }
   };
 
 export {

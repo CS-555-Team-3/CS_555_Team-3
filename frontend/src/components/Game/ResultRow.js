@@ -19,7 +19,7 @@ export default function ResultRow(props)
         let ret = [];
         for(let i = 0; i < nBoxes; i++)
         {
-            ret.push(<div key={index+"resultItem"} className={`resultItem ${index}`}></div>)
+            ret.push(<div key={`${index}_${i}_resultItem`} className={`resultItem ${index}`}></div>)
         }
         return ret;
     }

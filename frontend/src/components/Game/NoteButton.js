@@ -1,4 +1,3 @@
-import PlayNote from "./PlayNote";
 import SetNote from "./SetNote";
 import {useState,useEffect} from "react";
 import {MusicNote} from '@mui/icons-material'
@@ -7,7 +6,6 @@ export default function NoteButton(props)
 {
     let order = props.order;
     let note = props.note;
-    let noteName = props.children;
     let parentSelected = props.selected;
     let instrument = props.instrument;
     let color_blind = props.color_blind;
@@ -59,9 +57,8 @@ export default function NoteButton(props)
 
     return( 
         <div draggable="true" id={note} onDragStart={(event) => drag(event)} className={`noteButton ${note} ${variable ? 'selected' : ''} ${showTut ? 'dragTut' : ''}`}>
-            <SetNote note={note} order={props.order}>
-                {color_blind ? icn : noteName}
-            </SetNote>
+            <SetNote note={note} order={props.order}>  </SetNote>
+            {color_blind ? icn : ''}
             <button className={`playnote ${note}`} onClick={(e)=>handleClick(e)}><MusicNote></MusicNote></button>
         </div>
     );

@@ -1,8 +1,10 @@
+import { Button } from "@mui/material";
+import { colors } from "../../styles/styleUtil";
+
 export default function SetNote(props) 
 {
     const noteName = props.note;
     const order = props.order;
-    const buttonText = props.children;
     const boxes = ["first","second","third","fourth","fifth", "sixth"];
 
     const handleClick = (e) =>
@@ -18,6 +20,6 @@ export default function SetNote(props)
     }
 
     return (
-        <button className="setNote" onClick={handleClick}>{buttonText}</button>
+        <Button className="setNote" onClick={handleClick} styles={colors}>Select</Button>
     );
 }

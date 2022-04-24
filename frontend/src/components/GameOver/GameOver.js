@@ -14,8 +14,8 @@ export default function GameOver(props) {
     const ComponentToPrint = React.forwardRef((props, ref) => (
       <Grid container xs={8} direction="column" spacing={2} id="printedComponent" ref={ref}>
             <Button href="/" id="playAgain" variant="contained" color="secondary">🐘 Play Again! 🦔</Button>
-            <h3>Total time: {totalTime}</h3>
-            <h3>Score: {score}</h3>
+            <h3>{totalTime}</h3>
+            <h3>{score}</h3>
             <h3>Top 5 scores: </h3>
             <PrintScores />
       </Grid>
