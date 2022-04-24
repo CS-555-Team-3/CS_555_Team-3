@@ -132,7 +132,7 @@ const Settings = ( {set_Difficulty,
                         <Select  
                             styles={colors}
                             name='leaderboard' 
-                            defaultValue={on_off_options[1]}
+                            defaultValue={on_off_options[0]}
                             options={on_off_options}  onChange={(value) => set_Leaderboard(value.value)}
                         />
                     </Grid>

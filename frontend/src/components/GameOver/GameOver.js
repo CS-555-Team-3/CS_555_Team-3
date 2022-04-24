@@ -10,6 +10,8 @@ import { Grid, Button } from "@mui/material";
 export default function GameOver(props) {
     let { totalTime } = useParams();
     let { score } = useParams();
+    let {showleaderboard} = useParams();
+
   
     const ComponentToPrint = React.forwardRef((props, ref) => (
       <Grid container xs={8} direction="column" spacing={2} id="printedComponent" ref={ref}>
@@ -17,8 +19,9 @@ export default function GameOver(props) {
             <h3>{totalTime}</h3>
             <h3>{score}</h3>
             <h3>Top 5 scores: </h3>
-            <PrintScores />
+            {showleaderboard && <PrintScores />}
       </Grid>
+
     ));
     const componentRef = useRef();
   
