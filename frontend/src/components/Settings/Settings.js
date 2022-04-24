@@ -7,7 +7,6 @@ import '../../styles/Home.css';
 
 const Settings = ( {set_Difficulty,
     set_Colorblind_mode,
-    set_Timer,
     set_Tutorial,
     set_Leaderboard,
     SetInstrument,
@@ -104,16 +103,6 @@ const Settings = ( {set_Difficulty,
                             name='color-blind' 
                             defaultValue={on_off_options[1]}
                             options={on_off_options}  onChange={(value) =>set_Colorblind_mode(value.value)} 
-                        />
-                    </Grid>
-
-                    <Grid item className="settingsControl" xs={3}>
-                        <h4>Timer</h4>
-                        <Select  
-                            styles={colors}
-                            name='timer' 
-                            defaultValue={on_off_options[1]}
-                            options={on_off_options}  onChange={(value) =>set_Timer(value.value)} 
                         />
                     </Grid>
                     

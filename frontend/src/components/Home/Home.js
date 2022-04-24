@@ -16,7 +16,6 @@ export default function Home()
     const [familiar, setFamiliar] = useState(0);
 
     const [difficulty, setDifficulty] = useState("beginner");
-    const [timer, setTimer] = useState('off') 
     const [tutorial, setTutorial] = useState('off')
     const [leaderboard, setLeaderboard] = useState('on') 
     const [colorblind_mode, setColorblind_mode] = useState('off')
@@ -46,7 +45,6 @@ export default function Home()
             ></DifficultySelection>
            
             <Settings
-                set_Timer={setTimer}
                 set_Tutorial={setTutorial}
                 set_Colorblind_mode={setColorblind_mode}
                 set_Leaderboard={setLeaderboard}
@@ -54,7 +52,6 @@ export default function Home()
                 SetFamiliar={setFamiliar}
                 SetDailyChallenge={setDaily_Challenge}
                 showSettings={showSettings}
-    
             ></Settings>
 
             <Link to={order ? "/game" : "#"} /* onClick={useGetSettings(setSettings)} */ state={{ 
@@ -64,7 +61,6 @@ export default function Home()
                 difficulty: difficulty,
                 instrument: instrument,
                 familiar:familiar,
-                timer:timer,
                 tutorial:tutorial,
                 leaderboard:leaderboard,
                 colorblind_mode:colorblind_mode,

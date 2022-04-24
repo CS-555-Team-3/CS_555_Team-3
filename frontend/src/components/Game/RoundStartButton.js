@@ -23,8 +23,6 @@ export default function RoundStartButton(props) {
     // tune from parent component
     const tune = props.value;
 
-    // show-timer settings from parent component
-    const show_timer = props.timer;
     let delaytime = 9
     if (props.order.length === 6) {
         delaytime = 8
