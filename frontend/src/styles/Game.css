@@ -97,23 +97,37 @@ div.answerContainer {
 }
 
 #tutorialOverlayBox {
+  color: black;
   position: fixed;
-  top: 10%;
-  left: 30%;
-  right: 30%;
-  bottom: 10%;
+  top: 5%;
+  left: 25%;
+  right: 25%;
+  bottom: 5%;
   margin:auto;
   text-align: center;
   vertical-align: middle;
   background-color: darkgray;
-  padding: 2%;
+  padding: 1%;
+}
+
+#tutorialImageGrid
+{
+  display:grid;
+  flex-wrap: wrap;
+}
+
+.tutorialText p
+{
+  margin-block: 6px;
+  font-size: 14px;
 }
 
 #tutorialExit.MuiButton-text
 {
   color: black !important;
   position:absolute;
-  top:0;
+  font-weight: bold;
+  bottom: 0;
   right: 0;
 }
 

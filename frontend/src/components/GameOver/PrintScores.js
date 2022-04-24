@@ -5,7 +5,6 @@ import '../../styles/GameOver.css';
 
 export default function PrintScores(val) {
     const [scores, setScores] = useState([]);
-    console.log(scores)
     //Load scores from local storage on pageload
     useEffect(() => {
         const json = localStorage.getItem("scores");

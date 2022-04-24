@@ -103,15 +103,12 @@ Enzyme.configure({ adapter: new Adapter() });
     expect(screen.getByText("Tutorial")).toBeInTheDocument();
     expect(screen.getByText("Timer")).toBeInTheDocument();
     expect(screen.getByText("Color-blind Mode")).toBeInTheDocument();
-});
+    });
 
-
-test('genric test that it renders renders', () => {
-    const div = document.createElement("div")
-    render(<Settings />, div);
-}); 
-
-
+    test('genric test that settings renders', () => {
+        const div = document.createElement("div")
+        render(<Settings />, div);
+    }); 
 })
 
 
