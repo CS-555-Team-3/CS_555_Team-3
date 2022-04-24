@@ -1,4 +1,4 @@
-import {useNavigate, useLocation} from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import { useState } from "react";
 import '../../styles/Game.css';
 import { Grid } from "@mui/material";
@@ -9,13 +9,12 @@ import UndoSelection from './UndoSelection';
 import ResultButton from './ResultButton';
 import Hint from './Hint';
 import TutorialEntry from './TutorialEntry';
-import {Button} from '@mui/material';
+import { Button } from '@mui/material';
 import BoxRow from './BoxRow';
 import FadeIn from 'react-fade-in';
 
 
-export default function Game(props)
-{
+export default function Game(props) {
     const [clicked, setClicked] = useState(false);
     const [ifStart, setIfStart] = useState(false);
     const navigate = useNavigate()
@@ -31,7 +30,7 @@ export default function Game(props)
         catch (e) {
             console.log('create audio error: ', e)
         }
-     }
+    }
 
     // extract data from Home component 
     const data = useLocation();
@@ -46,61 +45,62 @@ export default function Game(props)
     // Settings (they do not change)
     const showTutorial = data.state.tutorial === 'on';
     const Leaderboard = data.state.leaderboard === 'on';
- 
+
     const [time, setTime] = useState(0);
-    const [totalTime, setTotalTime]=useState(0);
+    const [totalTime, setTotalTime] = useState(0);
     const color_blind = data.state.colorblind_mode;
     const difficulty = data.state.difficulty;
 
-    const highlightNotes = async (e) =>
-    {
+    const highlightNotes = async (e) => {
         setClicked(true);
         setIfStart(true)
     }
-    
+
     const endGame = () => {
-        var ptime = document.getElementById('totalTime').innerHTML;
+        // var ptime = document.getElementById('totalTime').innerHTML;
+        var ptime = totalTime
         var pscore = document.getElementById('score').innerHTML;
-        if(window.confirm('End game?')) navigate(`/end/${ptime}/${pscore}/${Leaderboard}`);
+        if (window.confirm('End game?')) navigate(`/end/${ptime}/${pscore}/${Leaderboard}`);
     }
 
     if (time > roundTime) {
         // if time is over, it will automatically go to the endgame page
-        var ptime = document.getElementById("totalTime").innerHTML;
+        // var ptime = document.getElementById("totalTime").innerHTML;
+        var ptime = totalTime
         var pscore = document.getElementById("score").innerHTML;
         navigate(`/end/${ptime}/${pscore}/${Leaderboard}`); // user can't play because time is over
-      }
+    }
 
-    return(
+    return (
         <div id="gameContainer">
-            {showTutorial && <TutorialEntry></TutorialEntry> }
+            {showTutorial && <TutorialEntry></TutorialEntry>}
             <div id="roundStartContainer">
                 <RoundStartButton value={tune} onClick={highlightNotes} setTime={setTime} time={time} order={order} roundTime={roundTime} totalTime={totalTime} setTotalTime={setTotalTime}></RoundStartButton>
             </div>
             <FadeIn>
-            <div id="gameGrid">
-                {order.map((val, index) =>
-                //this creates # of rows we want, right now it will be # of available notes
-                <ResultRow numBoxes={order.length} index={index} key={index}></ResultRow>
-                )}
-                <BoxRow order={order}></BoxRow>
-            </div>
+                <div id="gameGrid">
+                    {order.map((val, index) =>
+                        //this creates # of rows we want, right now it will be # of available notes
+                        <ResultRow numBoxes={order.length} index={index} key={index}></ResultRow>
+                    )}
+                    <BoxRow order={order}></BoxRow>
+                </div>
             </FadeIn>
 
             {ifStart && <>
                 <Grid container spacing={2} xs={9} id="gameUtils">
-                    <Grid item xs={2}><Hint hint={tune}/></Grid>
+                    <Grid item xs={2}><Hint hint={tune} /></Grid>
                     <Grid item xs={5}><ResultButton order={order} difficulty={difficulty} time={time} setTime={setTime} /></Grid>
-                    <Grid item xs={2}><UndoSelection order={order}/></Grid>
+                    <Grid item xs={2}><UndoSelection order={order} /></Grid>
                 </Grid>
-                <NoteButtonRow 
-                    order={order} 
-                    duration={duration} 
-                    clicked={clicked} 
+                <NoteButtonRow
+                    order={order}
+                    duration={duration}
+                    clicked={clicked}
                     instrument={instrument}
                     color_blind={color_blind}
                     showTutorial={showTutorial}>
-                </NoteButtonRow> 
+                </NoteButtonRow>
             </>}
             <div id="end">
                 <Button className="endButton" onClick={endGame} variant="contained" color="error">End game</Button>
