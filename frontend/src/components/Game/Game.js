@@ -46,6 +46,7 @@ export default function Game(props)
     // Settings (they do not change)
     const showTutorial = data.state.tutorial === 'on';
     const showTimer = data.state.timer === 'on';
+    const Leaderboard = data.state.leaderboard === 'on';
  
     const [time, setTime] = useState(0);
     const [totalTime, setTotalTime]=useState(0);
