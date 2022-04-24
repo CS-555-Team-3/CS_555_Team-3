@@ -10,8 +10,6 @@ export default function GameOver(props) {
     let { totalTime } = useParams();
     let { score } = useParams();
     let {showleaderboard} = useParams();
-    console.log("type of showleaderboard is : ", typeof(showleaderboard))
-    console.log(" showleaderboard is : ", showleaderboard)
 
   
     const ComponentToPrint = React.forwardRef((props, ref) => (
