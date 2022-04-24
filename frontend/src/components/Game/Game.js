@@ -63,14 +63,14 @@ export default function Game(props)
     const endGame = () => {
         var ptime = document.getElementById('totalTime').innerHTML;
         var pscore = document.getElementById('score').innerHTML;
-        if(window.confirm('End game?')) navigate(`/end/${ptime}/${pscore}`);
+        if(window.confirm('End game?')) navigate(`/end/${ptime}/${pscore}/${Leaderboard}`);
     }
 
     if (time > roundTime) {
         // if time is over, it will automatically go to the endgame page
         var ptime = document.getElementById("totalTime").innerHTML;
         var pscore = document.getElementById("score").innerHTML;
-        navigate(`/end/${ptime}/${pscore}`); // user can't play because time is over
+        navigate(`/end/${ptime}/${pscore}/${Leaderboard}`); // user can't play because time is over
       }
 
     return(
