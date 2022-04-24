@@ -51,16 +51,14 @@ export default function RoundStartButton(props) {
             // start count time
             setTotalTime(-delaytime + 3);
             setTime(-delaytime + 3);
-            if (show_timer) {
-                timer.current = setInterval(() => {
-                    setTotalTime((n) => {
-                        return n + 1;
-                    });
-                    setTime((n) => {
-                        return n + 1;
-                    });
-                }, 1000);
-            }
+            timer.current = setInterval(() => {
+                setTotalTime((n) => {
+                    return n + 1;
+                });
+                setTime((n) => {
+                    return n + 1;
+                });
+            }, 1000);
 
         }, 3000)
 
