@@ -28,11 +28,11 @@ export default function NoteButton(props)
                 case("F"): setIcon("🦛"); break;
                 case("G_flat"): setIcon("🦏"); break;
                 case("G"): setIcon("🦥"); break;
-                default: setIcon(note);
+                default: setIcon("");
             }
         }
         else{
-            setIcon(note)
+            setIcon("")
         }
     });
 
