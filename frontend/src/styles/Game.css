@@ -65,6 +65,7 @@ div.answerContainer {
 #roundStartContainer {
   height: 50px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -72,8 +73,13 @@ div.answerContainer {
 #timeAlert {
   color: red;
   font-weight: bolder;
-  position: fixed;
   margin-top: auto;
+  margin-bottom: 0;
+}
+
+#timeAlert ~ #totalTime
+{
+  margin: 0;
 }
 
 #time {

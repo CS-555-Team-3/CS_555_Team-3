@@ -68,7 +68,7 @@ export default function RoundStartButton(props) {
                 Start Round!
             </Button> :
             <>
-                {time >= (roundTime * 0.75) && time <= roundTime ? <h4 id='timeAlert'>`Game ends in {roundTime-time} seconds if you do not submit an answer!`</h4> : <></>}
+                {time >= (roundTime * 0.75) && time <= roundTime ? <h4 id='timeAlert'>Game ends in {roundTime-time} seconds if you do not submit an answer!</h4> : <></>}
                 <h4 id='totalTime'>{countdown ? `Get Ready! ${countdown_time} Second${countdown_time === 0 ? '' : 's'}` : `Round Time: ${totalTime} Second${totalTime === 0 ? '' : 's'}`}</h4>            
             </>
             }

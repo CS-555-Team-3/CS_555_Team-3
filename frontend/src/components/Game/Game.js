@@ -103,7 +103,7 @@ export default function Game(props)
                 </NoteButtonRow> 
             </>}
             <div id="end">
-                <Button className="endButton" onClick={endGame} variant="contained" color="error"> End game</Button>
+                <Button className="endButton" onClick={endGame} variant="contained" color="error">End game</Button>
             </div>
         </div>
     );
