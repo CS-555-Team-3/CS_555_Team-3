@@ -36,8 +36,8 @@ describe('Does it add to answers', () => {
                 </div>
             </div>
         );
-        userEvent.click(screen.getByText('Ab'));
-        expect(screen.getAllByText('A_flat').length).toBe(1);
+        userEvent.click(document.getElementsByClassName("setNote A_flat")[0]);
+        expect(document.getElementsByClassName("A_flat").length).toBe(4);
 
     });
 });
@@ -73,10 +73,10 @@ describe('Does it handle multiple of the same note', () => {
                 </div>
             </div>
         );
-        userEvent.click(screen.getByText('Ab'));
-        expect(screen.getAllByText('A_flat').length).toBe(1);
-        userEvent.click(screen.getByText('Ab'));
-        expect(screen.getAllByText('A_flat').length).toBe(2);
+        userEvent.click(document.getElementsByClassName("setNote A_flat")[0]);
+        expect(document.getElementsByClassName("A_flat").length).toBe(4);
+        userEvent.click(document.getElementsByClassName("setNote A_flat")[0]);
+        expect(document.getElementsByClassName("A_flat").length).toBe(5);
     });
 });
 
@@ -111,11 +111,11 @@ describe('Does it handle multiple different notes', () => {
                 </div>
             </div>
         );
-        userEvent.click(screen.getByText('Ab'));
-        expect(screen.getAllByText('A_flat').length).toBe(1);
-        userEvent.click(screen.getByText('A'));
-        expect(screen.getAllByText('A_flat').length).toBe(1);
-        expect(screen.getAllByText('A').length).toBe(2);
+        userEvent.click(document.getElementsByClassName("setNote A_flat")[0]);
+        expect(document.getElementsByClassName("A_flat").length).toBe(4);
+        userEvent.click(document.getElementsByClassName("setNote A_flat")[0]);
+        expect(document.getElementsByClassName("A_flat").length).toBe(5);
+        expect(document.getElementsByClassName("A").length).toBe(3);
     });
 });
 

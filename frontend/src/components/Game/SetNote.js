@@ -20,6 +20,6 @@ export default function SetNote(props)
     }
 
     return (
-        <Button className="setNote" onClick={handleClick} styles={colors}>Select</Button>
+        <Button className={`setNote ${noteName}`} onClick={handleClick} styles={colors}>Select</Button>
     );
 }
