@@ -25,9 +25,9 @@ export default function RoundStartButton(props) {
 
     // show-timer settings from parent component
     const show_timer = props.timer;
-    let delaytime = 9
+    let delaytime = 8
     if (props.order.length === 6) {
-        delaytime = 8
+        delaytime = 7
     }
 
     // once the user click the button, play the tune
@@ -40,8 +40,7 @@ export default function RoundStartButton(props) {
         }, 1000)
     
 
-        setTimeout(() => {
-            props.onClick();
+        props.onClick();
         try {
             setClicked(true);
             tune.play();
@@ -49,8 +48,8 @@ export default function RoundStartButton(props) {
             console.log('play audio error: ', e);
         }
         // start count time
-        setTotalTime(-delaytime+3);
-        setTime(-delaytime+3);
+        setTotalTime(-delaytime);
+        setTime(-delaytime);
         timer.current = setInterval(() => {
             setTotalTime((n) => {
                 return n + 1;
@@ -58,7 +57,7 @@ export default function RoundStartButton(props) {
             setTime((n) => {
                 return n + 1;
             });
-        }, 1000);}, 3000)
+        }, 1000)
 
     };
 
