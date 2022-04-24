@@ -1,12 +1,11 @@
+import { Button } from "@mui/material";
+import { colors } from "../../styles/styleUtil";
+
 export default function SetNote(props) 
 {
     const noteName = props.note;
     const order = props.order;
-    const buttonText = props.children;
     const boxes = ["first","second","third","fourth","fifth", "sixth"];
-
-    //input check for noteName being one of our accepted names
-    //test - name that doesn't work fails
 
     const handleClick = (e) =>
     {
@@ -21,6 +20,6 @@ export default function SetNote(props)
     }
 
     return (
-        <button className="setNote" onClick={handleClick}>{buttonText}</button>
+        <Button className={`setNote ${noteName}`} onClick={handleClick} styles={colors}>Select</Button>
     );
 }

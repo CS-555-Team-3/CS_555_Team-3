@@ -24,8 +24,8 @@ export default function BoxRow(props) {
     }
 
     return (            
-    
-    <FadeIn className="answerContainer">
-        <div className='placement'>{answer_boxes}</div>
-    </FadeIn>);
+        <FadeIn className="answerContainer">
+            <div className='placement'>{answer_boxes}</div>
+        </FadeIn>
+    );
 }

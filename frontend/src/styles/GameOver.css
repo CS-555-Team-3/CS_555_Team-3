@@ -1,12 +1,8 @@
-body {
-    color: aliceblue;
-    background-image: linear-gradient(rgba(7, 7, 7, 0.527), rgba(7,7, 7, 0.5)), url(https://www.frostgroupdc.com/wp-content/uploads/2017/11/background_grass_crop-07.png);
-    background-size: 1300px 900px;
-  }
-
 #endGameContainer
 {
+    color: aliceblue;
     display:flex;
+    margin-block: 5%;
     flex-direction: column;
     align-items: center;
 }
@@ -15,4 +11,40 @@ ul
 {
     margin: 0;
     padding: 0;
+}
+
+#printedComponent h3
+{
+    margin-block: 10px;
+}
+
+#printedComponent h3:last-of-type
+{
+    margin-block-start: 30px;
+}
+
+.scoreInfo
+{
+    display: flex;
+    min-width: 175px;
+    flex-direction: column;
+}
+
+.scoreInfo h4
+{
+    margin-block: 5px;
+}
+
+.score,
+.copyGroup,
+#printedComponent
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.copyGroup .MuiButton-root
+{
+    max-height: 50px;
 }

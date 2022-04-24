@@ -1,6 +1,7 @@
 import {useNavigate, useLocation} from "react-router-dom"
-import { useState, useRef } from "react";
+import { useState } from "react";
 import '../../styles/Game.css';
+import { Grid } from "@mui/material";
 import ResultRow from "./ResultRow";
 import NoteButtonRow from './NoteButtonRow';
 import RoundStartButton from './RoundStartButton';
@@ -39,16 +40,13 @@ export default function Game(props)
     const order = data.state.note_order;
     console.log("ORDER: " + order);
 
-    // duration for all component use
     const duration = data.state.duration;
-
-    // instrument for all component use
     const instrument = data.state.instrument;
 
-    // States for the settings 
-    const [showTutorial, setShowTutorial] = useState((data.state.tutorial === 'on'));
-    const [showTimer, setShowTimer] = useState((data.state.timer === 'on'));
-    const [Leaderboard, setLeaderboard] = useState((data.state.leaderboard === 'on'));
+    // Settings (they do not change)
+    const showTutorial = data.state.tutorial === 'on';
+    const showTimer = data.state.timer === 'on';
+ 
     const [time, setTime] = useState(0);
     const [totalTime, setTotalTime]=useState(0);
     const color_blind = data.state.colorblind_mode;
@@ -88,13 +86,13 @@ export default function Game(props)
                 <BoxRow order={order}></BoxRow>
             </div>
             </FadeIn>
-            <div id="hint"><Hint hint={tune} /></div>
 
-            <ResultButton order={order} difficulty={difficulty} time={time} setTime={setTime} ></ResultButton>
-
-            
-
-            {ifStart ? <>
+            {ifStart && <>
+                <Grid container spacing={2} xs={9} id="gameUtils">
+                    <Grid item xs={2}><Hint hint={tune}/></Grid>
+                    <Grid item xs={5}><ResultButton order={order} difficulty={difficulty} time={time} setTime={setTime} /></Grid>
+                    <Grid item xs={2}><UndoSelection order={order}/></Grid>
+                </Grid>
                 <NoteButtonRow 
                     order={order} 
                     duration={duration} 
@@ -103,11 +101,9 @@ export default function Game(props)
                     color_blind={color_blind}
                     showTutorial={showTutorial}>
                 </NoteButtonRow> 
-                <UndoSelection order={order}>Undo Selection</UndoSelection>
-            </>
-            : <></>}
+            </>}
             <div id="end">
-                <Button className="endButton" onClick={endGame}> End game</Button>
+                <Button className="endButton" onClick={endGame} variant="contained" color="error">End game</Button>
             </div>
         </div>
     );

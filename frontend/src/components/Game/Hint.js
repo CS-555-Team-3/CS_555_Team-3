@@ -9,7 +9,7 @@ const Hint = ({hint}) => {
     }
 
     return (
-        <Button className='hint' onClick={playHint}> Hint </Button>
+        <Button className='hint' variant="contained" onClick={playHint}>Hint</Button>
     );
 }
 

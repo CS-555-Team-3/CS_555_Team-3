@@ -47,9 +47,9 @@ describe('Does it Undo', () => {
             </div>
         );
         userEvent.click(document.getElementsByClassName("A")[0].firstChild);
-        expect(document.getElementsByClassName("A").length).toBe(3);
+        await expect(document.getElementsByClassName("A").length).toBe(4);
         userEvent.click(screen.getByText('Undo Selection'));
-        await expect(document.getElementsByClassName("A").length).toBe(2);
+        await expect(document.getElementsByClassName("A").length).toBe(3);
     });
 });
 
@@ -87,17 +87,17 @@ describe('Does it Undo Multiple', () => {
                 </div>
             </div>
         );
-        userEvent.click(screen.getByText('Ab'));
-        expect(screen.getAllByText('A_flat').length).toBe(1);
+        userEvent.click(document.getElementsByClassName('setNote A_flat')[0]);
+        expect(document.getElementsByClassName('A_flat').length).toBe(4);
 
-        userEvent.click(screen.getByText('A'));
-        expect(screen.getAllByText('A').length).toBe(2);
-
-        userEvent.click(screen.getByText('Undo Selection'));
-        expect(screen.getAllByText('A').length).toBe(1);
+        userEvent.click(document.getElementsByClassName('setNote A')[0]);
+        expect(document.getElementsByClassName('A').length).toBe(4);
 
         userEvent.click(screen.getByText('Undo Selection'));
-        expect(screen.queryByText('A_flat')).not.toBeInTheDocument();
+        expect(document.getElementsByClassName('A').length).toBe(3);
+
+        userEvent.click(screen.getByText('Undo Selection'));
+        expect(document.getElementsByClassName('A_flat').length).toBe(3);
     });
 });
 
@@ -135,16 +135,16 @@ describe('Does it Handle Multiple of the Same', () => {
                 </div>
             </div>
         );
-        userEvent.click(screen.getByText('Ab'));
-        expect(screen.getAllByText('A_flat').length).toBe(1);
+        userEvent.click(document.getElementsByClassName('setNote A_flat')[0]);
+        expect(document.getElementsByClassName('A_flat').length).toBe(4);
 
-        userEvent.click(screen.getByText('Ab'));
-        expect(screen.getAllByText('A_flat').length).toBe(2);
-
-        userEvent.click(screen.getByText('Undo Selection'));
-        expect(screen.getAllByText('A_flat').length).toBe(1);
+        userEvent.click(document.getElementsByClassName('setNote A_flat')[0]);
+        expect(document.getElementsByClassName('A_flat').length).toBe(5);
 
         userEvent.click(screen.getByText('Undo Selection'));
-        expect(screen.queryByText('A_flat')).not.toBeInTheDocument();
+        expect(document.getElementsByClassName('A_flat').length).toBe(4);
+
+        userEvent.click(screen.getByText('Undo Selection'));
+        expect(document.getElementsByClassName('A_flat').length).toBe(3);
     });
 });

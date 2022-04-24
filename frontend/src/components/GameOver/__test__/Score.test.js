@@ -1,6 +1,6 @@
 import {render, cleanup, userEvent} from "@testing-library/react";
 import PrintScores from "../PrintScores";
-import ResultButton from "../ResultButton";
+import ResultButton from "../../Game/ResultButton";
 
 afterEach(cleanup);
 

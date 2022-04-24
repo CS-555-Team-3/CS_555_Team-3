@@ -26,6 +26,6 @@ describe('Does click highlight note', () =>
             userEvent.click(note);
         }));
         //one selected item
-        waitFor(()=>expect(document.getElementsByClassName('selected').length).toBe(1));
+        await waitFor(()=>expect(document.getElementsByClassName('selected').length).toBe(1));
     })
 })
