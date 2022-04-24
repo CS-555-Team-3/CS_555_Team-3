@@ -66,4 +66,31 @@ describe('Does click play tune and activate highlight', () =>
 
         }, 4000)
     })
+
+    test('click RoundStartButton and Round-timer and Total-timer begin', async () => {
+        const audio = new Audio('/sound_notes/A.wav');
+        const onClick = jest.fn();
+        const order = ["a","b","c","d"];
+        const roundTime = 18;
+        const time = 18;
+        const totalTime = 20;
+        const setTime = jest.fn();
+        const setTotalTime = jest.fn();
+
+        const wrapper = mount(<RoundStartButton
+            value={audio} onClick={onClick} order={order} time={time} roundTime={roundTime} totalTime={totalTime} setTime={setTime} setTotalTime={setTotalTime}/>);
+
+        render(
+            <RoundStartButton value={audio} onClick={onClick} order={order} time={time} roundTime={roundTime} totalTime={totalTime} setTime={setTime} setTotalTime={setTotalTime}></RoundStartButton>
+        );
+        let button = document.getElementsByClassName('roundStart');
+        act(()=>{
+            userEvent.click(button[0]);
+        });
+        // if click roundStart, all timers will start
+        setTimeout(() => {
+            expect(wrapper.instance().setInterval()).toHaveBeenCalled();
+
+        }, 4000)
+     })
 })
