@@ -9,13 +9,15 @@ import "../../styles/GameOver.css";
 export default function GameOver(props) {
     let { totalTime } = useParams();
     let { score } = useParams();
+    let {showleaderboard} = useParams();
+
   
     const ComponentToPrint = React.forwardRef((props, ref) => (
       <div ref={ref}>
             <Link to="/">🐘 Play Again! 🦔</Link>
             <h3>Your total time was: {totalTime}</h3>
             <h3>Your top 5 scores are: {score}</h3>
-            <PrintScores />
+            {showleaderboard && <PrintScores />}
       </div>
     ));
     const componentRef = useRef();
