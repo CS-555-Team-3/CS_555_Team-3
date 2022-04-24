@@ -1,5 +1,5 @@
 import {useNavigate, useLocation} from "react-router-dom"
-import { useState, useRef } from "react";
+import { useState, useRef} from "react";
 import '../../styles/Game.css';
 import ResultRow from "./ResultRow";
 import NoteButtonRow from './NoteButtonRow';
@@ -77,7 +77,9 @@ export default function Game(props)
     const endGame = () => {
         var ptime = document.getElementById('time').innerHTML;
         var pscore = document.getElementById('score').innerHTML;
-        if(window.confirm('End game?')) navigate(`/end/${ptime}/${pscore}`);
+        var showleaderboard = Leaderboard;
+        console.log("ENDgame the show leaderboard is : ", Leaderboard)
+        if(window.confirm('End game?')) navigate(`/end/${ptime}/${pscore}/${showleaderboard}`);
     }
 
     return(
@@ -115,7 +117,7 @@ export default function Game(props)
             </>
             : <></>}
             <div id="end">
-                <Button className="endButton" onClick={endGame}> End game</Button>
+                <Button className="endButton" onClick={endGame} > End game</Button>
             </div>
         </div>
     );
