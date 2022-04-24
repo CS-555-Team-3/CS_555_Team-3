@@ -45,7 +45,6 @@ export default function Game(props)
 
     // Settings (they do not change)
     const showTutorial = data.state.tutorial === 'on';
-    const showTimer = data.state.timer === 'on';
     const Leaderboard = data.state.leaderboard === 'on';
  
     const [time, setTime] = useState(0);
@@ -76,7 +75,7 @@ export default function Game(props)
         <div id="gameContainer">
             {showTutorial && <TutorialEntry></TutorialEntry> }
             <div id="roundStartContainer">
-                <RoundStartButton value={tune} timer={showTimer} onClick={highlightNotes} setTime={setTime} time={time} order={order} roundTime={roundTime} totalTime={totalTime} setTotalTime={setTotalTime}></RoundStartButton>
+                <RoundStartButton value={tune} onClick={highlightNotes} setTime={setTime} time={time} order={order} roundTime={roundTime} totalTime={totalTime} setTotalTime={setTotalTime}></RoundStartButton>
             </div>
             <FadeIn>
             <div id="gameGrid">
