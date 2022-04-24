@@ -17,7 +17,7 @@ export default function GameOver(props) {
             <Link to="/">🐘 Play Again! 🦔</Link>
             <h3>Your total time was: {totalTime}</h3>
             <h3>Your top 5 scores are: {score}</h3>
-            {(showleaderboard === 'true') && <PrintScores />}
+            {showleaderboard && <PrintScores />}
       </div>
     ));
     const componentRef = useRef();
