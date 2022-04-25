@@ -5,11 +5,12 @@
  * w: http://animista.net, t: @cssanimista
  * ---------------------------------------------- */
 
- @-webkit-keyframes slide-tl{0%{-webkit-transform:translateY(0) translateX(0);transform:translateY(0) translateX(0)}100%{-webkit-transform:translateY(-368px) translateX(207px);transform:translateY(-368px) translateX(207px)}}@keyframes slide-tl{0%{-webkit-transform:translateY(0) translateX(0);transform:translateY(0) translateX(0)}100%{-webkit-transform:translateY(-368px) translateX(207px);transform:translateY(-368px) translateX(207px)}}
+ @-webkit-keyframes slide-tl{0%{-webkit-transform:translateY(0) translateX(0);transform:translateY(0) translateX(0)}50%{-webkit-transform:translateY(-206px) translateX(177px);transform:translateY(-206px) translateX(177px)}60%{-webkit-transform:translateY(-206px) translateX(177px);transform:translateY(-206px) translateX(177px)}}
+         @keyframes slide-tl{0%{-webkit-transform:translateY(0) translateX(0);transform:translateY(0) translateX(0)}50%{-webkit-transform:translateY(-206px) translateX(177px);transform:translateY(-206px) translateX(177px)}60%{-webkit-transform:translateY(-206px) translateX(177px);transform:translateY(-206px) translateX(177px)}}
 
 .dragTut {
   animation-name: slide-tl;
-  animation-duration: 4s;
+  animation-duration: 6s;
 }
 
 #gameContainer {
